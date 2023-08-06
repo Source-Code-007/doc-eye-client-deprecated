@@ -6,13 +6,24 @@
 /* Colors */
 /* primary color -  blue- #136afb , subduded red- E57373, neutral text color- 333333 */
 
-
+.text-primary{
+  color: #136afb;
+}
+.bg-primary{
+  background-color: #136afb;
+}
 .my-container{
   @apply max-w-7xl mx-auto container
 }
 
-.my-title{
+.my-banner-title{
   @apply font-bold text-xl md:text-4xl xl:text-7xl
+}
+.my-title{
+  @apply font-bold text-xl md:text-3xl xl:text-5xl
+}
+.my-subtitle{
+  @apply font-semibold text-lg xl:text-2xl
 }
 
 .my-btn-one{
