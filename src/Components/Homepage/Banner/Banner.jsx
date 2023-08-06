@@ -29,6 +29,8 @@ const Banner = () => {
             img: orderMedicine
         },
     ]
+
+
     
     return (
         <div className='h-screen bg-center' style={{ backgroundImage: `url(${banner1.src})` }}>
