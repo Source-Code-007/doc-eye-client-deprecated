@@ -11,6 +11,14 @@
   @apply max-w-7xl mx-auto container
 }
 
+.my-title{
+  @apply font-bold text-xl md:text-4xl xl:text-7xl
+}
+
+.my-btn-one{
+  @apply bg-[#136afb] border-2 text-slate-100 rounded py-3 px-6 hover:bg-slate-100 hover:border-2 hover:border-[#136afb] hover:text-[#136afb]
+}
+
 /* Scrollbar */
 body::-webkit-scrollbar {
   width: 1em;
