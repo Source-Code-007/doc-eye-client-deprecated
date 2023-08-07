@@ -1,12 +1,29 @@
 import CommonSectionTitle from '@/Components/HelpingCompo/CommonSectionTitle';
 import React from 'react';
-import { FaArrowRight, FaList, FaPhone, IconName } from "react-icons/fa6";
+import { FaArrowRight, FaPhone } from "react-icons/fa6";
+import about1 from '/public/assets/img/Homepage/About/about1.jpg'
+import about2 from '/public/assets/img/Homepage/About/about2.jpg'
+import about3 from '/public/assets/img/Homepage/About/about3.jpg'
+import about4 from '/public/assets/img/Homepage/About/about4.jpg'
+import Image from 'next/image';
+
 
 const AboutUs = () => {
     return (
-        <div className='my-container'>
-            <div className='grid grid-cols-2'>
-                <div></div>
+        <div className='my-container pt-24 pb-36'>
+            <div className='grid grid-cols-2 gap-8'>
+                {/* About us left */}
+                <div className='flex items-center relative'>
+                    <Image src={about1} alt='about1' height='auto'></Image>
+                    <figure className='absolute -left-28 -bottom-24'>
+                        <Image src={about2} alt='about2' width='300' height='300'></Image>
+                    </figure>
+                    <figure className='absolute -left-28 -top-24'>
+                        <Image src={about3} alt='about3' width='300' height='300'></Image>
+                    </figure>
+                    {/* <Image src={about4} alt='about4' width='40%' height='auto'></Image> */}
+                </div>
+
 
                 {/* About us right */}
                 <div className='space-y-5'>
@@ -30,13 +47,14 @@ const AboutUs = () => {
                         </div>
 
                         <div className='bg-blue-100 rounded text-center shadow-lg p-8 space-y-4'>
-                                <span className='my-title text-primary'>100%</span>
-                                <p className='my-subtitle'>Satisfaction guarantees</p>
-                                <p>It is a long established fact that a reader will be distracted by the readable content</p>
+                            <span className='my-title text-primary'>100%</span>
+                            <p className='my-subtitle'>Satisfaction guarantees</p>
+                            <p>It is a long established fact that a reader will be distracted by the readable content</p>
                         </div>
 
                     </div>
                 </div>
+
             </div>
         </div>
     );

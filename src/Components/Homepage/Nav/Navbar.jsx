@@ -24,7 +24,7 @@ const Navbar = () => {
 
 
     return (
-        <nav className={`${isTop? '' : 'bg-slate-100 shadow'} fixed left-0 right-0 top-0`}>
+        <nav className={`${isTop? '' : 'bg-slate-100 shadow'} fixed left-0 right-0 top-0 z-50`}>
             <div className='py-4 my-container flex justify-between'>
                 <Link href={'/'}><Image height={40} width={40} src={logo} alt='DocEye'></Image></Link>
                 <ul className='flex gap-10 items-center text-slate-700 text-xl'>

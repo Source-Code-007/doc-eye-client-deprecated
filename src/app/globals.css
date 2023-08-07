@@ -4,13 +4,13 @@
 
 
 /* Colors */
-/* primary color -  blue- #136afb , subduded red- E57373, neutral text color- 333333 */
+/* primary color -  blue- #136afb, updated- #09528C , subduded red- E57373, neutral text color- 333333 */
 
 .text-primary{
-  color: #136afb;
+  color: #09528C;
 }
 .bg-primary{
-  background-color: #136afb;
+  background-color: #09528C;
 }
 .my-container{
   @apply max-w-7xl mx-auto container
@@ -27,7 +27,7 @@
 }
 
 .my-btn-one{
-  @apply bg-[#136afb] border-2 text-slate-100 rounded py-3 px-6 hover:bg-slate-100 hover:border-2 hover:border-[#136afb] hover:text-[#136afb]
+  @apply bg-[#09528C] border-2 text-slate-100 rounded py-3 px-6 hover:bg-slate-100 hover:border-2 hover:border-[#09528C] hover:text-[#09528C]
 }
 
 /* Scrollbar */
