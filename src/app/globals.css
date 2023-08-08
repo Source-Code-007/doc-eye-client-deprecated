@@ -26,8 +26,16 @@
   @apply font-semibold text-lg xl:text-2xl
 }
 
+
+.my-shadow{
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
 .my-btn-one{
   @apply bg-[#09528C] border-2 text-slate-100 rounded py-3 px-6 hover:bg-slate-100 hover:border-2 hover:border-[#09528C] hover:text-[#09528C]
+}
+.my-btn-one-outline{
+  @apply bg-slate-50 hover:bg-[#09528C] border-2 font-semibold hover:text-slate-100 text-[#09528C] rounded py-3 px-6 border-[#09528C]
 }
 
 /* Scrollbar */

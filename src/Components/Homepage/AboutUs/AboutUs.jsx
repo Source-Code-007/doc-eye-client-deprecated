@@ -46,7 +46,7 @@ const AboutUs = () => {
                             </div>
                         </div>
 
-                        <div className='bg-blue-100 rounded text-center shadow-lg p-8 space-y-4'>
+                        <div className='bg-blue-100 rounded text-center my-shadow p-8 space-y-4'>
                             <span className='my-title text-primary'>100%</span>
                             <p className='my-subtitle'>Satisfaction guarantees</p>
                             <p>It is a long established fact that a reader will be distracted by the readable content</p>
