@@ -3,6 +3,7 @@ import FAQuestions from '@/Components/HelpingCompo/FAQuestions';
 import Link from 'next/link';
 import React from 'react';
 
+
 const FAQ = () => {
     return (
         <div className='py-24'>
