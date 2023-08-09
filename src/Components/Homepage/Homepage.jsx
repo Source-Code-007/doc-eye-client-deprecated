@@ -5,6 +5,8 @@ import Navbar from './Nav/Navbar';
 import AboutUs from './AboutUs/AboutUs';
 import WhyChooseUs from './WhyChooseUs/WhyChooseUs';
 import Services from './Services/Services';
+import AppSection from './AppSection/AppSection';
+import FAQ from './FAQ/FAQ';
 
 const Homepage = () => {
     return (
@@ -14,6 +16,8 @@ const Homepage = () => {
             <AboutUs></AboutUs>
             <WhyChooseUs></WhyChooseUs>
             <Services></Services>
+            <AppSection></AppSection>
+            <FAQ></FAQ>
         </>
     );
 };
