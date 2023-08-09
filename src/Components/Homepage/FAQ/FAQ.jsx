@@ -2,11 +2,12 @@ import CommonSectionTitle from '@/Components/HelpingCompo/CommonSectionTitle';
 import FAQuestions from '@/Components/HelpingCompo/FAQuestions';
 import Link from 'next/link';
 import React from 'react';
+import FAQbg from '/public/assets/img/Homepage/FAQ/FAQ-bg.svg'
 
 
 const FAQ = () => {
     return (
-        <div className='py-24'>
+        <div className='py-24 bg-cover bg-center' style={{backgroundImage: `url(${FAQbg.src})`}}>
             <div className='my-container space-y-8'>
                 <CommonSectionTitle title={'Commonly asked question'} subTitle={'Exploring Common Queries About Our Services'}></CommonSectionTitle>
 

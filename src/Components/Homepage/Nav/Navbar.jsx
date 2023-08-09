@@ -10,7 +10,7 @@ const Navbar = () => {
 
     useEffect(()=>{
         const isTopFunc = ()=>{
-            if(window.scrollY>100){
+            if(window.scrollY>30){
                 setIsTop(false)
             } else{
                 setIsTop(true)

@@ -49,7 +49,7 @@ const FAQuestions = ({ limit }) => {
     return (
         <div className='space-y-4'>
             {faq.slice(0,limit?limit:faq.length).map((fa, ind) => {
-                return <div key={ind} className="collapse collapse-plus shadow-md">
+                return <div key={ind} className="collapse collapse-plus shadow-md bg-slate-50">
                     <input type="radio" name={`my-accordion-3`} />
                     <div className="collapse-title text-xl font-medium">
                         {fa.question}
