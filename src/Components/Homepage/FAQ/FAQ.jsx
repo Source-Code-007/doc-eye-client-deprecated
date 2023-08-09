@@ -4,7 +4,6 @@ import Link from 'next/link';
 import React from 'react';
 import FAQbg from '/public/assets/img/Homepage/FAQ/FAQ-doctor-portal.png'
 
-
 const FAQ = () => {
     return (
         <div className='py-24 bg-cover bg-center' style={{backgroundImage: `url(${FAQbg.src})`}}>
