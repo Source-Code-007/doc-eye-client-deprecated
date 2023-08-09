@@ -5,6 +5,7 @@ import React from 'react';
 
 
 
+
 const page = () => {
     return (
         <div className='pt-28 pb-8' style={{backgroundImage: `url(${FAQbg.src})`}}>
