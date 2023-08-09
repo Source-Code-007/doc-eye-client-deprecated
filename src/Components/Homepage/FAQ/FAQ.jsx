@@ -6,7 +6,7 @@ import FAQbg from '/public/assets/img/Homepage/FAQ/FAQ-doctor-portal.png'
 
 const FAQ = () => {
     return (
-        <div className='py-24 bg-cover bg-center' style={{backgroundImage: `url(${FAQbg.src})`}}>
+        <div className='py-24 bg-cover bg-center bg-fixed' style={{backgroundImage: `url(${FAQbg.src})`}}>
             <div className='my-container space-y-8'>
                 <CommonSectionTitle title={'Commonly asked question'} subTitle={'Exploring Common Queries About Our Services'}></CommonSectionTitle>
 

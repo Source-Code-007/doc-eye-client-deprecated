@@ -1,7 +1,8 @@
 import CommonSectionTitle from '@/Components/HelpingCompo/CommonSectionTitle';
 import FAQuestions from '@/Components/HelpingCompo/FAQuestions';
-import FAQbg from '/public/assets/img/Homepage/FAQ/FAQ-bg.svg'
+import FAQbg from '/public/assets/img/Homepage/FAQ/FAQ-doctor-portal.png'
 import React from 'react';
+
 
 const page = () => {
     return (
