@@ -6,16 +6,28 @@
 /* Colors */
 /* primary color -  blue- #09528C , subduded red- E57373, neutral text color- 333333 */
 
+
+/* Common color */
 .text-primary{
   color: #09528C;
+}
+.text-secondary{
+  color: #E57373;
 }
 .bg-primary{
   background-color: #09528C;
 }
+.bg-secondary{
+  background-color: #E57373;
+}
+
+/* Common layout */
 .my-container{
   @apply max-w-7xl mx-auto container
 }
 
+
+/* Common title and subtitle */
 .my-banner-title{
   @apply font-bold text-xl md:text-4xl xl:text-7xl
 }

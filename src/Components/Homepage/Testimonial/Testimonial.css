@@ -1,0 +1,31 @@
+/* next and prev button */
+.swiper-button-next, .swiper-button-prev{
+    background-color: #E57373;
+    color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    position: absolute;
+    top: 75%;
+}
+.swiper-button-next{
+    left: 90%;
+    
+}
+.swiper-button-prev{
+    left: 76%;
+}
+
+/* Pagination numbering count */
+.swiper-pagination{
+    position: absolute;
+    top: 75%;
+    left: 0;
+    width: max-content;
+    font-weight: bold;
+}
+.swiper-pagination-current{
+    font-size: 20px;
+}
+.swiper-pagination-total{
+    font-size: 30px;
+}
