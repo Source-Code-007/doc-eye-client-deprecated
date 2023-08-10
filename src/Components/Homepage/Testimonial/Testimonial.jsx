@@ -13,6 +13,7 @@ import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa6';
 import './testimonial.css'
 
 const Testimonial = () => {
+    
     const testimonials = [
         {
             name: "Sarah Johnson",
@@ -51,6 +52,7 @@ const Testimonial = () => {
             message: "I've witnessed the transformation in my friend's health under the care of these doctors. Their commitment to healing extends not only to patients but to loved ones as well."
         }
     ];
+
     return (
         <div className='py-24'>
             <div className='my-container grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8'>
