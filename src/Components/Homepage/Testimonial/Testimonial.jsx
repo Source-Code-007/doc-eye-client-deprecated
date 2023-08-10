@@ -11,9 +11,15 @@ import CommonSectionTitle from '@/Components/HelpingCompo/CommonSectionTitle';
 import Image from 'next/image';
 import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa6';
 import './testimonial.css'
+import CountUp from 'react-countup';
+import successfulPatient from '/public/assets/img/Homepage/Testimonial/successful-patient.png'
+import doctorSpecialist from '/public/assets/img/Homepage/Testimonial/doctor-specialist.png'
+import healthServices from '/public/assets/img/Homepage/Testimonial/healthServices.png'
+
+
 
 const Testimonial = () => {
-    
+
     const testimonials = [
         {
             name: "Sarah Johnson",
@@ -52,6 +58,23 @@ const Testimonial = () => {
             message: "I've witnessed the transformation in my friend's health under the care of these doctors. Their commitment to healing extends not only to patients but to loved ones as well."
         }
     ];
+    const testimonialsCounterUp = [
+        {
+            img: successfulPatient,
+            title: 'Happy patient',
+            number: 2500
+        },
+        {
+            img: doctorSpecialist,
+            title: 'Specialist available',
+            number: 120
+        },
+        {
+            img: healthServices,
+            title: 'Health services',
+            number: 160
+        },
+    ]
 
     return (
         <div className='py-24'>
@@ -92,9 +115,24 @@ const Testimonial = () => {
 
                 {/* Testimonial right */}
                 <div className='flex items-center justify-center'>
-                            <div className='rounded-xl bg-secondary w-4/5 h-4/5'>
-
+                    <div className='rounded-xl p-16 bg-secondary flex flex-col gap-6 items-center justify-center'>
+                        {testimonialsCounterUp.map((tcu, ind) => {
+                            return <div key={ind} className='w-full flex gap-6'>
+                                <figure className='h-16 w-16 relative'>
+                                    <Image src={tcu.img} alt={tcu.title} fill={true}></Image>
+                                </figure>
+                                <div className='text-slate-50 space-y-2'>
+                                    <span className='flex gap-2 my-subtitle'><CountUp
+                                        start={0}
+                                        end={tcu.number}
+                                        duration={2.75}
+                                        enableScrollSpy={true}
+                                    /> <span className='text-2xl'>+</span></span>
+                                    <h2>{tcu.title}</h2>
+                                </div>
                             </div>
+                        })}
+                    </div>
                 </div>
 
             </div>
