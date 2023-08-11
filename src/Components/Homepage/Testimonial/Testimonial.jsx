@@ -76,6 +76,7 @@ const Testimonial = () => {
         },
     ]
 
+    
     return (
         <div className='py-24'>
             <div className='my-container grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8'>
