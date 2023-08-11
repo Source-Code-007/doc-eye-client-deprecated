@@ -5,7 +5,9 @@
 
 /* Colors */
 /* primary color -  blue- #09528C , subduded red- E57373, neutral text color- 333333 */
-
+.footer-top {
+  clip-path: polygon(0 0, 100% 15%, 100% 100%, 0% 100%);
+}
 
 /* Common color */
 .text-primary{
