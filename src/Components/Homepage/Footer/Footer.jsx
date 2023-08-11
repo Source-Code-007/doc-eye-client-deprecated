@@ -4,9 +4,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FaFacebook, FaGithub, FaInstagram, FaLocationArrow, FaMessage, FaPhone, FaTwitter, FaWhatsapp } from 'react-icons/fa6';
 
-
-
-
 const Footer = () => {
     return (
         <div className='bg-[#09528C] bg-opacity-20 footer-top'>
