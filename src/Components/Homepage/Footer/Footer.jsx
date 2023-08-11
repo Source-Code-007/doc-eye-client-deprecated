@@ -6,6 +6,7 @@ import { FaFacebook, FaGithub, FaInstagram, FaLocationArrow, FaMessage, FaPhone,
 
 
 
+
 const Footer = () => {
     return (
         <div className='bg-[#09528C] bg-opacity-20 footer-top'>
