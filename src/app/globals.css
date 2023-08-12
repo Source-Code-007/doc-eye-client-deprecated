@@ -25,7 +25,7 @@
 
 /* Common layout */
 .my-container{
-  @apply max-w-7xl mx-auto container
+  @apply max-w-7xl container mx-8 md:mx-12 xl:mx-auto
 }
 
 
