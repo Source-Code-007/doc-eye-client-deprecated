@@ -9,6 +9,7 @@ import AppSection from './AppSection/AppSection';
 import FAQ from './FAQ/FAQ';
 import Testimonial from './Testimonial/Testimonial';
 import Footer from './Footer/Footer';
+import Contact from './Contact/Contact';
 
 const Homepage = () => {
     return (
@@ -21,6 +22,7 @@ const Homepage = () => {
             <AppSection></AppSection>
             <Testimonial></Testimonial>
             <FAQ></FAQ>
+            <Contact></Contact>
             <Footer></Footer>
         </>
     );

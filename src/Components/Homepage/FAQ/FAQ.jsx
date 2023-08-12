@@ -14,7 +14,7 @@ const FAQ = () => {
                 <div>
                     <FAQuestions limit={5}></FAQuestions>
                     <div className='text-center mt-16'>
-                        <Link href={'/faq'}><button className='my-btn-one-outline'>View all FAQ's</button></Link>
+                        <Link href={'/faq'}><button className='my-btn-one-outline'>View all FAQ{"'"}s</button></Link>
                     </div>
                 </div>
             </div>

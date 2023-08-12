@@ -32,7 +32,7 @@ const AboutUs = () => {
                     <div className='grid grid-cols-2 gap-8'>
                         <div className='space-y-4 flex flex-col justify-between'>
                             <ul className='space-y-4 pb-7 border-b border-slate-200'>
-                                <li className='flex items-center gap-2 font-semibold text-slate-500'> <span className='text-primary'><FaArrowRight /></span> We're here to help you feel better.</li>
+                                <li className='flex items-center gap-2 font-semibold text-slate-500'> <span className='text-primary'><FaArrowRight /></span> We{"'"}re here to help you feel better.</li>
                                 <li className='flex items-center gap-2 font-semibold text-slate-500'> <span className='text-primary'><FaArrowRight /></span> Your health is important.</li>
                                 <li className='flex items-center gap-2 font-semibold text-slate-500'> <span className='text-primary'><FaArrowRight /></span> Trust us with your care.</li>
                                 <li className='flex items-center gap-2 font-semibold text-slate-500'> <span className='text-primary'><FaArrowRight /></span> Your health is our goal.</li>
