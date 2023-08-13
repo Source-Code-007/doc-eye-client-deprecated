@@ -25,8 +25,8 @@ const WhyChooseUs = () => {
     ]
 
     return (
-        <div className='min-h-screen !bg-none bg-bottom' style={{ backgroundImage: `url(${WhyChooseUsBg.src})` }}>
-            <div className='my-container space-y-8 pr-[120px] md:pr-[300px] pt-[100px] md:pt-[200px]'>
+        <div className='min-h-screen bg-left md:bg-bottom' style={{ backgroundImage: `url(${WhyChooseUsBg.src})` }}>
+            <div className='my-container space-y-8 pr-0 lg:pr-[300px] pt-[50px] md:pt-[100px]'>
                 <CommonSectionTitle subTitle={'Why Choose Us'} title={'Why people Choose DocWatch'}></CommonSectionTitle>
                 <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don’t look even slightly believable.</p>
                 <ul>

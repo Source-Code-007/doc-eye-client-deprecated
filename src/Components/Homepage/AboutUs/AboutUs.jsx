@@ -10,7 +10,7 @@ import Image from 'next/image';
 
 const AboutUs = () => {
     return (
-        <div className='my-container pt-24 pb-36'>
+        <div className='my-container pt-40 md:pt-32 pb-12 md:pb-36'>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
                 {/* About us left */}
                 <div className='flex items-center relative'>
@@ -29,7 +29,7 @@ const AboutUs = () => {
                 <div className='space-y-5 pt-28 lg:pt-0'>
                     <CommonSectionTitle title={'Your Health, Our Priority'} subTitle={'About us'}></CommonSectionTitle>
                     <p>Our goal is to eliminate or control disabling or troubling symptoms so the patient can function better. This treatment involves a talking relationship between a therapist & patient.</p>
-                    <div className='grid grid-cols-2 gap-8'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
                         <div className='space-y-4 flex flex-col justify-between'>
                             <ul className='space-y-4 pb-7 border-b border-slate-200'>
                                 <li className='flex items-center gap-2 font-semibold text-slate-500'> <span className='text-primary'><FaArrowRight /></span> We{"'"}re here to help you feel better.</li>
