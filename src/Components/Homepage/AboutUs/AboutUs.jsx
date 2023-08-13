@@ -11,7 +11,7 @@ import Image from 'next/image';
 const AboutUs = () => {
     return (
         <div className='my-container pt-24 pb-36'>
-            <div className='grid grid-cols-2 gap-8'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
                 {/* About us left */}
                 <div className='flex items-center relative'>
                     <Image src={about1} alt='about1' height='auto'></Image>
@@ -26,7 +26,7 @@ const AboutUs = () => {
 
 
                 {/* About us right */}
-                <div className='space-y-5'>
+                <div className='space-y-5 pt-28 lg:pt-0'>
                     <CommonSectionTitle title={'Your Health, Our Priority'} subTitle={'About us'}></CommonSectionTitle>
                     <p>Our goal is to eliminate or control disabling or troubling symptoms so the patient can function better. This treatment involves a talking relationship between a therapist & patient.</p>
                     <div className='grid grid-cols-2 gap-8'>
@@ -37,8 +37,8 @@ const AboutUs = () => {
                                 <li className='flex items-center gap-2 font-semibold text-slate-500'> <span className='text-primary'><FaArrowRight /></span> Trust us with your care.</li>
                                 <li className='flex items-center gap-2 font-semibold text-slate-500'> <span className='text-primary'><FaArrowRight /></span> Your health is our goal.</li>
                             </ul>
-                            <div className='flex gap-4'>
-                                <span className='bg-primary text-white p-4 rounded-full'><FaPhone></FaPhone></span>
+                            <div className='flex gap-4 items-center'>
+                                <span className='bg-primary text-white p-4 rounded-full h-fit'><FaPhone></FaPhone></span>
                                 <div>
                                     <p className='font-semibold text-slate-500'>Feel free to contact us here</p>
                                     <h3>+880170678-5160</h3>
