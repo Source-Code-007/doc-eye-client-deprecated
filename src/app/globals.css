@@ -9,6 +9,18 @@
   clip-path: polygon(0 0, 100% 15%, 100% 100%, 0% 100%);
 }
 
+/* hide number arrow */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.my-inp{
+  @apply block w-full p-3 bg-slate-900 text-slate-200 placeholder:text-slate-600 shadow-inner shadow-slate-800 border-none rounded focus:outline-none
+}
+
+
 /* Common color */
 .text-primary{
   color: #09528C;
@@ -47,6 +59,9 @@
 
 .my-btn-one{
   @apply bg-[#09528C] border-2 text-slate-100 rounded py-3 px-6 hover:bg-slate-100 hover:border-2 hover:border-[#09528C] hover:text-[#09528C]
+}
+.my-btn-two{
+  @apply bg-[#E57373] text-slate-100 rounded py-3 px-6 hover:scale-105 transition
 }
 .my-btn-one-outline{
   @apply bg-slate-50 hover:bg-[#09528C] border-2 font-semibold hover:text-slate-100 text-[#09528C] rounded py-3 px-6 border-[#09528C]

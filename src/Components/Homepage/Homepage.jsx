@@ -21,8 +21,8 @@ const Homepage = () => {
             <Services></Services>
             <AppSection></AppSection>
             <Testimonial></Testimonial>
-            <FAQ></FAQ>
             <Contact></Contact>
+            <FAQ></FAQ>
             <Footer></Footer>
         </>
     );
