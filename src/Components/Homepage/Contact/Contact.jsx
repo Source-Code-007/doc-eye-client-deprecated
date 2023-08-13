@@ -17,7 +17,7 @@ const Contact = () => {
             <form className='rounded bg-slate-800 bg-opacity-30 p-8 my-shadow w-5/6 md:w-7/12 mx-auto'>
                 <h2 className='my-title text-slate-50 mb-12'>Reach out to us</h2>
                 <div className='space-y-6'>
-                    <div className='flex gap-4 justify-between'>
+                    <div className='space-y-6 md:space-y-0 md:flex gap-4 justify-between'>
                         <input type="text" placeholder="Full name" className="w-full my-inp" />
                         <input type="text" placeholder="Email" className="w-full my-inp" />
                     </div>
