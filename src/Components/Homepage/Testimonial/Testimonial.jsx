@@ -123,12 +123,12 @@ const Testimonial = () => {
                                     <Image src={tcu.img} alt={tcu.title} fill={true}></Image>
                                 </figure>
                                 <div className='text-slate-50 space-y-2'>
-                                    <span className='flex gap-2 my-subtitle'><CountUp
+                                    <span className='flex gap-1 items-center my-subtitle'><CountUp
                                         start={0}
                                         end={tcu.number}
                                         duration={2.75}
                                         enableScrollSpy={true}
-                                    /> <span className='text-2xl'>+</span></span>
+                                    /> <span>+</span></span>
                                     <h2>{tcu.title}</h2>
                                 </div>
                             </div>

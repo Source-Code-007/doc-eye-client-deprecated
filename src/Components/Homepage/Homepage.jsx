@@ -10,6 +10,7 @@ import FAQ from './FAQ/FAQ';
 import Testimonial from './Testimonial/Testimonial';
 import Footer from './Footer/Footer';
 import Contact from './Contact/Contact';
+import EasyStep from './EasyStep/EasyStep';
 
 const Homepage = () => {
     return (
@@ -21,6 +22,7 @@ const Homepage = () => {
             <Services></Services>
             <AppSection></AppSection>
             <Testimonial></Testimonial>
+            <EasyStep></EasyStep>
             <Contact></Contact>
             <FAQ></FAQ>
             <Footer></Footer>
