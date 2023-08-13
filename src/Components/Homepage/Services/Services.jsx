@@ -37,14 +37,18 @@ const Services = () => {
 
 
     return (
-        <div className='py-28 min-h-screen relative' style={{backgroundImage: `url(${servicesBG.src})`}}>
+        <div className='py-28 min-h-screen relative bg-center xl:bg-left' style={{ backgroundImage: `url(${servicesBG.src})` }}>
             <div className='my-container'>
 
-                <div className='space-y-5 pl-[200px] pr-[150px]'>
-                    <CommonSectionTitle subTitle={'Services'} title={'Main services by DocWatch'}></CommonSectionTitle>
+                <div className='space-y-5 pl-0 2xl:pl-[200px] relative z-30'>
+                    {/* Heading */}
+                    <div className='pr-[150px] space-y-5'>
+                        <CommonSectionTitle subTitle={'Services'} title={'Main services by DocWatch'}></CommonSectionTitle>
                     <p>We at Kivicare offer world-class solutions in cardiac treatments with the help of advanced tools and the experience of pioneer cardiology team</p>
                     <button className='flex items-center gap-3 my-btn-one-outline'>All services <FaPlus></FaPlus></button>
-                    <div className='grid grid-cols-2 md:grid-cols-4 gap-5 space-y-6 md:space-y-0 absolute left-0 right-0 pr-32 pl-[450px] py-14'>
+                    </div>
+                    
+                    <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 space-y-6 md:space-y-0 py-14'>
                         {
                             servicesData.map((service, ind) => {
                                 return <div key={ind} className='rounded-lg px-8 py-5 pt-14 space-y-4 text-center bg-white my-shadow relative group'>
@@ -62,10 +66,10 @@ const Services = () => {
                 </div>
             </div>
 
-                {/* Doctor with tharmo meter */}
-                <figure className='absolute left-8 -top-24 h-[950px] w-[400px] hidden lg:block hover:rotate-3 transition duration-500'>
+            {/* Doctor with tharmo meter */}
+            <figure className='absolute left-8 -top-24 h-[950px] w-[400px] hidden 2xl:block hover:rotate-3 transition duration-500 z-20'>
                 <Image src={tharmoMeter} fill={true} alt='tharmo-meter'></Image>
-                </figure>
+            </figure>
 
         </div>
     );
