@@ -33,7 +33,7 @@ const WhyChooseUs = () => {
                     <li></li>
                 </ul>
 
-                <div className='grid grid-cols-3 gap-5'>
+                <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5'>
                     {
                         whyChooseUs.map((item, ind) => {
                             return <div key={ind} className='rounded-lg px-8 py-5 pt-14 space-y-4 text-center bg-white my-shadow relative group'>

@@ -42,7 +42,7 @@ const Services = () => {
 
                 <div className='space-y-5 pl-0 2xl:pl-[200px] relative z-30'>
                     {/* Heading */}
-                    <div className='pr-[150px] space-y-5'>
+                    <div className='pr-[80px] md:pr-[150px] space-y-5'>
                         <CommonSectionTitle subTitle={'Services'} title={'Main services by DocWatch'}></CommonSectionTitle>
                     <p>We at Kivicare offer world-class solutions in cardiac treatments with the help of advanced tools and the experience of pioneer cardiology team</p>
                     <button className='flex items-center gap-3 my-btn-one-outline'>All services <FaPlus></FaPlus></button>
