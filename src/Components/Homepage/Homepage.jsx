@@ -15,7 +15,6 @@ import EasyStep from './EasyStep/EasyStep';
 const Homepage = () => {
     return (
         <>
-            <Navbar></Navbar>
             <Banner></Banner>
             <AboutUs></AboutUs>
             <WhyChooseUs></WhyChooseUs>
@@ -25,7 +24,6 @@ const Homepage = () => {
             <EasyStep></EasyStep>
             <Contact></Contact>
             <FAQ></FAQ>
-            <Footer></Footer>
         </>
     );
 };

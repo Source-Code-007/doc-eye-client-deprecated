@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import appSectionBG from '/public/assets/img/Homepage/AppSection/appSectionBG2.jpg'
 import QRcode from '/public/assets/img/Homepage/AppSection/QRcode.png'
 import DownloadOnGooglePlay from '/public/assets/img/Homepage/AppSection/DownloadOnGooglePlay.png'
@@ -7,6 +7,7 @@ import Image from 'next/image';
 
 
 const AppSection = () => {
+
     return (
         <div className='bg-fixed bg-slate-800 bg-blend-overlay py-36 my-8 bg-center bg-cover' style={{ backgroundImage: `url(${appSectionBG.src})` }}>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6 my-container text-slate-50'>

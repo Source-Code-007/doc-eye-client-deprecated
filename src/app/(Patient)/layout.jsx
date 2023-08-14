@@ -3,10 +3,7 @@ import React from 'react';
 
 const layout = ({children}) => {
     return (
-        <>
-         <Navbar></Navbar>   
          {children}
-        </>
     );
 };
 
