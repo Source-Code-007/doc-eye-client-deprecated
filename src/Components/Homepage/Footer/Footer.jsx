@@ -23,10 +23,10 @@ const Footer = () => {
                     <p className='flex items-center gap-3'><span className='inline-block p-3 bg-slate-900 text-slate-50 rounded-full'><FaMessage></FaMessage></span> utsho926@gmail.com</p>
                     <p className='flex items-center gap-3'><span className='inline-block p-3 bg-slate-900 text-slate-50 rounded-full'><FaLocationArrow></FaLocationArrow></span> 25/fa/3 Satarkul, Badda, Dhaka, Bangladesh</p>
                     <div className='flex gap-3'>
-                        <span className='inline-block p-3 rounded-full bg-slate-500 text-slate-50'><FaFacebook></FaFacebook></span>
-                        <span className='inline-block p-3 rounded-full bg-slate-500 text-slate-50'><FaTwitter></FaTwitter></span>
-                        <span className='inline-block p-3 rounded-full bg-slate-500 text-slate-50'><FaInstagram></FaInstagram></span>
-                        <span className='inline-block p-3 rounded-full bg-slate-500 text-slate-50'><FaWhatsapp></FaWhatsapp></span>
+                        <span className='inline-block p-3 rounded-full bg-slate-500 text-slate-50 cursor-pointer hover:scale-110 transition'><FaFacebook></FaFacebook></span>
+                        <span className='inline-block p-3 rounded-full bg-slate-500 text-slate-50 cursor-pointer hover:scale-110 transition'><FaTwitter></FaTwitter></span>
+                        <span className='inline-block p-3 rounded-full bg-slate-500 text-slate-50 cursor-pointer hover:scale-110 transition'><FaInstagram></FaInstagram></span>
+                        <span className='inline-block p-3 rounded-full bg-slate-500 text-slate-50 cursor-pointer hover:scale-110 transition'><FaWhatsapp></FaWhatsapp></span>
                     </div>
                 </div>
 

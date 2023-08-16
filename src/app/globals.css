@@ -23,10 +23,10 @@ input[type=number]::-webkit-outer-spin-button {
 
 /* Common color */
 .text-primary{
-  color: #09528C;
+  color: #09528C !important;
 }
 .text-secondary{
-  color: #E57373;
+  color: #E57373 !important;
 }
 .bg-primary{
   background-color: #09528C;
@@ -56,9 +56,12 @@ input[type=number]::-webkit-outer-spin-button {
 .my-shadow{
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+.my-shadow-2{
+  box-shadow: rgb(223 223 228 / 42%) 0px 0px 19px 4px;
+}
 
 .my-btn-one{
-  @apply bg-[#09528C] border-2 text-slate-100 rounded py-3 px-6 hover:bg-slate-100 hover:border-2 hover:border-[#09528C] hover:text-[#09528C]
+  @apply bg-[#09528C] border-2 border-transparent text-slate-100 rounded py-3 px-6 hover:bg-slate-100 hover:border-2 hover:border-[#09528C] hover:text-[#09528C]
 }
 .my-btn-two{
   @apply bg-[#E57373] text-slate-100 rounded py-3 px-6 hover:scale-105 transition

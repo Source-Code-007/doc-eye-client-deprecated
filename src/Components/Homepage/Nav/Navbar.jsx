@@ -8,23 +8,23 @@ import MyMenu from '@/Components/HelpingCompo/MyMenu';
 const Navbar = () => {
     const [isTop, setIsTop] = useState(true)
 
-    useEffect(()=>{
-        const isTopFunc = ()=>{
-            if(window.scrollY>30){
+    useEffect(() => {
+        const isTopFunc = () => {
+            if (window.scrollY > 30) {
                 setIsTop(false)
-            } else{
+            } else {
                 setIsTop(true)
             }
         }
         window.addEventListener('scroll', isTopFunc)
-        return()=>{
+        return () => {
             window.removeEventListener('scroll', isTopFunc)
         }
     }, [])
 
 
     return (
-        <nav className={`${isTop? '' : 'bg-slate-100 shadow'} fixed left-0 right-0 top-0 z-50`}>
+        <nav className={`${isTop ? '' : 'bg-slate-100 shadow'} fixed left-0 right-0 top-0 z-50`}>
             <div className='py-4 my-container flex justify-between'>
                 <Link href={'/'}><Image height={40} width={40} src={logo} alt='DocEye'></Image></Link>
                 <ul className='flex gap-10 items-center text-slate-700 text-xl'>
@@ -35,7 +35,10 @@ const Navbar = () => {
                     <MyMenu href={'/services'}>Services</MyMenu>
                 </ul>
 
-                <button className='my-btn-one'>Login</button>
+                <Link href={'signin'}>
+                    <button className='my-btn-one'>Login</button>
+                </Link>
+
             </div>
         </nav>
     );
