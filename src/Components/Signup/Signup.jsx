@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { FaFacebook, FaGithub } from 'react-icons/fa6';
 import { useForm } from 'react-hook-form';
 
+
 const Signup = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = form => {
