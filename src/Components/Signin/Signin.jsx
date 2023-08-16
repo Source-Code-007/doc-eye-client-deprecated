@@ -33,7 +33,7 @@ const Signin = () => {
                             {errors.password && <span className='text-red-500'>*Password is required</span>}
                         </div>
                         <button type="submit" className='my-btn-one'>Signin</button>
-                        <p className='text-slate-700'>New here? <Link href={'signup'}><button className='text-primary cursor-pointer font-bold'>Signup</button></Link></p>
+                        <p className='text-slate-700'>New here? <Link href={'/signup'}><button className='text-primary cursor-pointer font-bold'>Signup</button></Link></p>
                         <div className='flex gap-3 items-center'>
                             <hr className='h-px w-full bg-slate-500' />
                             <span className='text-slate-500'>or</span>
@@ -48,7 +48,7 @@ const Signin = () => {
                 {/* signin form right */}
                 <div className='bg-slate-800 bg-opacity-40 flex items-center justify-center text-white rounded-r flex-1'>
                     <div className='space-y-4'>
-                        <h2 className='my-subtitle'>Welcome to DocWatch</h2>
+                        <h2 className='my-subtitle'>Welcome to <span className='text-secondary'>DocWatch</span></h2>
                         <p className='text-slate-400'>Login to access your account</p>
                     </div>
                 </div>
