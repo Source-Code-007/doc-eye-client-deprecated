@@ -12,6 +12,7 @@ const Signup = () => {
     const onSubmit = form => {
         const { email, password } = form
     };
+
     
     return (
         <div className='h-screen flex items-center justify-center bg-cover bg-center bg-slate-800 bg-blend-overlay' style={{ backgroundImage: `url(${signinBG.src})` }}>
