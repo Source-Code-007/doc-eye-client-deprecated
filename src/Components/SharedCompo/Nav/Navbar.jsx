@@ -4,9 +4,12 @@ import React, { useEffect, useState } from 'react';
 import logo from '/public/assets/img/logo.png'
 import Image from 'next/image';
 import MyMenu from '@/Components/HelpingCompo/MyMenu';
+import { useAuth } from '@/Providers/AuthProvider';
+import MyLoading from '@/Components/HelpingCompo/MyLoading';
 
 const Navbar = () => {
     const [isTop, setIsTop] = useState(true)
+    const { user, loading } = useAuth()
 
     useEffect(() => {
         const isTopFunc = () => {
@@ -35,9 +38,11 @@ const Navbar = () => {
                     <MyMenu href={'/services'}>Services</MyMenu>
                 </ul>
 
-                <Link href={'signin'}>
-                    <button className='my-btn-one'>Login</button>
-                </Link>
+                {
+                        loading? <MyLoading height={50} width={50}/> : user ? <Image height={50} width={50} className='rounded-full border-primary' src={user.photoURL} alt={user.displayName}></Image> : <Link href={'signin'}>
+                        <button className='my-btn-one'>Login</button>
+                    </Link>
+                }
 
             </div>
         </nav>

@@ -37,6 +37,9 @@ input[type=number]::-webkit-outer-spin-button {
 .bg-secondary{
   background-color: #E57373;
 }
+.border-primary{
+  @apply border border-[#E57373]
+}
 
 /* Common layout */
 .my-container{

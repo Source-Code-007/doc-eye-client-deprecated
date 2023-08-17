@@ -25,17 +25,17 @@ const Signin = () => {
                     <div className='space-y-4'>
                         <div>
                             <label htmlFor="signinEmail">Your email here</label>
-                            <input {...register("email")} type='email' id='signinEmail' className={`my-inp ${errors.email && 'border border-r-2 border-red-500'}`} placeholder='Your email here' />
+                            <input {...register("email")} type='email' id='signinEmail' className={`sign-my-inp ${errors.email && 'border border-r-2 border-red-500'}`} placeholder='Your email here' />
                             {errors.email && <span className='text-red-500'>*Email is required</span>}
                         </div>
 
                         <div>
                             <label htmlFor="signinPassword">Your password here</label>
-                            <input {...register("password")} type='password' id='signinPassword' className={`my-inp ${errors.password && 'border border-r-2 border-red-500'}`} placeholder='Your password here' />
+                            <input {...register("password")} type='password' id='signinPassword' className={`sign-my-inp ${errors.password && 'border border-r-2 border-red-500'}`} placeholder='Your password here' />
                             {errors.password && <span className='text-red-500'>*Password is required</span>}
                         </div>
                         <button type="submit" className='my-btn-one'>Signin</button>
-                        
+
                         <p className='text-slate-700'>New here? <Link href={'/signup'}><button className='text-primary cursor-pointer font-bold'>Signup</button></Link></p>
                         <div className='flex gap-3 items-center'>
                             <hr className='h-px w-full bg-slate-500' />
