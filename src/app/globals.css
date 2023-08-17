@@ -16,8 +16,11 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0; 
 }
 
+.sign-my-inp{
+  @apply block w-full p-3 bg-slate-100 text-slate-700 placeholder:text-slate-500 shadow-inner shadow-slate-700 border-none rounded focus:outline-none
+}
 .my-inp{
-  @apply block w-full p-3 bg-slate-900 text-slate-200 placeholder:text-slate-600 shadow-inner shadow-slate-800 border-none rounded focus:outline-none
+  @apply block w-full p-3 bg-slate-900 text-slate-300 placeholder:text-slate-500 shadow-inner shadow-slate-500 border-none rounded focus:outline-none
 }
 
 
