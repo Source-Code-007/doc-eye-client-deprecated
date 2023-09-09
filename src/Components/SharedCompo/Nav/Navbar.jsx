@@ -2,14 +2,14 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import logo from '/public/assets/img/logo.png'
-import Image from 'next/image';
 import MyMenu from '@/Components/HelpingCompo/MyMenu';
 import { useAuth } from '@/Providers/AuthProvider';
 import MyLoading from '@/Components/HelpingCompo/MyLoading';
+import Image from 'next/image';
 
 const Navbar = () => {
     const [isTop, setIsTop] = useState(true)
-    const { user, loading } = useAuth()
+    const { user, authLoading } = useAuth()
 
     useEffect(() => {
         const isTopFunc = () => {
@@ -24,10 +24,10 @@ const Navbar = () => {
             window.removeEventListener('scroll', isTopFunc)
         }
     }, [])
-
+console.log(user, authLoading);
 
     return (
-        <nav className={`${isTop ? '' : 'bg-slate-100 shadow'} fixed left-0 right-0 top-0 z-50`}>
+        <nav className={`${isTop ? 'bg-transparent' : 'bg-slate-100 shadow'} fixed left-0 right-0 top-0 z-50`}>
             <div className='py-4 my-container flex justify-between'>
                 <Link href={'/'}><Image height={40} width={40} src={logo} alt='DocEye'></Image></Link>
                 <ul className='flex gap-10 items-center text-slate-700 text-xl'>
@@ -39,7 +39,8 @@ const Navbar = () => {
                 </ul>
 
                 {
-                        loading? <MyLoading height={50} width={50}/> : user ? <Image height={50} width={50} className='rounded-full border-primary' src={user.photoURL} alt={user.displayName}></Image> : <Link href={'signin'}>
+                    // <Image height={50} width={50} className='rounded-full border-primary' src={user?.photoURL} alt={user.displayName}></Image>
+                        authLoading? <MyLoading className='h-16 w-16'/> : user ? 'image' : <Link href={'signin'}>
                         <button className='my-btn-one'>Login</button>
                     </Link>
                 }

@@ -12,33 +12,33 @@ export const myAuth = createContext()
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
-    const [loading, setLoading] = useState(false)
+    const [authLoading, setAuthLoading] = useState(true)
 
     // create user func
     const createUserWithEmailPass = (email, password) => {
-        setLoading(true)
+        setAuthLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
     // create user func with google
     const createUserWithGoogle = () => {
-        setLoading(true)
+        setAuthLoading(true)
         return signInWithPopup(auth, googleProvider)
     }
     // create user func with facebook
     const createUserWithFacebook = () => {
-        setLoading(true)
+        setAuthLoading(true)
         return signInWithPopup(auth, facebookProvider)
     }
     // create user func with google
     const createUserWithGithub = () => {
-        setLoading(true)
+        setAuthLoading(true)
         return signInWithPopup(auth, facebookProvider)
     }
 
     // create user func
     const updateProfileFunc = (displayName, photoURL) => {
-        setLoading(true)
+        setAuthLoading(true)
         return updateProfile(auth.currentUser, {
             displayName: displayName, photoURL: photoURL
         })
@@ -46,13 +46,13 @@ const AuthProvider = ({ children }) => {
 
     // signin user func
     const signinUserFunc = (email, password) => {
-        setLoading(true)
+        setAuthLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
 
     // signout user func
     const signOutFunc = () => {
-        setLoading(true)
+        setAuthLoading(true)
         return signOut(auth)
     }
 
@@ -61,10 +61,10 @@ const AuthProvider = ({ children }) => {
         const authMonitoring = onAuthStateChanged(auth, (currUser) => {
             if (currUser) {
                 // const uid = user.uid;
-                if (currUser) {
-                    setUser(currUser)
-                }
+                setAuthLoading(false)
+                setUser(currUser)
             } else {
+                setAuthLoading(false)
                 setUser(null)
             }
         });
@@ -74,7 +74,7 @@ const AuthProvider = ({ children }) => {
     }, [])
 
 
-    const myObj = { user, setUser, loading, setLoading, createUserWithEmailPass, createUserWithGoogle, createUserWithFacebook, createUserWithGithub, updateProfileFunc, signinUserFunc, signOutFunc }
+    const myObj = { user, setUser, authLoading, setAuthLoading, createUserWithEmailPass, createUserWithGoogle, createUserWithFacebook, createUserWithGithub, updateProfileFunc, signinUserFunc, signOutFunc }
 
     return (
         <myAuth.Provider value={myObj}>
@@ -84,8 +84,8 @@ const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => {
-    const { user, setUser, loading, setLoading, createUserWithEmailPass, updateProfileFunc, signinUserFunc, signOutFunc } = useContext(myAuth)
-    return { user, setUser, loading, setLoading, createUserWithEmailPass, updateProfileFunc, signinUserFunc, signOutFunc }
+    const { user, setUser, authLoading, setAuthLoading, createUserWithEmailPass, updateProfileFunc, signinUserFunc, signOutFunc } = useContext(myAuth)
+    return { user, setUser, authLoading, setAuthLoading, createUserWithEmailPass, updateProfileFunc, signinUserFunc, signOutFunc }
 }
 
 export default AuthProvider;

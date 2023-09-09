@@ -8,13 +8,13 @@ import { useAuth } from '@/Providers/AuthProvider';
 
 
 const Signup = () => {
-    const { user, setUser, loading, setLoading, createUserWithEmailPass, updateProfileFunc } = useAuth()
+    const { user, setUser, authLoading, setAuthLoading, createUserWithEmailPass, updateProfileFunc } = useAuth()
     const [error, setError] = useState('')
     const [showPass, setShowPass] = useState({ password: false, confirmPassword: false })
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = form => {
-        setLoading(true)
+        setAuthLoading(true)
         setError('')
         const { email, password, confirmPassword } = form
 
@@ -25,12 +25,12 @@ const Signup = () => {
 
         // create user func
         createUserWithEmailPass(email, password).then(res => {
-            setLoading(false)
+            setAuthLoading(false)
             // setUser(res.user)
             console.log(res);
             // updateProfileFunc()
         }).catch(e => {
-            setLoading(false)
+            setAuthLoading(false)
             if (e.code === 'auth/account-exists-with-different-credential') {
                 setError('account exists with different credential')
                 return

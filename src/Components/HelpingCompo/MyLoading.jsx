@@ -1,8 +1,8 @@
 import React from 'react';
 
-const MyLoading = ({height, width}) => {
+const MyLoading = ({className}) => {
     return (
-        <div>
+        <div className={`${className}`}>
             Loading...........
         </div>
     );
