@@ -48,6 +48,7 @@ const Services = () => {
                     <button className='flex items-center gap-3 my-btn-one-outline'>All services <FaPlus></FaPlus></button>
                     </div>
                     
+                    
                     <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 space-y-6 md:space-y-0 py-14'>
                         {
                             servicesData.map((service, ind) => {
