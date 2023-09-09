@@ -1,11 +1,12 @@
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import signinBG from '/public/assets/img/Sign/signinBG.jpg'
 import Link from 'next/link';
-import { FaFacebook, FaGithub } from 'react-icons/fa6';
+import { FaEye, FaEyeSlash, FaFacebook, FaGithub } from 'react-icons/fa6';
 
 const Signin = () => {
+    const [showPass, setShowPass] = useState(false)
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = form => {
         const { email, password } = form
@@ -25,13 +26,16 @@ const Signin = () => {
                     <div className='space-y-4'>
                         <div>
                             <label htmlFor="signinEmail">Your email here</label>
-                            <input {...register("email")} type='email' id='signinEmail' className={`sign-my-inp ${errors.email && 'border border-r-2 border-red-500'}`} placeholder='Your email here' />
+                            <input {...register("email", { required: true })} type='email' id='signinEmail' className={`sign-my-inp shadow-inner ${errors.email ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your email here' />
                             {errors.email && <span className='text-red-500'>*Email is required</span>}
                         </div>
 
                         <div>
                             <label htmlFor="signinPassword">Your password here</label>
-                            <input {...register("password")} type='password' id='signinPassword' className={`sign-my-inp ${errors.password && 'border border-r-2 border-red-500'}`} placeholder='Your password here' />
+                            <div className='relative'>
+                                <input {...register("password", { required: true })} type={`${showPass ? 'text' : 'password'}`} id='signinPassword' className={`sign-my-inp shadow-inner ${errors.password ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your password here' />
+                                <span onClick={() => setShowPass(!showPass)} className='cursor-pointer absolute top-[18px] right-2'>{showPass ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}</span>
+                            </div>
                             {errors.password && <span className='text-red-500'>*Password is required</span>}
                         </div>
                         <button type="submit" className='my-btn-one'>Signin</button>

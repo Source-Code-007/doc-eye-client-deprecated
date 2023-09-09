@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import signinBG from '/public/assets/img/Sign/signinBG.jpg'
 import Link from 'next/link';
-import { FaFacebook, FaGithub } from 'react-icons/fa6';
+import { FaEye, FaEyeSlash, FaFacebook, FaGithub } from 'react-icons/fa6';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '@/Providers/AuthProvider';
 
@@ -10,13 +10,15 @@ import { useAuth } from '@/Providers/AuthProvider';
 const Signup = () => {
     const { user, setUser, loading, setLoading, createUserWithEmailPass, updateProfileFunc } = useAuth()
     const [error, setError] = useState('')
+    const [showPass, setShowPass] = useState({ password: false, confirmPassword: false })
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = form => {
         setLoading(true)
+        setError('')
         const { email, password, confirmPassword } = form
 
-        if(password === confirmPassword){
+        if (password !== confirmPassword) {
             setError('Your password is not match')
             return
         }
@@ -26,14 +28,17 @@ const Signup = () => {
             setLoading(false)
             // setUser(res.user)
             console.log(res);
-        }).catch(e=>{
-            // if(e.status.code === ''){
-                
-            // }
+            // updateProfileFunc()
+        }).catch(e => {
             setLoading(false)
+            if (e.code === 'auth/account-exists-with-different-credential') {
+                setError('account exists with different credential')
+                return
+            }
             setError(e.message)
         })
     };
+
 
     return (
         <div className='min-h-screen flex items-center justify-center bg-cover bg-center bg-slate-800 bg-blend-overlay my-28 md:my-0' style={{ backgroundImage: `url(${signinBG.src})` }}>
@@ -50,34 +55,44 @@ const Signup = () => {
                     <div className='space-y-4'>
                         <div>
                             <label htmlFor="signupName" className='text-slate-600'>Your name here</label>
-                            <input {...register("name", { required: true })} type='text' id='signupName' className={`sign-my-inp ${errors.name && 'border border-r-2 border-red-500'}`} placeholder='Your name here' />
+                            <input {...register("name", { required: true })} type='text' id='signupName' className={`sign-my-inp shadow-inner ${errors.name ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your name here' />
                             {errors.name && <span className='text-red-500'>*Name is required</span>}
                         </div>
                         <div>
                             <label htmlFor="signupNumber" className='text-slate-600'>Your number here</label>
-                            <input type='number' {...register("number", { required: true })} id='signupNumber' className={`sign-my-inp ${errors.number && 'border border-r-2 border-red-500'}`} placeholder='Your number here' />
+                            <input type='number' {...register("number", { required: true })} id='signupNumber' className={`sign-my-inp shadow-inner ${errors.number ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your number here' />
                             {errors.number && <span className='text-red-500'>*Number is required</span>}
                         </div>
                         <div>
                             <label htmlFor="signupEmail" className='text-slate-600'>Your email here</label>
-                            <input type='email' {...register("email", { required: true })} id='signupEmail' className={`sign-my-inp ${errors.email && 'border border-r-2 border-red-500'}`} placeholder='Your email here' />
-                            {errors.email && <span className='text-red-500'>*Email is required</span>}
+                            <input type='email' {...register("email", { required: true, pattern: /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/ })} id='signupEmail' className={`sign-my-inp shadow-inner ${errors.email ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your email here' />
+                            {errors.email && <span className='text-red-500'>*{errors?.email?.type === 'pattern' ? 'Please provide valid email' : 'Email is required'}</span>}
                         </div>
 
                         <div>
                             <label htmlFor="signupPass" className='text-slate-600'>Your password here</label>
-                            <input type='password' {...register("password", { required: true }) } id='signupPass' className={`sign-my-inp ${errors.password && 'border border-r-2 border-red-500'}`} placeholder='Your password here' />
-                            {errors.password && <span className='text-red-500'>*Password is required</span>}
+                            <div className='relative'>
+                                <input type={`${showPass.pass ? 'text' : 'password'}`} {...register("password", { required: true, pattern: !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/ })} id='signupPass' className={`sign-my-inp shadow-inner ${errors.password ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your password here' />
+                                <span onClick={() => setShowPass({ ...showPass, pass: !showPass.pass })} className='cursor-pointer absolute top-[18px] right-2'>{showPass.pass ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}</span>
+                            </div>
+                            {errors.password && <span className='text-red-500'>*{errors?.password?.type === 'pattern' ? 'Minimum 8 characters, at least 1 letter and 1 digit.' : 'Password is required'}</span>}
                         </div>
+
                         <div>
                             <label htmlFor="signupConfirmPass" className='text-slate-600'>Confirm your password</label>
-                            <input type='password' {...register("confirmPassword", { required: true }) } id='signupConfirmPass' className={`sign-my-inp ${errors.signupConfirmPass && 'border border-r-2 border-red-500'}`} placeholder='Confirm password' />
-                            {errors.signupConfirmPass && <span className='text-red-500'>*Password is required</span>}
+                            <div className='relative'>
+                                <input type={`${showPass.confirmPass ? 'text' : 'password'}`} {...register("confirmPassword", { required: true, pattern: !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/ })} id='signupConfirmPass' className={`sign-my-inp shadow-inner ${errors.confirmPassword ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Confirm password' />
+                                <span onClick={() => setShowPass({ ...showPass, confirmPass: !showPass.confirmPass })} className='cursor-pointer absolute top-[18px] right-2'>{showPass.confirmPass ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}</span>
+                            </div>
+                            {errors.confirmPassword && <span className='text-red-500'>*{errors?.confirmPassword?.type === 'pattern' ? 'Minimum 8 characters, at least 1 letter and 1 digit.' : 'Password is required'}</span>}
                         </div>
+                        {error && <p className='text-red-500'>*{error}</p>}
+
 
                         <div className='w-5/6 mx-auto'>
                             <button type="submit" className='my-btn-one w-full'>Signup</button>
                         </div>
+
                         <p className='text-slate-700'>Already have an account? <Link href={'/signin'}><button className='text-primary cursor-pointer font-bold'>Signin</button></Link></p>
                         <div className='flex gap-3 items-center'>
                             <hr className='h-px w-full bg-slate-500' />
