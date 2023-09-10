@@ -52,6 +52,7 @@ const Footer = () => {
                     <figure className='space-y-4 flex flex-col justify-center'>
                         <Image src={DownloadOnGooglePlay} alt='DownloadOnGooglePlay' height={55} width={130} className='cursor-pointer'></Image>
                         <Image src={DownloadOnAppStore} alt='DownloadOnAppStore' height={55} width={130} className='cursor-pointer'></Image>
+                        <Image src={'https://doctime.com.bd/guestView/images/logo/app/browser.svg'} alt='DownloadOnBrowserStore' height={55} width={130} className='cursor-pointer'></Image>
                     </figure>
                 </div>
 

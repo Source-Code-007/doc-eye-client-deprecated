@@ -40,7 +40,7 @@ console.log(user, authLoading);
 
                 {
                     // <Image height={50} width={50} className='rounded-full border-primary' src={user?.photoURL} alt={user.displayName}></Image>
-                        authLoading? <MyLoading className='h-16 w-16'/> : user ? 'image' : <Link href={'signin'}>
+                        authLoading? <MyLoading className='h-12 w-12'/> : user ? 'image' : <Link href={'signin'}>
                         <button className='my-btn-one'>Login</button>
                     </Link>
                 }
