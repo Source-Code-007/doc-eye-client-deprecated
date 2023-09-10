@@ -33,14 +33,14 @@ console.log(user, authLoading);
                 <ul className='flex gap-10 items-center text-slate-700 text-xl'>
                     <MyMenu href={'/'}>Home</MyMenu>
                     <MyMenu href={'/about'}>About</MyMenu>
-                    <MyMenu href={'/contact'}>Contact</MyMenu>
+                    <MyMenu href={'/order-medicine'}>Order Medicine</MyMenu>
                     <MyMenu href={'/feature'}>Feature</MyMenu>
                     <MyMenu href={'/services'}>Services</MyMenu>
                 </ul>
 
                 {
                     // <Image height={50} width={50} className='rounded-full border-primary' src={user?.photoURL} alt={user.displayName}></Image>
-                        !authLoading? <MyLoading className='h-12 w-12'/> : user ? 'image' : <Link href={'signin'}>
+                        authLoading? <MyLoading className='h-12 w-12'/> : user ? 'image' : <Link href={'signin'}>
                         <button className='my-btn-one'>Login</button>
                     </Link>
                 }

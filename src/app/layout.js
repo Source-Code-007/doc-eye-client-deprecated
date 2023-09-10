@@ -1,7 +1,7 @@
 import Navbar from '@/Components/SharedCompo/Nav/Navbar'
 import './globals.css'
 import { Inter } from 'next/font/google'
-import Footer from '@/Components/Homepage/Footer/Footer'
+import Footer from '@/Components/SharedCompo/Footer/Footer'
 import AuthProvider from '@/Providers/AuthProvider'
 
 const inter = Inter({ subsets: ['latin'] })
