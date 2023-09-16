@@ -52,7 +52,7 @@ const Services = () => {
                     <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 space-y-6 md:space-y-0 py-14'>
                         {
                             servicesData.map((service, ind) => {
-                                return <div key={ind} className='rounded-lg px-8 py-5 pt-14 space-y-4 text-center bg-white my-shadow relative group flex flex-col justify-between'>
+                                return <div key={ind} className='rounded-lg px-2 py-5 pt-14 space-y-4 text-center bg-white my-shadow relative group flex flex-col justify-between'>
                                     {/* <span className='p-4 inline-block rounded bg-primary text-white absolute -top-5 left-1/2 -translate-x-1/2'>{service.icon}</span> */}
                                     <figure className='absolute left-1/2 -top-5 -translate-x-1/2 p-4 bg-slate-50 border rounded group-hover:scale-110 group-hover:my-shadow transition duration-500'>
                                         <Image src={service.img} alt='doctorConsultation' height={40} width={40}></Image>
