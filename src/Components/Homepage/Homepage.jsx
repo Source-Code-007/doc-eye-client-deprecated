@@ -9,11 +9,13 @@ import FAQ from './FAQ/FAQ';
 import Testimonial from './Testimonial/Testimonial';
 import Contact from './Contact/Contact';
 import EasyStep from './EasyStep/EasyStep';
+import WhyUseDocwatch from './WhyUseDocwatch/WhyUseDocwatch';
 
 const Homepage = () => {
     return (
         <>
             <Banner></Banner>
+            <WhyUseDocwatch/>
             <AboutUs></AboutUs>
             <WhyChooseUs></WhyChooseUs>
             <Services></Services>
