@@ -5,7 +5,7 @@ import React from 'react';
 
 const faqPage = () => {
     return (
-        <div className='pt-28 pb-8' style={{backgroundImage: `url(${FAQbg.src})`}}>
+        <div className='py-16' style={{backgroundImage: `url(${FAQbg.src})`}}>
             <div className='my-container space-y-8'>
                 <h2 className='my-title'>Commonly asked question</h2>
                 <FAQuestions></FAQuestions>
