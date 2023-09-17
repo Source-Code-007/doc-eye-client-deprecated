@@ -44,7 +44,7 @@ const WhyUseDocwatch = () => {
             "title": "Prescription Refills",
             "description": "Request prescription refills quickly and conveniently through the portal.",
             "benefit": "Avoid running out of essential medications.",
-            "iconBg": "#013220",
+            "iconBg": "#07332F",
             "icon": <FaPrescription></FaPrescription>
         },
         {
@@ -52,7 +52,7 @@ const WhyUseDocwatch = () => {
             "title": "Health Reminders",
             "description": "Receive timely health reminders and notifications for check-ups and vaccinations.",
             "benefit": "Stay on top of your health and never miss an important appointment.",
-            "iconBg": "#FF8C00",
+            "iconBg": "#F7A582",
             "icon": <FaBell></FaBell>
         }
     ]

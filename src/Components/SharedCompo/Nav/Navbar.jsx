@@ -27,7 +27,7 @@ const Navbar = () => {
 console.log(user, authLoading);
 
     return (
-        <nav className={`${isTop ? 'bg-transparent' : 'bg-slate-100 shadow'} fixed left-0 right-0 top-0 z-50`}>
+        <nav className={` ${isTop ? 'bg-green-500' : 'bg-slate-100 shadow'} fixed left-0 right-0 top-0 z-50`}>
             <div className='py-4 my-container flex justify-between'>
                 <Link href={'/'}><Image height={40} width={40} src={logo} alt='DocEye'></Image></Link>
                 <ul className='flex gap-10 items-center text-slate-700 text-xl'>
@@ -35,6 +35,8 @@ console.log(user, authLoading);
                     <MyMenu href={'/about'}>About</MyMenu>
                     <MyMenu href={'/order-medicine'}>Order Medicine</MyMenu>
                     <MyMenu href={'/feature'}>Feature</MyMenu>
+                    <MyMenu href={'/contact'}>Contact</MyMenu>
+                    <MyMenu href={'/for-doctor'}>For Doctor</MyMenu>
                     <MyMenu href={'/services'}>Services</MyMenu>
                 </ul>
 
