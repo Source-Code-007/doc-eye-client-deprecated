@@ -99,3 +99,10 @@ body::-webkit-scrollbar-thumb {
 .vertical-timeline-element-content{
   box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px !important;
 }
+
+
+/* Contact page */
+.contact-inp{
+    @apply rounded-lg px-4 py-3 outline-none focus:border-l-2 focus:border-[#E57373] w-full;
+    background: rgba(255, 255, 255, 0.05);
+}
