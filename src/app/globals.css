@@ -106,3 +106,14 @@ body::-webkit-scrollbar-thumb {
     @apply rounded-lg px-4 py-3 outline-none focus:border-l-2 focus:border-[#E57373] w-full;
     background: rgba(255, 255, 255, 0.05);
 }
+
+
+
+/* swiper-button upgrade */
+.swiper-button-prev::before, .swiper-button-next::after{
+    background: #E57373;
+    padding: 5px 8px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 25px !important;
+}

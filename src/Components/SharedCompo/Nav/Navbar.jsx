@@ -38,7 +38,7 @@ console.log(user, authLoading);
                     <MyMenu href={'/order-medicine'}>Order Medicine</MyMenu>
                     <MyMenu href={'/feature'}>Feature</MyMenu>
                     <MyMenu href={'/contact'}>Contact</MyMenu>
-                    <MyMenu href={'/for-doctor'}>For Doctor</MyMenu>
+                    <MyMenu href={'/for-doctors'}>For Doctors</MyMenu>
                     <MyMenu href={'/services'}>Services</MyMenu>
                 </ul>
 

@@ -8,7 +8,7 @@ import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper/modules';
 import Image from 'next/image';
 
-const ForDoctorPage = () => {
+const ForDoctorsPage = () => {
 
 
     const doctorsReviews = [
@@ -84,7 +84,7 @@ const ForDoctorPage = () => {
 
             <div className='my-container py-10 grid grid-cols-1 md:grid-cols-2 items-center gap-5'>
                 <div className='space-y-4'>
-                    <h2 className='my-title'>Benefit of joining</h2>
+                    <h2 className='my-subtitle'>Benefits of joining</h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo assumenda dolorum, neque illo ullam minima alias atque dicta suscipit! Quia sapiente cumque autem ab. Quas laborum quidem quisquam temporibus optio voluptas aliquid, nostrum voluptatum molestias minus consequatur? In modi mollitia ipsa itaque ipsam praesentium commodi quam maxime, sint error asperiores.</p>
                 </div>
 
@@ -119,4 +119,4 @@ const ForDoctorPage = () => {
     );
 };
 
-export default ForDoctorPage;
+export default ForDoctorsPage;
