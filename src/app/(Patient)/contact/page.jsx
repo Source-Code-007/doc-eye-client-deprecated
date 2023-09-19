@@ -34,18 +34,18 @@ const ContactPage = () => {
                             <div className='space-y-5'>
 
                                 <div className='flex gap-4'>
-                                    <input type="text" className='contact-inp' placeholder='Name' />
-                                    <input type="text" className='contact-inp' placeholder='Email' />
+                                    <input type="text" className='my-inp-2' placeholder='Name' />
+                                    <input type="text" className='my-inp-2' placeholder='Email' />
                                 </div>
                                 <div className='flex gap-4'>
-                                    <input type="text" className='contact-inp' placeholder='Mobile' />
-                                    <input type="text" className='contact-inp' placeholder='Doctor' />
+                                    <input type="text" className='my-inp-2' placeholder='Mobile' />
+                                    <input type="text" className='my-inp-2' placeholder='Doctor' />
                                 </div>
                                 <div className='flex gap-4'>
                                     <input type="text" className='rounded-lg px-4 py-3 outline-none focus:border-l-2 focus:border-[#E57373] w-full' placeholder='Date' style={{ background: 'rgba(255, 255, 255, 0.05)' }} />
-                                    <input type="text" className='contact-inp' placeholder='Time' />
+                                    <input type="text" className='my-inp-2' placeholder='Time' />
                                 </div>
-                                <textarea type="text" placeholder="your query here..." className="contact-inp h-52" />
+                                <textarea type="text" placeholder="your query here..." className="my-inp-2 h-52" />
 
                                 <div className='text-center'>
                                     <button className='my-btn-two w-3/6'>Book Now</button>

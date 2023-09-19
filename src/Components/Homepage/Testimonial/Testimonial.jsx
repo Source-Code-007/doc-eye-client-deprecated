@@ -10,7 +10,6 @@ import { Pagination, Navigation } from 'swiper/modules';
 import CommonSectionTitle from '@/Components/HelpingCompo/CommonSectionTitle';
 import Image from 'next/image';
 import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa6';
-import './testimonial.css'
 import CountUp from 'react-countup';
 import successfulPatient from '/public/assets/img/Homepage/Testimonial/successful-patient.png'
 import doctorSpecialist from '/public/assets/img/Homepage/Testimonial/doctor-specialist.png'

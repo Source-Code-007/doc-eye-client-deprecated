@@ -7,6 +7,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper/modules';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const ForDoctorsPage = () => {
 
@@ -59,7 +60,7 @@ const ForDoctorsPage = () => {
             doctorName: "Dr. Laura Davis",
             doctorImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHSwkFVxLzEPl3udFM2J8PFMMeFQylSLsGqg&usqp=CAU",
             designation: "Family Physician",
-            review: "As a practicing physician, I've had the privilege of using DocWatch, and I can confidently say that it has revolutionized the way I manage my medical practice. This doctor portal website offers a comprehensive suite of features tailored to the unique needs of healthcare ."
+            review: "As a practicing physician, I've had the privilege of using DocWatch, and I can confidently say that it has revolutionized the way I manage my medical practice. This doctor portal website offers a comprehensive suite of features tailored to the unique needs of healthcare."
         }
     ];
 
@@ -73,7 +74,9 @@ const ForDoctorsPage = () => {
                     <h2 className='my-title'>Are you <br /> A Certified Doctor?</h2>
                     <h6 className='my-subtitle'>Join Our Healthcare Network</h6>
                     <p className='text-slate-200 pr-20 md:pr-[520px] xl:pr-[830px]'>Join DocTime network and create your virtual chamber provide medical consultancy via video call and expand the reach of your service. As a member of our healthcare network, you{"'"}ll gain access to a wealth of medical knowledge, research, and the latest advancements in the field.</p>
-                    <button className='my-btn-two w-fit'>Join now</button>
+                    <Link href={'/registration-doctor'}>
+                        <button className='my-btn-two w-fit'>Join now</button>
+                    </Link>
 
                 </div>
                 <div>
@@ -100,15 +103,19 @@ const ForDoctorsPage = () => {
 
                         {
                             doctorsReviews.map(dr => {
-                                return <SwiperSlide key={dr.id} className='min-h-[35vh] my-shadow-2 p-5 space-y-4 rounded-lg'>
-                                    <div className='flex gap-4'>
-                                        <Image src={dr.doctorImg} alt={dr.doctorName} height={45} width={45} className='rounded-full border border-[#E57373]'></Image>
-                                        <div>
-                                            <h2>{dr.doctorName}</h2>
-                                            <p>{dr.designation}</p>
+                                return <SwiperSlide key={dr.id} className=' bg-white p-5'>
+                                    <div className='my-shadow-2 p-5 space-y-4 rounded-lg min-h-[300px]'>
+                                        <div className='flex gap-4'>
+                                            <figure className='h-20 w-20 relative'>
+                                                <Image src={dr.doctorImg} alt={dr.doctorName} fill={true} className='rounded-full border border-[#E57373]'></Image>
+                                            </figure>
+                                            <div>
+                                                <h2>{dr.doctorName}</h2>
+                                                <p>{dr.designation}</p>
+                                            </div>
                                         </div>
+                                        <p className='leading-relaxed'>{dr.review}</p>
                                     </div>
-                                    <p className='leading-relaxed'>{dr.review}</p>
                                 </SwiperSlide>
                             })
                         }

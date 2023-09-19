@@ -4,7 +4,7 @@
 
 
 /* Colors */
-/* primary color -  blue- #09528C , subduded red- E57373, neutral text color- 333333 */
+/* primary color -  blue- #09528C , subduded red- #E57373, Green - #07332F, neutral text color- 333333 */
 .footer-top {
   clip-path: polygon(0 0, 100% 15%, 100% 100%, 0% 100%);
 }
@@ -22,6 +22,11 @@ input[type=number]::-webkit-outer-spin-button {
 .my-inp{
   @apply block w-full p-3 bg-slate-900 text-slate-300 placeholder:text-slate-500 focus:shadow-inner focus:shadow-slate-500 border-none rounded focus:outline-none
 }
+.my-inp-2{
+  @apply rounded-lg px-4 py-3 outline-none focus:border-l-2 focus:border-[#E57373] w-full;
+  background: rgba(255, 255, 255, 0.05);
+}
+
 
 
 /* Common color */
@@ -101,19 +106,24 @@ body::-webkit-scrollbar-thumb {
 }
 
 
-/* Contact page */
-.contact-inp{
-    @apply rounded-lg px-4 py-3 outline-none focus:border-l-2 focus:border-[#E57373] w-full;
-    background: rgba(255, 255, 255, 0.05);
-}
-
-
-
 /* swiper-button upgrade */
-.swiper-button-prev::before, .swiper-button-next::after{
+.swiper-button-prev, .swiper-button-next{
+  @apply !left-1/2 !top-[85%] !z-30
+}
+.swiper-button-prev{
+  @apply -translate-x-12
+}
+.swiper-pagination.swiper-pagination-fraction{
+  @apply flex items-center text-xl left-7 !top-[77%]
+}
+.swiper-pagination-current{
+  @apply text-3xl text-[#E57373] -translate-y-1
+}
+.swiper-button-prev::after, .swiper-button-next::after{
     background: #E57373;
     padding: 5px 8px;
     border-radius: 5px;
     color: #fff;
     font-size: 25px !important;
+    left: 50%;
 }
