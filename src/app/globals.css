@@ -16,6 +16,12 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0; 
 }
 
+/* select option */
+select option {
+  background: #09528C;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
 .sign-my-inp{
   @apply block w-full p-3 bg-slate-100 text-slate-700 placeholder:text-slate-500 border-none rounded focus:outline-none
 }
@@ -133,13 +139,11 @@ body::-webkit-scrollbar-thumb {
 
 
 /* react-datetime-picker__wrapper in for doctor form*/
-.react-datetime-picker__wrapper{
-  @apply py-2 px-4 rounded-lg focus:border-l-2 focus:border-[#E57373] !border-none text-slate-200;
+.react-date-picker__wrapper{
+  @apply py-3 px-4 rounded-lg focus:border-l-2 focus:border-[#E57373] !border-none text-slate-200;
   background: rgba(255, 255, 255, 0.05);
 }
-.react-datetime-picker__clear-button, .react-datetime-picker__calendar-button{
-  @apply text-slate-200
-}
-.react-datetime-picker__clear-button__icon, .react-datetime-picker__calendar-button__icon{
+.react-date-picker__clear-button__icon, .react-date-picker__calendar-button__icon{
   stroke: white;
 }
+

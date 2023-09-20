@@ -26,7 +26,6 @@ const Navbar = () => {
             window.removeEventListener('scroll', isTopFunc)
         }
     }, [])
-console.log(user, authLoading);
 
     return (
         <nav className={` ${isTop ? 'bg-transparent' : 'bg-slate-100 shadow-lg'} fixed left-0 right-0 top-0 z-50`}>
