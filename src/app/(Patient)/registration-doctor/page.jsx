@@ -7,8 +7,8 @@ import DatePicker from 'react-date-picker';
 
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
-import Link from 'next/link';
 import { useForm } from 'react-hook-form';
+import TermsModal from '@/Components/HelpingCompo/TermsModal';
 
 
 
@@ -16,7 +16,7 @@ const RegistrationDoctorPage = () => {
     const [registrationTime, setRegistrationTime] = useState(new Date());
     const districtsOfBangladesh = [
         "Dhaka",
-        "Chattogram (Chittagong)",
+        "Chittagong",
         "Rajshahi",
         "Khulna",
         "Barishal",
@@ -90,7 +90,7 @@ const RegistrationDoctorPage = () => {
     } = useForm();
     const handleSignupFunc = (form) => {
         setLoading(true);
-        const { name, photo, email, password, confirmPassword, terms } = form;
+        const { firstName, secondName, photo, email, phone, password, confirmPassword, terms } = form;
 
         formData.append("image", photo[0]);
 
@@ -152,15 +152,15 @@ const RegistrationDoctorPage = () => {
         <div className='bg-cover bg-center bg-slate-700 bg-blend-overlay ' style={{ backgroundImage: `url(${doctorRegistrationBg.src})` }}>
 
             <div className='min-h-[93vh] py-5 my-container-2 flex gap-6 items-center justify-center'>
-                <div className='hidden md:block md:w-6/12 justify-start'>
+                <div className='hidden lg:block lg:w-6/12 justify-start'>
                     <Lottie animationData={doctorRegistrationLottie} />
                 </div>
 
-                <form action="" className='flex-1 rounded p-5 md:p-10 space-y-4 bg-[#07332Fgg] w-3/6 bg-slate-800 bg-opacity-70'>
+                <form action="" className='flex-1 rounded p-5 md:p-10 space-y-3 bg-[#07332Fgg] w-3/6 bg-slate-800 bg-opacity-70' onSubmit={handleSubmit(handleSignupFunc)}>
                     <h2 className='my-subtitle text-white'>Doctor Registration</h2>
 
                     {/* Title and doctor type */}
-                    <div className='md:flex gap-2 space-y-4 md:space-y-0'>
+                    <div className='md:flex gap-4 space-y-4 md:space-y-0'>
 
                         {/* Title */}
                         <div className='flex-1'>
@@ -189,7 +189,7 @@ const RegistrationDoctorPage = () => {
                     </div>
 
                     {/* First name and last name */}
-                    <div className='md:flex gap-2 space-y-4 md:space-y-0'>
+                    <div className='md:flex gap-4 space-y-4 md:space-y-0'>
                         <div className='flex-1'>
                             <label htmlFor="firstName" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> First Name</label>
                             <input type="text" id='firstName' className='my-inp-2' placeholder='First name'  {...register("firstName", { required: true })} />
@@ -202,56 +202,114 @@ const RegistrationDoctorPage = () => {
                         </div>
                     </div>
 
+
+                    {/* Email & phone */}
+                    <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
+                        {/* Email */}
+                        <div className='flex-1'>
+                            <label htmlFor="email" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Email</label>
+                            <input type="email" id='email' className='my-inp-2' placeholder='Email' {...register("email", { required: true })} />
+                            {errors.email && (<p className="text-red-500">This field is required</p>)}
+                        </div>
+
+                        {/* Number */}
+                        <div className='flex-1'>
+                            <label htmlFor="phone" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Phone</label>
+                            <input type="number" id='phone' className='my-inp-2' placeholder='Phone' {...register("phone", { required: true })} />
+                            {errors.phone && (<p className="text-red-500">This field is required</p>)}
+                        </div>
+                    </div>
+
+                    {/* Password & confirm password */}
+                    <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
+                        {/* Password */}
+                        <div className='flex-1'>
+                            <label htmlFor="password" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Password</label>
+                            <input type="password" id='password' className='my-inp-2' placeholder='Password' {...register("password", { required: true })} />
+                            {errors.password && (<p className="text-red-500">This field is required</p>)}
+                        </div>
+
+                        {/*Confirm Password */}
+                        <div className='flex-1'>
+                            <label htmlFor="confirmPassword" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Confirm Password</label>
+                            <input type="password" id='confirmPassword' className='my-inp-2' placeholder='Confirm Password' {...register("confirmPassword", { required: true })} />
+                            {errors.confirmPassword && (<p className="text-red-500">This field is required</p>)}
+                        </div>
+
+                    </div>
+
                     {/* Photos */}
                     <div>
                         <label htmlFor="photo" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Photo </label>
-                        <input type="file" className="file-input file-input-bordered focus:outline-0 file-input-error my-inp !p-0" {...register("photo", { required: true })} />
+                        <input type="file" className="file-input file-input-bordered focus:outline-0 file-input-error my-inp-2 !p-0" {...register("photo", { required: true })} />
                         {errors.photo && (<p className="text-red-500">This field is required</p>)}
                     </div>
 
-                    <input type="email" className='my-inp-2' placeholder='Email' />
-                    <input type="password" className='my-inp-2' placeholder='Password' />
-                    <input type="number" className='my-inp-2' placeholder='Mobile number' />
+                    {/* District & Date of birth*/}
+                    <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
+                        {/* Date of birth */}
+                        <div className='flex-1'>
+                            <label htmlFor="dateOfBirth" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Date of Birth </label>
+                            <DatePicker id='dateOfBirth' onChange={setRegistrationTime} value={registrationTime} className={'w-full rounded-lg'} />
+                            {!registrationTime && (<p className="text-red-500">This field is required</p>)}
+                        </div>
 
-                    <DatePicker onChange={setRegistrationTime} value={registrationTime} className={'w-full rounded-lg'} />
-
-                    {/* District */}
-                    <select defaultValue={''} className='my-inp-2'>
-                        <option value="" disabled>District</option>
-                        {
-                            districtsOfBangladesh.map((district, ind) => {
-                                return <option key={ind} value={district}>{district}</option>
-                            })
-                        }
-                    </select>
-
-
-                    {/* National ID */}
-                    <input type="text" className='my-inp-2' placeholder='National ID' />
-
-                    <input type="text" className='my-inp-2' placeholder='Registration Number BMDC' />
-
-
-                    {/* Accept Terms and condition */}
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-start">
-                            <div className="flex items-center h-5">
-                                <input id="terms" name="terms" aria-describedby="terms" type="checkbox" {...register("terms", { required: true })} className="w-4 h-4" />
-                            </div>
-                            <div className="ml-3 text-sm">
-                                <label htmlFor="terms" className="text-slate-300"> Accept
-                                    <Link href={"/terms"} className="link-hover link-primary"> Terms and Condition </Link>
-                                </label>
-                            </div>
+                        {/* District */}
+                        <div className='flex-1'>
+                            <label htmlFor="district" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> District </label>
+                            <select id='district' defaultValue={''} className='my-inp-2' {...register("district", { required: true })}>
+                                <option value="" disabled>District</option>
+                                {
+                                    districtsOfBangladesh.map((district, ind) => {
+                                        return <option key={ind} value={district}>{district}</option>
+                                    })
+                                }
+                            </select>
+                            {errors.district && (<p className="text-red-500">This field is required</p>)}
                         </div>
                     </div>
-                    {errors.terms && (
-                        <p className="text-red-500">You need to checked terms & condition!</p>
-                    )}
+
+                    {/* NID & BMDC */}
+                    <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
+                        {/* National ID */}
+                        <div className='flex-1'>
+                            <label htmlFor="NID" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> National ID</label>
+                            <input type="text" id='NID' className='my-inp-2' placeholder='National ID' {...register("NID", { required: true })} />
+                            {errors.NID && (<p className="text-red-500">This field is required</p>)}
+                        </div>
+
+                        {/* BMDC */}
+                        <div className='flex-1'>
+                            <label htmlFor="BMDC" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> BMDC</label>
+                            <input type="text" id='BMDC' className='my-inp-2' placeholder='Registration Number BMDC' {...register("BMDC", { required: true })} />
+                            {errors.BMDC && (<p className="text-red-500">This field is required</p>)}
+                        </div>
+                    </div>
+
+                    {/* Accept Terms and condition */}
+                    <div>
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-start">
+                                <div className="flex items-center h-5">
+                                    <input id="terms" name="terms" aria-describedby="terms" type="checkbox" {...register("terms", { required: true })} className="w-4 h-4" />
+                                </div>
+                                <div className="ml-3 text-sm">
+                                    <label htmlFor="terms" className="text-slate-300"> Accept
+                                        <span className="link-hover link-primary" onClick={() => document.getElementById('terms_modal').showModal()}> Terms and Condition  </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        {errors.terms && (
+                            <p className="text-red-500">You need to checked terms & condition!</p>
+                        )}
+                    </div>
+
+                    <button className='my-btn-two' type='submit'>Signup</button>
 
                 </form>
             </div>
-
+            <TermsModal></TermsModal>
         </div>
     );
 };
