@@ -4,7 +4,7 @@ import { FaBell, FaCalendar, FaClock, FaFile, FaLock, FaPrescription, FaTrophy }
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 
-const WhyUseDocwatch = () => {
+const WhyUseDocEye = () => {
 
     const timelines = [
         {
@@ -57,13 +57,11 @@ const WhyUseDocwatch = () => {
         }
     ]
 
-
-
     return (
         <div className='py-20'>
 
             <div className='my-container space-y-8 md:space-y-16'>
-                <CommonSectionTitle title={'Why use DocWatch?'}></CommonSectionTitle>
+                <CommonSectionTitle title={'Why use DocEye?'}></CommonSectionTitle>
                 <VerticalTimeline>
                     {
                         timelines.map((timeline) => {
@@ -85,4 +83,4 @@ const WhyUseDocwatch = () => {
     );
 };
 
-export default WhyUseDocwatch;
+export default WhyUseDocEye;

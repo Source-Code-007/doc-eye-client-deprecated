@@ -80,6 +80,7 @@ const RegistrationDoctorPage = () => {
         "Munshiganj"
     ];
 
+
     const formData = new FormData();
 
     const {

@@ -106,7 +106,7 @@ body::-webkit-scrollbar-thumb {
 
 
 
-/* vertical timeline - why use DocWatch section*/
+/* vertical timeline - why use DocEye section*/
 .vertical-timeline::before{
   background-color: #09528C !important;
 }

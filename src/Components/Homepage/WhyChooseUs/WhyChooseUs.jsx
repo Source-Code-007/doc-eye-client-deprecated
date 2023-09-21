@@ -14,12 +14,12 @@ const WhyChooseUs = () => {
         },
         {
             title: 'Trusted Treatment',
-            subTitle: 'DocWatch has many types of treatment to relieve symptoms for all types illness.',
+            subTitle: 'DocEye has many types of treatment to relieve symptoms for all types illness.',
             icon: <FaCaretUp></FaCaretUp>
         },
         {
             title: '24/7 Services',
-            subTitle: 'DocWatch is at your service 24×7 aiming to provide the best services.',
+            subTitle: 'DocEye is at your service 24×7 aiming to provide the best services.',
             icon: <FaHouseTsunami></FaHouseTsunami>
         },
     ]
@@ -27,7 +27,7 @@ const WhyChooseUs = () => {
     return (
         <div className='min-h-screen bg-left md:bg-bottom' style={{ backgroundImage: `url(${WhyChooseUsBg.src})` }}>
             <div className='my-container space-y-8 pr-0 lg:pr-[300px] pt-[50px] md:pt-[100px]'>
-                <CommonSectionTitle subTitle={'Why Choose Us'} title={'Why people Choose DocWatch'}></CommonSectionTitle>
+                <CommonSectionTitle subTitle={'Why Choose Us'} title={'Why people Choose DocEye'}></CommonSectionTitle>
                 <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don’t look even slightly believable.</p>
                 <ul>
                     <li></li>

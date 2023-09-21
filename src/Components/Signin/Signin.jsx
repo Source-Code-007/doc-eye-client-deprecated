@@ -55,7 +55,7 @@ const Signin = () => {
                 {/* signin right */}
                 <div className='bg-slate-800 bg-opacity-40 hidden xl:flex items-center justify-center text-white rounded-r flex-1 p-5'>
                     <div className='space-y-4'>
-                        <h2 className='my-subtitle'>Welcome to <span className='text-secondary'>DocWatch</span></h2>
+                        <h2 className='my-subtitle'>Welcome to <span className='text-secondary'>DocEye</span></h2>
                         <p className='text-slate-400'>Login to access your account</p>
                     </div>
                 </div>
@@ -100,7 +100,7 @@ const Signin = () => {
         //         {/* signin form right */}
         //         <div className='bg-slate-800 bg-opacity-40 flex items-center justify-center text-white rounded-r flex-1'>
         //             <div className='space-y-4'>
-        //                 <h2 className='my-subtitle'>Welcome to <span className='text-secondary'>DocWatch</span></h2>
+        //                 <h2 className='my-subtitle'>Welcome to <span className='text-secondary'>DocEye</span></h2>
         //                 <p className='text-slate-400'>Login to access your account</p>
         //             </div>
         //         </div>

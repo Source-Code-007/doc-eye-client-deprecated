@@ -33,7 +33,7 @@ const Banner = () => {
     return (
         <div className='bg-center' style={{ backgroundImage: `url(${banner1.src})` }}>
             <div className='my-container pt-28 flex flex-col justify-between min-h-screen text-center'>
-                <h2 className='my-banner-title'>Complete health solution DocWatch!</h2>
+                <h2 className='my-banner-title'>Complete health solution DocEye!</h2>
                 <p className='font-semibold text-slate-700 px-4 md:px-16 py-10 md:text-lg'>Empowering Lives, Shaping Futures. For years, our dedicated work has touched and transformed thousands of lives, leading them towards mental well-being and a more fulfilling existence. Join us as we continue this impactful journey together.</p>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 py-10'>
                     {services.map((service, ind) => <div key={ind} className='py-7 px-3 rounded bg-white space-y-4 text-center my-shadow cursor-pointer hover:scale-105 hover:-translate-y-5 transition duration-500'>

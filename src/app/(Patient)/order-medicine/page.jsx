@@ -8,8 +8,8 @@ const page = () => {
         <div className='my-container'>
             <div className='min-h-screen grid grid-cols-1 md:grid-cols-2 items-center gap-5'>
                 <div className='space-y-4'>
-                    <h2 className='my-title'>Please download DocWatch app to  order medicine online</h2>
-                    <p> We are launching order medicine online <br className='hidden md:block' /> on the DocWatch website very soon.</p>
+                    <h2 className='my-title'>Please download DocEye app to  order medicine online</h2>
+                    <p> We are launching order medicine online <br className='hidden md:block' /> on the DocEye website very soon.</p>
                     <Image src={DownloadOnGooglePlay} alt='DownloadOnGooglePlay' height={55} width={130} className='cursor-pointer'></Image>
                 </div>
                 <div>

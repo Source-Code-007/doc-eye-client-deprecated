@@ -59,7 +59,7 @@ const Footer = () => {
             </div>
             {/* Footer bottom */}
             <div className='bg-[#09528C] bg-opacity-30 text-slate-50 py-6 border-t border-slate-300 text-center'>
-                <p className='text-slate-700 font-semibold'> Copyright © 2023 <span className='text-secondary'>DocWatch</span>. All rights reserved.</p>
+                <p className='text-slate-700 font-semibold'> Copyright © 2023 <span className='text-secondary'>DocEye</span>. All rights reserved.</p>
             </div>
         </div>
     );
