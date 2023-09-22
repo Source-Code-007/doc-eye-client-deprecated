@@ -63,7 +63,7 @@ select option {
 
 /* Common title and subtitle */
 .my-banner-title{
-  @apply font-bold text-xl md:text-4xl xl:text-7xl
+  @apply font-bold text-2xl md:text-4xl xl:text-7xl
 }
 .my-title{
   @apply font-bold text-2xl md:text-3xl xl:text-4xl

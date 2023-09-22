@@ -39,7 +39,7 @@ const Banner = () => {
                     {services.map((service, ind) => <div key={ind} className='py-7 px-3 rounded bg-white space-y-4 text-center my-shadow cursor-pointer hover:scale-105 hover:-translate-y-5 transition duration-500'>
                         <Image alt='videoConsultation' className='mx-auto' height={60} width={60} src={service.img}></Image>
                         <h2 className='font-semibold text-xl'>{service.title}</h2>
-                        <p>{service.subTitle.slice(0, 60)}</p>
+                        <p>{service.subTitle}</p>
                     </div>)}
                 </div>
             </div>
