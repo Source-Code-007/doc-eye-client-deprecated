@@ -113,6 +113,7 @@ const RegistrationDoctorPage = () => {
             return;
         }
 
+        // TODO: replace url to actual API
         // After hosting photo then post register info
         const url = `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMG_HOSTING_API_KEY}`;
         axios

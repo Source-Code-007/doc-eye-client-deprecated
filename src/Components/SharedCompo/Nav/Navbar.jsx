@@ -33,7 +33,7 @@ const Navbar = () => {
                 <Link href={'/'}><Image height={40} width={40} src={logo} alt='DocEye'></Image></Link>
                 <ul className='flex gap-10 items-center text-slate-700 text-xl'>
                     <MyMenu href={'/'}>Home</MyMenu>
-                    <MyMenu href={'/about'}>About</MyMenu>
+                    <MyMenu href={'/health-plans'}>Health Plans</MyMenu>
                     <MyMenu href={'/order-medicine'}>Order Medicine</MyMenu>
                     <MyMenu href={'/feature'}>Feature</MyMenu>
                     <MyMenu href={'/contact'}>Contact</MyMenu>
