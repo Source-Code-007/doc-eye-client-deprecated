@@ -8,7 +8,7 @@ const TermsModal = () => {
                 <div className="modal-action relative mt-0">
                     <form method="dialog" className='p-5 pt-14'>
                         {/* Cross icon */}
-                        <button className="absolute top-2 left-2 text-red-500 text-3xl outline-none rounded p-3"> <FaXmark></FaXmark> </button>
+                        <button className="absolute top-2 left-2 text-red-500 text-3xl outline-none rounded p-3 cursor-pointer"> <FaXmark></FaXmark> </button>
 
                         <h2 className='my-subtitle'>Terms & Conditions</h2>
                         <div className="modal-body"><span><p className='font-semibold'>THE FOLLOWING TERMS AND CONDITIONS (“T&amp;C”) GOVERN THE DOCTOR{"'"}S ACCESS TO AND USE OF DocEye (THE <strong>“PLATFORM” </strong>OR<strong> “DocEye”</strong>) OWNED AND OPERATED BY DocEye LIMITED, INCLUDING ALL CONTENT, FUNCTIONALITY AND SERVICES OFFERED HEREIN. THESE TERMS AND CONDITIONS CREATE A CONTRACT BETWEEN THE DOCTOR AND DocEye LIMITED. DocEye MAY IMMEDIATELY TERMINATE THESE T&amp;C OR ANY SERVICES OR GENERALLY CEASE TO OFFER OR DENY ACCESS TO THE SERVICES OR ANY PORTION THEREOF, AT ANY TIME FOR ANY REASON.</p>

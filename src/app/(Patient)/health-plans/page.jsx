@@ -1,9 +1,10 @@
 'use client'
 import HealthPlanModal from '@/Components/HelpingCompo/HealthPlanModal';
-import React from 'react';
+import React, { useState } from 'react';
 import { FaCheck } from 'react-icons/fa6';
 
 const HealthPlansPage = () => {
+    const [planForModal, setPlanForModal] = useState({})
     const healthPlans = [
         {
             planName: "Basic Plan",
@@ -98,17 +99,17 @@ const HealthPlansPage = () => {
                         const { planName, description, price, features } = hp
                         return <div key={ind} className='rounded-lg space-y-4 my-shadow-2 p-5 relative pb-20'>
                             <h2 className='my-subtitle text-primary'>{planName}</h2>
-                            <h3 className='my-title'>৳ {price} <span className='!text-lg font-semibold'>/monthly</span></h3>
+                            <h3 className='my-title'>৳{price} <span className='!text-lg font-semibold'>/monthly</span></h3>
                             <p className='text-slate-700'> {description}</p>
                             <ul className='space-y-3'>
                                 {features?.map((feature, ind) => <li key={ind} className='flex items-center gap-2'> <FaCheck></FaCheck> {feature}</li>)}
                             </ul>
-                            <button className='my-btn-one absolute bottom-2 left-0 right-0 mx-5' onClick={() => document.getElementById('health_plan_modal').showModal()}>Subscribe Now</button>
+                            <button className='my-btn-one absolute bottom-2 left-0 right-0 mx-5' onClick={() => {document.getElementById('health_plan_modal').showModal(); setPlanForModal(hp)}}>Subscribe Now</button>
                         </div>
                     })}
                 </div>
             </div>
-            <HealthPlanModal></HealthPlanModal>
+            <HealthPlanModal planForModal={planForModal}></HealthPlanModal>
         </div>
     );
 };
