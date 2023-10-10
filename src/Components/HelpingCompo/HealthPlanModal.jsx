@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaCheck, FaXmark } from 'react-icons/fa6';
 
+
 const HealthPlanModal = ({ planForModal }) => {
     console.log(planForModal);
     const { planName, description, price, features } = planForModal
