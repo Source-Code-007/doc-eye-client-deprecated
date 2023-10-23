@@ -8,6 +8,7 @@ import MyLoading from '@/Components/HelpingCompo/MyLoading';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
+
 const Navbar = () => {
     const [isTop, setIsTop] = useState(true)
     const { user, authLoading } = useAuth()
