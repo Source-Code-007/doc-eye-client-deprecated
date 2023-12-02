@@ -4,11 +4,6 @@
 
 
 
-/* Colors */
-/* primary color -  blue- #09528C , subduded red- #E57373, Green - #07332F, neutral text color- 333333 */
-.footer-top {
-  clip-path: polygon(0 0, 100% 15%, 100% 100%, 0% 100%);
-}
 
 /* hide number arrow */
 input[type=number]::-webkit-inner-spin-button, 
@@ -17,10 +12,27 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0; 
 }
 
+/* input autofill style */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    transition: background-color 5000s ease-in-out 0s;
+    background:  #132B44;
+    -webkit-text-fill-color: rgb(203 213 225)
+}
+
 /* select option */
 select option {
   background: #09528C;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+
+/* Colors */
+/* primary color -  blue- #09528C , subduded red- #E57373, Green - #07332F, neutral text color- 333333 */
+.footer-top {
+  clip-path: polygon(0 0, 100% 15%, 100% 100%, 0% 100%);
 }
 
 .sign-my-inp{
