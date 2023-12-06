@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${inter.className}`}>
-      <SkeletonTheme baseColor="#112841" highlightColor="#07172B">
+        <SkeletonTheme baseColor="#112841" highlightColor="#07172B">
           <AuthProvider>
             <Navbar></Navbar>
             {children}

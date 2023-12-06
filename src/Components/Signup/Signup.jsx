@@ -10,33 +10,62 @@ import { useAuth } from '@/Providers/AuthProvider';
 const Signup = () => {
     const { user, setUser, authLoading, setAuthLoading, createUserWithEmailPass, updateProfileFunc } = useAuth()
     const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false)
     const [showPass, setShowPass] = useState({ password: false, confirmPassword: false })
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = form => {
         setAuthLoading(true)
+        setLoading(true)
         setError('')
-        const { email, password, confirmPassword } = form
+        const { email, password, confirmPassword, name, signupPhoto, number } = form
+
+        const formData = new FormData();
+        formData.append("image", signupPhoto[0]);
 
         if (password !== confirmPassword) {
             setError('Your password is not match')
+            setLoading(false)
             return
         }
+        // password regexp
+        const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+        if (!passwordRegex.test(password)) {
+            setError(
+                "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit."
+            );
+            setLoading(false)
+            return;
+        }
 
-        // create user func
-        createUserWithEmailPass(email, password).then(res => {
-            setAuthLoading(false)
-            // setUser(res.user)
-            console.log(res);
-            // updateProfileFunc()
+        // create img hosting URL and user func
+        const imgHostingUrl = `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMG_HOSTING_API_KEY}`;
+        axios.post(imgHostingUrl, formData).then(res => {
+            const photo_url = res.data.data.url;
+            createUserWithEmailPass(email, password).then(res => {
+                setAuthLoading(false)
+                console.log(res, 'create user');
+
+                // Update user profile
+                updateProfileFunc(name, photo_url).then(res => {
+                    console.log(res, 'update profile');
+                }).catch(e => {
+                    console.log(e?.message);
+                })
+
+            }).catch(e => {
+                setAuthLoading(false)
+                if (e.code === 'auth/account-exists-with-different-credential') {
+                    setError('account exists with different credential')
+                    return
+                }
+                setError(e.message)
+            })
+
         }).catch(e => {
-            setAuthLoading(false)
-            if (e.code === 'auth/account-exists-with-different-credential') {
-                setError('account exists with different credential')
-                return
-            }
-            setError(e.message)
+            console.log(e?.message);
         })
+
     };
 
 
@@ -53,22 +82,40 @@ const Signup = () => {
                     </div>
 
                     <div className='space-y-4'>
+                        {/* Name */}
                         <div>
                             <label htmlFor="signupName" className='text-slate-600'>Your name here</label>
                             <input {...register("name", { required: true })} type='text' id='signupName' className={`sign-my-inp shadow-inner ${errors.name ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your name here' />
                             {errors.name && <span className='text-red-500'>*Name is required</span>}
                         </div>
+
+                        {/* Phone number */}
+                        {/* TODO: Will be store somewhere */}
                         <div>
                             <label htmlFor="signupNumber" className='text-slate-600'>Your number here</label>
                             <input type='number' {...register("number", { required: true })} id='signupNumber' className={`sign-my-inp shadow-inner ${errors.number ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your number here' />
                             {errors.number && <span className='text-red-500'>*Number is required</span>}
                         </div>
+
+                        {/* Photo */}
+                        <div>
+                            <label htmlFor="signupPhoto" className='text-slate-600'>Your photo here</label>
+                            <input type='file' {...register("signupPhoto", { required: true })} id='signupPhoto'
+                                className={`file-input file-input-bordered file-input-error !p-0 sign-my-inp ${errors.signupPhoto ? 'shadow-red-700' : 'shadow-slate-700'}`}
+                                // className="file-input file-input-bordered focus:outline-0 file-input-error my-inp !p-0"
+
+                                placeholder='Your photo here' />
+                            {errors.signupPhoto && <span className='text-red-500'>*Photo is required</span>}
+                        </div>
+
+                        {/* Email */}
                         <div>
                             <label htmlFor="signupEmail" className='text-slate-600'>Your email here</label>
                             <input type='email' {...register("email", { required: true, pattern: /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/ })} id='signupEmail' className={`sign-my-inp shadow-inner ${errors.email ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your email here' />
                             {errors.email && <span className='text-red-500'>*{errors?.email?.type === 'pattern' ? 'Please provide valid email' : 'Email is required'}</span>}
                         </div>
 
+                        {/* Pass */}
                         <div>
                             <label htmlFor="signupPass" className='text-slate-600'>Your password here</label>
                             <div className='relative'>
@@ -78,6 +125,7 @@ const Signup = () => {
                             {errors.password && <span className='text-red-500'>*{errors?.password?.type === 'pattern' ? 'Minimum 8 characters, at least 1 letter and 1 digit.' : 'Password is required'}</span>}
                         </div>
 
+                        {/* Confirm Pass */}
                         <div>
                             <label htmlFor="signupConfirmPass" className='text-slate-600'>Confirm your password</label>
                             <div className='relative'>
@@ -86,6 +134,23 @@ const Signup = () => {
                             </div>
                             {errors.confirmPassword && <span className='text-red-500'>*{errors?.confirmPassword?.type === 'pattern' ? 'Minimum 8 characters, at least 1 letter and 1 digit.' : 'Password is required'}</span>}
                         </div>
+
+                        {/* Terms */}
+                        <div>
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-start">
+                                    <div className="flex items-center h-5">
+                                        <input id="terms" name='terms' aria-describedby="terms" type="checkbox" {...register('terms', { required: true })} className="w-4 h-4" />
+                                    </div>
+                                    <div className="ml-3 text-sm">
+                                        <label htmlFor="terms" className='text-primary-desc'>Accept <Link className='link-hover link-primary' href={'#'}>Terms and Condition</Link></label>
+                                    </div>
+                                </div>
+                            </div>
+                            {errors.terms && <p className='text-red-500'>*You need to checked terms & condition! </p>}
+                        </div>
+
+
                         {error && <p className='text-red-500'>*{error}</p>}
 
 

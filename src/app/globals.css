@@ -18,7 +18,7 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active{
     transition: background-color 5000s ease-in-out 0s;
     background:  #132B44;
-    -webkit-text-fill-color: rgb(203 213 225)
+    -webkit-text-fill-color: #000
 }
 
 /* select option */
@@ -35,10 +35,10 @@ select option {
   content: "";
   border: 10px solid transparent;
   margin: 0 auto;
-  border-bottom-color: #102642 !important;
+  border-bottom-color: #09528C !important;
   bottom: auto;
   border-radius: 5px;
-  border-left-color: #102642;
+  border-left-color: #09528C;
   transform: rotate(135deg);
 }
 
