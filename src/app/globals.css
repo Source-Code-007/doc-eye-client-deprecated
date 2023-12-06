@@ -28,6 +28,21 @@ select option {
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 }
 
+/* profile triangle dropdown */
+.triangle-dropdown:before {
+  position: absolute;
+  top: -8px;
+  right: 20px;
+  content: "";
+  border: 10px solid transparent;
+  margin: 0 auto;
+  border-bottom-color: #102642 !important;
+  bottom: auto;
+  border-radius: 5px;
+  border-left-color: #102642;
+  transform: rotate(135deg);
+}
+
 
 /* Colors */
 /* primary color -  blue- #09528C , subduded red- #E57373, Green - #07332F, neutral text color- 333333 */

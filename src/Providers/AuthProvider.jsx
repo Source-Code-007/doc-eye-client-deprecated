@@ -1,5 +1,5 @@
 'use client'
-import { getAuth, createUserWithEmailAndPassword, signOut, updateProfile, onAuthStateChanged, GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signOut, updateProfile, onAuthStateChanged, GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { app } from '../../firebase.config';
 
@@ -59,6 +59,7 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const authMonitoring = onAuthStateChanged(auth, (currUser) => {
+
             if (currUser) {
                 // const uid = user.uid;
                 setAuthLoading(false)

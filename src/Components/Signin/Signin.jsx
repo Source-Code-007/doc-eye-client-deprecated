@@ -4,13 +4,26 @@ import { useForm } from "react-hook-form";
 import signinBG from '/public/assets/img/Sign/signinBG.jpg'
 import Link from 'next/link';
 import { FaEye, FaEyeSlash, FaFacebook, FaGithub } from 'react-icons/fa6';
+import { useAuth } from '@/Providers/AuthProvider';
+import { useRouter } from 'next/navigation';
 
 const Signin = () => {
     const [showPass, setShowPass] = useState(false)
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const {signinUserFunc, setAuthLoading} = useAuth()
+    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
+    const router = useRouter()
+
     const onSubmit = form => {
         const { email, password } = form
+        signinUserFunc(email, password).then(res=> {
+                setAuthLoading(false)
+                reset()
+                router.push('/')
+        }).catch(e=> {
+            console.log(e?.message);
+        })
     };
+
     return (
         <div className='min-h-screen flex items-center justify-center bg-cover bg-center bg-slate-800 bg-blend-overlay my-28 md:my-0' style={{ backgroundImage: `url(${signinBG.src})` }}>
 
