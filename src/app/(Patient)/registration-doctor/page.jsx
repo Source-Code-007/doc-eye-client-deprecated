@@ -271,6 +271,7 @@ const RegistrationDoctorPage = () => {
                         </div>
                     </div>
 
+
                     {/* NID & BMDC */}
                     <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
                         {/* National ID */}
@@ -297,7 +298,7 @@ const RegistrationDoctorPage = () => {
                                 </div>
                                 <div className="ml-3 text-sm">
                                     <label htmlFor="terms" className="text-slate-300"> Accept
-                                        <span className="link-hover link-primary" onClick={() => document.getElementById('terms_modal').showModal()}> Terms and Condition  </span>
+                                        <span className="link-hover link-primary text-primary-main-2" onClick={() => document.getElementById('terms_modal').showModal()}> Terms and Condition  </span>
                                     </label>
                                 </div>
                             </div>

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { FaEye, FaEyeSlash, FaFacebook, FaGithub } from 'react-icons/fa6';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '@/Providers/AuthProvider';
+import axios from 'axios';
 
 
 const Signup = () => {
@@ -44,11 +45,11 @@ const Signup = () => {
             const photo_url = res.data.data.url;
             createUserWithEmailPass(email, password).then(res => {
                 setAuthLoading(false)
-                console.log(res, 'create user');
+                // console.log(res, 'create user');
 
                 // Update user profile
                 updateProfileFunc(name, photo_url).then(res => {
-                    console.log(res, 'update profile');
+                    // console.log(res, 'update profile');
                 }).catch(e => {
                     console.log(e?.message);
                 })

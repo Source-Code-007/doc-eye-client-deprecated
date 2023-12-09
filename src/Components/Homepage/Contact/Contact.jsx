@@ -14,7 +14,7 @@ const Contact = () => {
     return (
 
         <div className='min-h-screen bg-bottom bg-cover bg-slate-800 bg-blend-overlay bg-fixed flex items-center justify-center' style={{ backgroundImage: `url(${contactBG2.src})` }}>
-            <form className='rounded bg-slate-800 bg-opacity-30 p-8 my-shadow w-5/6 md:w-7/12 mx-auto'>
+            <form className='rounded bg-dark-3 bg-opacity-30 p-5 md:p-8 my-shadow w-full xs:w-5/6 md:w-8/12 xl:w-7/12 mx-auto'>
                 <h2 className='my-title text-slate-50 mb-12'>Reach out to us</h2>
                 <div className='space-y-6'>
                     <div className='space-y-6 md:space-y-0 md:flex gap-4 justify-between'>
