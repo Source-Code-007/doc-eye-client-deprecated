@@ -1,68 +1,80 @@
 [
-    {
+  {
       "title": "Cardiology",
       "description": "Specialists in heart-related issues and treatments.",
-      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAB40KNEq9NL9rbJssGjQcjJ8uq427qHALDA&usqp=CAU"
-    },
-    {
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAB40KNEq9NL9rbJssGjQcjJ8uq427qHALDA&usqp=CAU",
+      "slug": "cardiology"
+  },
+  {
       "title": "Dermatology",
       "description": "Experts in skin conditions and treatments.",
-      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0-rwvCYTS4D029xUrilLLKk7OHY0SmS3knQ&usqp=CAU"
-    },
-    {
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0-rwvCYTS4D029xUrilLLKk7OHY0SmS3knQ&usqp=CAU",
+      "slug": "dermatology"
+  },
+  {
       "title": "Neurology",
       "description": "Professionals dealing with nervous system disorders.",
-      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0-rwvCYTS4D029xUrilLLKk7OHY0SmS3knQ&usqp=CAU"
-    },
-    {
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0-rwvCYTS4D029xUrilLLKk7OHY0SmS3knQ&usqp=CAU",
+      "slug": "neurology"
+  },
+  {
       "title": "Orthopedics",
       "description": "Specialists in bone and muscle-related problems.",
-      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY3DbUvXcOLFQgy_uBhp_laiqvtnkvspWu9A&usqp=CAU"
-    },
-    {
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY3DbUvXcOLFQgy_uBhp_laiqvtnkvspWu9A&usqp=CAU",
+      "slug": "orthopedics"
+  },
+  {
       "title": "Gastroenterology",
       "description": "Specialists in digestive system disorders.",
-      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAB40KNEq9NL9rbJssGjQcjJ8uq427qHALDA&usqp=CAU"
-    },
-    {
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAB40KNEq9NL9rbJssGjQcjJ8uq427qHALDA&usqp=CAU",
+      "slug": "gastroenterology"
+  },
+  {
       "title": "Ophthalmology",
       "description": "Experts in eye care and vision-related issues.",
-      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY3DbUvXcOLFQgy_uBhp_laiqvtnkvspWu9A&usqp=CAU"
-    },
-    {
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY3DbUvXcOLFQgy_uBhp_laiqvtnkvspWu9A&usqp=CAU",
+      "slug": "ophthalmology"
+  },
+  {
       "title": "Psychiatry",
       "description": "Professionals focusing on mental health and disorders.",
-      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0-rwvCYTS4D029xUrilLLKk7OHY0SmS3knQ&usqp=CAU"
-    },
-    {
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0-rwvCYTS4D029xUrilLLKk7OHY0SmS3knQ&usqp=CAU",
+      "slug": "psychiatry"
+  },
+  {
       "title": "Urology",
       "description": "Experts in urinary system health and treatments.",
-      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0-rwvCYTS4D029xUrilLLKk7OHY0SmS3knQ&usqp=CAU"
-    },
-    {
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0-rwvCYTS4D029xUrilLLKk7OHY0SmS3knQ&usqp=CAU",
+      "slug": "urology"
+  },
+  {
       "title": "Oncology",
       "description": "Specialists dealing with cancer-related diagnoses and treatments.",
-      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAB40KNEq9NL9rbJssGjQcjJ8uq427qHALDA&usqp=CAU"
-    },
-    {
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAB40KNEq9NL9rbJssGjQcjJ8uq427qHALDA&usqp=CAU",
+      "slug": "oncology"
+  },
+  {
       "title": "Endocrinology",
       "description": "Professionals focusing on hormonal disorders and treatments.",
-      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAB40KNEq9NL9rbJssGjQcjJ8uq427qHALDA&usqp=CAU"
-    },
-    {
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAB40KNEq9NL9rbJssGjQcjJ8uq427qHALDA&usqp=CAU",
+      "slug": "endocrinology"
+  },
+  {
       "title": "Rheumatology",
       "description": "Experts in arthritis and autoimmune disorders.",
-      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAB40KNEq9NL9rbJssGjQcjJ8uq427qHALDA&usqp=CAU"
-    },
-    {
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAB40KNEq9NL9rbJssGjQcjJ8uq427qHALDA&usqp=CAU",
+      "slug": "rheumatology"
+  },
+  {
       "title": "Pediatrics",
       "description": "Specialists in child health and medical care.",
-      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0-rwvCYTS4D029xUrilLLKk7OHY0SmS3knQ&usqp=CAU"
-    },
-    {
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0-rwvCYTS4D029xUrilLLKk7OHY0SmS3knQ&usqp=CAU",
+      "slug": "pediatrics"
+  },
+  {
       "title": "Gynecology",
       "description": "Experts in women's reproductive health.",
-      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0-rwvCYTS4D029xUrilLLKk7OHY0SmS3knQ&usqp=CAU"
-    }
-  ]
-  
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0-rwvCYTS4D029xUrilLLKk7OHY0SmS3knQ&usqp=CAU",
+      "slug": "gynecology"
+  }
+]
