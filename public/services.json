@@ -1,0 +1,68 @@
+[
+    {
+      "title": "Cardiology",
+      "description": "Specialists in heart-related issues and treatments.",
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAB40KNEq9NL9rbJssGjQcjJ8uq427qHALDA&usqp=CAU"
+    },
+    {
+      "title": "Dermatology",
+      "description": "Experts in skin conditions and treatments.",
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0-rwvCYTS4D029xUrilLLKk7OHY0SmS3knQ&usqp=CAU"
+    },
+    {
+      "title": "Neurology",
+      "description": "Professionals dealing with nervous system disorders.",
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0-rwvCYTS4D029xUrilLLKk7OHY0SmS3knQ&usqp=CAU"
+    },
+    {
+      "title": "Orthopedics",
+      "description": "Specialists in bone and muscle-related problems.",
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY3DbUvXcOLFQgy_uBhp_laiqvtnkvspWu9A&usqp=CAU"
+    },
+    {
+      "title": "Gastroenterology",
+      "description": "Specialists in digestive system disorders.",
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAB40KNEq9NL9rbJssGjQcjJ8uq427qHALDA&usqp=CAU"
+    },
+    {
+      "title": "Ophthalmology",
+      "description": "Experts in eye care and vision-related issues.",
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY3DbUvXcOLFQgy_uBhp_laiqvtnkvspWu9A&usqp=CAU"
+    },
+    {
+      "title": "Psychiatry",
+      "description": "Professionals focusing on mental health and disorders.",
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0-rwvCYTS4D029xUrilLLKk7OHY0SmS3knQ&usqp=CAU"
+    },
+    {
+      "title": "Urology",
+      "description": "Experts in urinary system health and treatments.",
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0-rwvCYTS4D029xUrilLLKk7OHY0SmS3knQ&usqp=CAU"
+    },
+    {
+      "title": "Oncology",
+      "description": "Specialists dealing with cancer-related diagnoses and treatments.",
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAB40KNEq9NL9rbJssGjQcjJ8uq427qHALDA&usqp=CAU"
+    },
+    {
+      "title": "Endocrinology",
+      "description": "Professionals focusing on hormonal disorders and treatments.",
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAB40KNEq9NL9rbJssGjQcjJ8uq427qHALDA&usqp=CAU"
+    },
+    {
+      "title": "Rheumatology",
+      "description": "Experts in arthritis and autoimmune disorders.",
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAB40KNEq9NL9rbJssGjQcjJ8uq427qHALDA&usqp=CAU"
+    },
+    {
+      "title": "Pediatrics",
+      "description": "Specialists in child health and medical care.",
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0-rwvCYTS4D029xUrilLLKk7OHY0SmS3knQ&usqp=CAU"
+    },
+    {
+      "title": "Gynecology",
+      "description": "Experts in women's reproductive health.",
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0-rwvCYTS4D029xUrilLLKk7OHY0SmS3knQ&usqp=CAU"
+    }
+  ]
+  

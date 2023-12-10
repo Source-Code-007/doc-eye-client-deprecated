@@ -19,7 +19,7 @@ const ContactPage = () => {
                             <h2 className='my-subtitle !text-3xl mb-8'>Contact With Us</h2>
 
                             <div className='space-y-6'>
-                                <p>At DocEye, we value your feedback, questions, and concerns. Our dedicated team is here to assist you with any inquiries you may have about our services, medical information, or website functionality</p>
+                                <p className='text-primary-desc'>At DocEye, we value your feedback, questions, and concerns. Our dedicated team is here to assist you with any inquiries you may have about our services, medical information, or website functionality</p>
                                 <h2 className='my-subtitle flex items-center gap-4 text-slate-200'> <FaPhone className='text-secondary'></FaPhone> +880170678-5160</h2>
                                 <h2 className='my-subtitle flex items-center gap-4 text-slate-200'> <FaMessage className='text-secondary'></FaMessage> utsho926@gmail.com</h2>
                                 <h2 className='my-subtitle flex items-center gap-4 text-slate-200'> <FaLocationArrow className='text-secondary'></FaLocationArrow> Badda, Dhaka</h2>
