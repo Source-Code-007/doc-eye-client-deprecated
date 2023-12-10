@@ -21,11 +21,10 @@ const ServicesPage = () => {
     // console.log(services);
     return (
         <div className='container mx-auto'>
-            {services?.length}
             <h2 className='font-bold text-[24px] md:text-[32px] my-3'>Please choose a specialty</h2>
-            <div className='grid grid-cols-3 gap-5'>
+            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5'>
                 {services?.map((service, ind) => {
-                    return <div key={ind} className='py-4 md:py-6 px-3 md:px-5 rounded-xl border bg-slate-50 my-shadow-2 flex gap-3 md:gap-5 items-center cursor-pointer'>
+                    return <div key={ind} className='py-4 md:py-6 px-3 md:px-5 rounded-xl border bg-slate-50 my-shadow-2 flex gap-4 md:gap-6 items-center cursor-pointer'>
                         <Image height={50} width={50} alt={service?.title} src={service?.logo}></Image>
                         <div className='space-y-2'>
                            <h2 className='text-black font-semibold md:font-bold text-lg md:text-xl'> {service?.title}</h2>
