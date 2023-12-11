@@ -28,6 +28,7 @@ select option {
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 }
 
+
 /* profile triangle dropdown */
 .triangle-dropdown:before {
   position: absolute;
