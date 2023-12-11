@@ -1,10 +1,13 @@
-import React from 'react';
+'use client'
+import React, { useState } from 'react';
 
 const ServiceFilter = () => {
 
+    const [consultationFee, setConsultationFee] = useState(300);
+
+
     const availability = ['Online Now', 'Available Today', 'Available in next 3 hours', 'Female Doctors Only']
     const sortBy = ['Relevance (Default)', 'Popularity', 'Low to High (Fees)', 'High to Low (Fees)', 'Rating', 'Experience']
-
     return (
         <div>
             <div className='flex justify-between gap-2 mb-3'>
@@ -13,10 +16,21 @@ const ServiceFilter = () => {
             </div>
 
             <div className='space-y-6'>
+                
                 {/* Consultation fees range */}
                 <div className='my-2 space-y-1'>
                     <h2 className='font-semibold md:font-bold'>Consultation Fee</h2>
-                    <input type="range" min={0} max={100} className='range range-xs' />
+                    <div className="tooltip tooltip-open tooltip-bottom tooltip-error block" data-tip={consultationFee}>
+                        <input
+                            type="range"
+                            min={300}
+                            max={3000}
+                            step={100}
+                            className="range range-xs block"
+                            value={consultationFee}
+                            onChange={(e)=> setConsultationFee(e.target.value)}
+                        />
+                    </div>
                 </div>
 
                 {/* Availability */}
