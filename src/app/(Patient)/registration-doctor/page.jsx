@@ -18,8 +18,8 @@ import TermsModal from '@/Components/HelpingCompo/TermsModal';
 
 const RegistrationDoctorPage = () => {
     const [dateOfBirth, setDateOfBirth] = useState(new Date());
-    const [availabilityTimeStart, setAvailabilityTimeStart] = useState()
-    const [availabilityTimeEnd, setAvailabilityTimeEnd] = useState()
+    const [availabilityTimeStart, setAvailabilityTimeStart] = useState(new Date())
+    const [availabilityTimeEnd, setAvailabilityTimeEnd] = useState(new Date())
 
     const districtsOfBangladesh = [
         "Dhaka",
@@ -131,8 +131,6 @@ const RegistrationDoctorPage = () => {
 
 
 
-    const formData = new FormData();
-
     const {
         register,
         handleSubmit,
@@ -141,7 +139,7 @@ const RegistrationDoctorPage = () => {
     } = useForm();
     const handleSignupFunc = (form) => {
         setLoading(true);
-        const { firstName, secondName, photo, email, phone, total_experience, workingAt, password, confirmPassword, terms } = form;
+        const { firstName, secondName, photo, email, phone, total_experience, consultationFee, followupFee, workingAt, password, confirmPassword, terms } = form;
 
         formData.append("image", photo[0]);
 
@@ -163,47 +161,41 @@ const RegistrationDoctorPage = () => {
             return;
         }
 
-        // After hosting photo then post register info
-        const url = `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMG_HOSTING_API_KEY}`;
-        axios
-            .post(url, formData)
+        return
+
+        // TODO: Need to replace register API
+        axiosSecure
+            .post("/doctor-register", user)
             .then((res) => {
-                const photo_url = res.data.data.url;
-                const user = { name, photo_url, email, password };
+                if (res.data) {
+                    setSuccess("Registration successful");
+                    setLoading(false);
 
-                axiosSecure
-                    .post("/register", user)
-                    .then((res) => {
-                        if (res.data) {
-                            setSuccess("Registration successful");
-                            setLoading(false);
-
-                            // navigate to signin page after 3 seconds
-                            Swal.fire({
-                                title: "Navigate to signin page!",
-                                html: "I will land signin page after <b></b> milliseconds.",
-                                timer: 1500,
-                                timerProgressBar: true,
-                            }).then((result) => {
-                                /* Read more about handling dismissals below */
-                                if (result.dismiss === Swal.DismissReason.timer) {
-                                    location.href = "/signin";
-                                    console.log("I was closed by the timer");
-                                }
-                            });
+                    // navigate to signin page after 3 seconds
+                    Swal.fire({
+                        title: "Navigate to signin page!",
+                        html: "I will land signin page after <b></b> milliseconds.",
+                        timer: 1500,
+                        timerProgressBar: true,
+                    }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            location.href = "/signin";
+                            console.log("I was closed by the timer");
                         }
-                    })
-                    .catch((error) => console.log(error));
+                    });
+                }
             })
-            .catch((e) => console.log(e.message));
+            .catch((error) => console.log(error));
     };
+
 
 
     return (
         <div className='bg-cover bg-center bg-slate-700 bg-blend-overlay ' style={{ backgroundImage: `url(${doctorRegistrationBg.src})` }}>
 
             <div className='min-h-[93vh] py-5 my-container-2 flex gap-6 items-center justify-center'>
-                <div className='hidden lg:block lg:w-6/12 justify-start'>
+                <div className='hidden xl:block xl:w-5/12 justify-start'>
                     <Lottie animationData={doctorRegistrationLottie} />
                 </div>
 
@@ -253,17 +245,10 @@ const RegistrationDoctorPage = () => {
                         </div>
                     </div>
 
-                    {/* Currently working at */}
-                    <div className='md:flex gap-4 space-y-4 md:space-y-0'>
-                        {/* currently working at */}
-                        <div className='flex-1'>
-                            <label htmlFor="workingAt" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Working at</label>
-                            <input type="text" id='workingAt' className='my-inp-2' placeholder="Enter your current workplace/hospital"  {...register("workingAt")} />
-                        </div>
-                    </div>
+
 
                     {/* Availability */}
-                    <div className='md:flex gap-4 space-y-4 md:space-y-0'>
+                    <div className='xl:flex gap-4 space-y-4 md:space-y-0'>
                         {/* Availability days */}
                         <div className='flex-1'>
                             <label htmlFor="availabilityDays" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Availability days</label>
@@ -280,14 +265,39 @@ const RegistrationDoctorPage = () => {
 
                         {/* Availability times */}
                         <div className='flex-1'>
-                            <label htmlFor="availabilityTimeStart" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Date of Birth </label>
-                            <TimePicker id='availabilityTimeStart' onChange={setAvailabilityTimeStart} value={availabilityTimeStart} className={'w-full rounded-lg'} />
-                            {!availabilityTimeStart && (<p className="text-red-500">This field is required</p>)}
+                            <div className='md:flex gap-4 space-y-4 md:space-y-0'>
+                                <div className='flex-1'>
+                                    <label htmlFor="availabilityTimeStart" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Time start </label>
+                                    <TimePicker id='availabilityTimeStart' onChange={setAvailabilityTimeStart} value={availabilityTimeStart} className={'w-full rounded-lg'} />
+                                    {!availabilityTimeStart && (<p className="text-red-500">This field is required</p>)}
+                                </div>
+                                <div className='flex-1'>
+                                    <label htmlFor="availabilityTimeEnd" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Time end </label>
+                                    <TimePicker id='availabilityTimeEnd' onChange={setAvailabilityTimeEnd} value={availabilityTimeEnd} className={'w-full rounded-lg'} />
+                                    {!availabilityTimeEnd && (<p className="text-red-500">This field is required</p>)}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    {/* Consultation fee and follow up fee */}
+                    <div className='md:flex gap-4 space-y-4 md:space-y-0'>
+                        <div className='flex-1'>
+                            <label htmlFor="consultationFee" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Consultation fee</label>
+                            <input type="text" id='consultationFee' className='my-inp-2' placeholder="Min- 100, Max- 5000"  {...register("consultationFee", { required: true, min: 100, max: 5000 })} />
+                            {errors.consultationFee?.type === 'required' && (<p className="text-red-500">This field is required</p>)}
+                            {(errors.consultationFee?.type === 'min' || errors.consultationFee?.type === 'max') && (<p className="text-red-500">Consultation fee must be between 100 and 3000</p>)}
+                        </div>
+                        <div className='flex-1'>
+                            <label htmlFor="followupFee" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Follow up fee</label>
+                            <input type="text" id='followupFee' className='my-inp-2' placeholder='Follow up fee (Within 30 days)'  {...register("followupFee", { required: true, min: 100, max: watch("consultationFee") })} />
+                            {errors.followupFee?.type === 'required' && (<p className="text-red-500">This field is required</p>)}
+                            {(errors.followupFee?.type === 'min' || errors.followupFee?.type === 'max') && (<p className="text-red-500">Follow up fee must be between 100 and {watch("consultationFee") || 5000}</p>)}
                         </div>
                     </div>
 
-
-                    {/* Email & phone */}
+                    {/* Email & currently working at */}
                     <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
                         {/* Email */}
                         <div className='flex-1'>
@@ -295,13 +305,12 @@ const RegistrationDoctorPage = () => {
                             <input type="email" id='email' className='my-inp-2' placeholder='Email' {...register("email", { required: true })} />
                             {errors.email && (<p className="text-red-500">This field is required</p>)}
                         </div>
-
-                        {/* Number */}
+                        {/* currently working at */}
                         <div className='flex-1'>
-                            <label htmlFor="phone" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Phone</label>
-                            <input type="number" id='phone' className='my-inp-2' placeholder='Phone' {...register("phone", { required: true })} />
-                            {errors.phone && (<p className="text-red-500">This field is required</p>)}
+                            <label htmlFor="workingAt" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Working at</label>
+                            <input type="text" id='workingAt' className='my-inp-2' placeholder="Enter your current workplace/hospital"  {...register("workingAt")} />
                         </div>
+
                     </div>
 
                     {/* Password & confirm password */}
@@ -322,14 +331,7 @@ const RegistrationDoctorPage = () => {
 
                     </div>
 
-                    {/* Photos */}
-                    <div>
-                        <label htmlFor="photo" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Photo </label>
-                        <input type="file" className="file-input file-input-bordered focus:outline-0 file-input-error my-inp-2 !p-0" {...register("photo", { required: true })} />
-                        {errors.photo && (<p className="text-red-500">This field is required</p>)}
-                    </div>
-
-                    {/* District & Date of birth*/}
+                    {/* Date of birth & District */}
                     <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
                         {/* Date of birth */}
                         <div className='flex-1'>

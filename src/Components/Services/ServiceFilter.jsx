@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 const ServiceFilter = () => {
 
-    const [consultationFee, setConsultationFee] = useState(300);
+    const [consultationFee, setConsultationFee] = useState(100);
 
 
     const availability = ['Online Now', 'Available Today', 'Available in next 3 hours', 'Female Doctors Only']
@@ -23,7 +23,7 @@ const ServiceFilter = () => {
                     <div className="tooltip tooltip-open tooltip-bottom tooltip-error block" data-tip={`Min ${consultationFee} BDT`}>
                         <input
                             type="range"
-                            min={300}
+                            min={100}
                             max={3000}
                             step={100}
                             className="range range-xs block"

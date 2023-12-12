@@ -167,12 +167,19 @@ body::-webkit-scrollbar-thumb {
 }
 
 
-/* react-datetime-picker__wrapper in for doctor form*/
+/* react-date-picker and react-time-picker modified for doctor form*/
 .react-date-picker__wrapper{
   @apply py-3 px-4 rounded-lg focus:border-l-2 focus:border-[#E57373] !border-none text-slate-200;
   background: rgba(255, 255, 255, 0.05);
 }
 .react-date-picker__clear-button__icon, .react-date-picker__calendar-button__icon{
+  stroke: white;
+}
+.react-time-picker__wrapper{
+  @apply py-3 px-4 rounded-lg focus:border-l-2 focus:border-[#E57373] !border-none text-slate-200;
+  background: rgba(255, 255, 255, 0.05);
+}
+.react-time-picker__clear-button__icon, .react-time-picker__clock-button__icon{
   stroke: white;
 }
 
