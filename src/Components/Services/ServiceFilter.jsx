@@ -20,7 +20,7 @@ const ServiceFilter = () => {
                 {/* Consultation fees range */}
                 <div className='my-2 space-y-1'>
                     <h2 className='font-semibold md:font-bold'>Consultation Fee</h2>
-                    <div className="tooltip tooltip-open tooltip-bottom tooltip-error block" data-tip={consultationFee}>
+                    <div className="tooltip tooltip-open tooltip-bottom tooltip-error block" data-tip={`Min ${consultationFee} BDT`}>
                         <input
                             type="range"
                             min={300}

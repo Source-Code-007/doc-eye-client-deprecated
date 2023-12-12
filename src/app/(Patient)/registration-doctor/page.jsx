@@ -3,17 +3,24 @@ import React, { useState } from 'react';
 import Lottie from "lottie-react";
 import doctorRegistrationLottie from '/public/assets/lottieAnimation/doctor-registration-lottie.json'
 import doctorRegistrationBg from '/public/assets/img/doctor-registration-bg.jpg'
-import DatePicker from 'react-date-picker';
 
+import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
+
+import TimePicker from 'react-time-picker';
+import 'react-time-picker/dist/TimePicker.css';
+import 'react-clock/dist/Clock.css';
+
 import { useForm } from 'react-hook-form';
 import TermsModal from '@/Components/HelpingCompo/TermsModal';
 
 
-
 const RegistrationDoctorPage = () => {
-    const [registrationTime, setRegistrationTime] = useState(new Date());
+    const [dateOfBirth, setDateOfBirth] = useState(new Date());
+    const [availabilityTimeStart, setAvailabilityTimeStart] = useState()
+    const [availabilityTimeEnd, setAvailabilityTimeEnd] = useState()
+
     const districtsOfBangladesh = [
         "Dhaka",
         "Chittagong",
@@ -79,6 +86,49 @@ const RegistrationDoctorPage = () => {
         "Cox's Bazar",
         "Munshiganj"
     ];
+    const totalExperiences = [
+        '1 year',
+        '2 years',
+        '3 years',
+        '4 years',
+        '5 years',
+        '6 years',
+        '7 years',
+        '8 years',
+        '9 years',
+        '10 years',
+        '11 years',
+        '12 years',
+        '13 years',
+        '14 years',
+        '15 years',
+        '16 years',
+        '17 years',
+        '18 years',
+        '19 years',
+        '20 years',
+        '21 years',
+        '22 years',
+        '23 years',
+        '24 years',
+        '25 years',
+        '26 years',
+        '27 years',
+        '28 years',
+        '29 years',
+        '30 years'
+    ];
+    const availabilityDaysOptions = [
+        { value: 'sat-thu', label: 'Sat - Thu' },
+        { value: 'sun-fri', label: 'Sun - Fri' },
+        { value: 'mon-sat', label: 'Mon - Sat' },
+        { value: 'sun-sat', label: 'Sun - Sat' },
+        { value: 'weekdays', label: 'Weekdays (Sun - Thu)' },
+        { value: 'weekends', label: 'Weekends (Fri - Sat)' },
+    ];
+
+
+
 
 
     const formData = new FormData();
@@ -91,7 +141,7 @@ const RegistrationDoctorPage = () => {
     } = useForm();
     const handleSignupFunc = (form) => {
         setLoading(true);
-        const { firstName, secondName, photo, email, phone, password, confirmPassword, terms } = form;
+        const { firstName, secondName, photo, email, phone, total_experience, workingAt, password, confirmPassword, terms } = form;
 
         formData.append("image", photo[0]);
 
@@ -113,7 +163,6 @@ const RegistrationDoctorPage = () => {
             return;
         }
 
-        // TODO: replace url to actual API
         // After hosting photo then post register info
         const url = `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMG_HOSTING_API_KEY}`;
         axios
@@ -204,6 +253,39 @@ const RegistrationDoctorPage = () => {
                         </div>
                     </div>
 
+                    {/* Currently working at */}
+                    <div className='md:flex gap-4 space-y-4 md:space-y-0'>
+                        {/* currently working at */}
+                        <div className='flex-1'>
+                            <label htmlFor="workingAt" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Working at</label>
+                            <input type="text" id='workingAt' className='my-inp-2' placeholder="Enter your current workplace/hospital"  {...register("workingAt")} />
+                        </div>
+                    </div>
+
+                    {/* Availability */}
+                    <div className='md:flex gap-4 space-y-4 md:space-y-0'>
+                        {/* Availability days */}
+                        <div className='flex-1'>
+                            <label htmlFor="availabilityDays" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Availability days</label>
+                            <select id='availabilityDays' defaultValue={''} className='my-inp-2' {...register("availabilityDays", { required: true })}>
+                                <option value="">Availability days</option>
+                                {
+                                    availabilityDaysOptions.map((item, ind) => {
+                                        return <option key={ind} value={item?.value}>{item?.label}</option>
+                                    })
+                                }
+                            </select>
+                            {errors.availabilityDays && (<p className="text-red-500">This field is required</p>)}
+                        </div>
+
+                        {/* Availability times */}
+                        <div className='flex-1'>
+                            <label htmlFor="availabilityTimeStart" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Date of Birth </label>
+                            <TimePicker id='availabilityTimeStart' onChange={setAvailabilityTimeStart} value={availabilityTimeStart} className={'w-full rounded-lg'} />
+                            {!availabilityTimeStart && (<p className="text-red-500">This field is required</p>)}
+                        </div>
+                    </div>
+
 
                     {/* Email & phone */}
                     <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
@@ -252,8 +334,39 @@ const RegistrationDoctorPage = () => {
                         {/* Date of birth */}
                         <div className='flex-1'>
                             <label htmlFor="dateOfBirth" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Date of Birth </label>
-                            <DatePicker id='dateOfBirth' onChange={setRegistrationTime} value={registrationTime} className={'w-full rounded-lg'} />
-                            {!registrationTime && (<p className="text-red-500">This field is required</p>)}
+                            <DatePicker id='dateOfBirth' onChange={setDateOfBirth} value={dateOfBirth} className={'w-full rounded-lg'} />
+                            {!dateOfBirth && (<p className="text-red-500">This field is required</p>)}
+                        </div>
+
+                        {/* District */}
+                        <div className='flex-1'>
+                            <label htmlFor="district" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> District </label>
+                            <select id='district' defaultValue={''} className='my-inp-2' {...register("district", { required: true })}>
+                                <option value="" disabled>District</option>
+                                {
+                                    districtsOfBangladesh.map((district, ind) => {
+                                        return <option key={ind} value={district}>{district}</option>
+                                    })
+                                }
+                            </select>
+                            {errors.district && (<p className="text-red-500">This field is required</p>)}
+                        </div>
+                    </div>
+
+                    {/* Total Experience & Gender */}
+                    <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
+                        {/* Total Experience */}
+                        <div className='flex-1'>
+                            <label htmlFor="total_experience" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Total Experience </label>
+                            <select id='total_experience' defaultValue={''} className='my-inp-2' {...register("total_experience", { required: true })}>
+                                <option value="">Total Experiences</option>
+                                {
+                                    totalExperiences.map((item, ind) => {
+                                        return <option key={ind} value={item}>{item}</option>
+                                    })
+                                }
+                            </select>
+                            {errors.total_experience && (<p className="text-red-500">This field is required</p>)}
                         </div>
 
                         {/* District */}

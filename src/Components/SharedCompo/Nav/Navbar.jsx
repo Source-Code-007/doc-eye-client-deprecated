@@ -64,13 +64,12 @@ const Navbar = () => {
             <div className='py-4 my-container flex justify-between'>
                 <Link href={'/'}><Image height={40} width={40} src={logo} alt='DocEye'></Image></Link>
                 <ul className='flex gap-10 items-center text-slate-700 text-xl'>
-                    <MyMenu href={'/'}>Home</MyMenu>
+                    <MyMenu href={'/services'}>Services</MyMenu>
                     <MyMenu href={'/health-plans'}>Health Plans</MyMenu>
                     <MyMenu href={'/order-medicine'}>Order Medicine</MyMenu>
                     <MyMenu href={'/feature'}>Feature</MyMenu>
                     <MyMenu href={'/contact'}>Contact</MyMenu>
                     <MyMenu href={'/for-doctors'}>For Doctors</MyMenu>
-                    <MyMenu href={'/services'}>Services</MyMenu>
                 </ul>
 
                 {authLoading ? <MyLoading className='h-12 w-12' /> : !user ? <Link href={'signin'}>
