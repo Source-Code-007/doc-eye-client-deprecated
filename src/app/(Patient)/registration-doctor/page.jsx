@@ -14,6 +14,7 @@ import 'react-clock/dist/Clock.css';
 
 import { useForm } from 'react-hook-form';
 import TermsModal from '@/Components/HelpingCompo/TermsModal';
+import { FaXmark } from 'react-icons/fa6';
 
 
 const RegistrationDoctorPage = () => {
@@ -123,11 +124,24 @@ const RegistrationDoctorPage = () => {
         { value: 'sun-fri', label: 'Sun - Fri' },
         { value: 'mon-sat', label: 'Mon - Sat' },
         { value: 'sun-sat', label: 'Sun - Sat' },
-        { value: 'weekdays', label: 'Weekdays (Sun - Thu)' },
-        { value: 'weekends', label: 'Weekends (Fri - Sat)' },
     ];
 
 
+    const [workingExperiences, setWorkingExperiences] = useState([{ id: 1, weWorkplace: '', weDesignation: '', weDepartment: '', wePeriod: '' }])
+    const handleWorkingExperiences = (ind, e) => {
+        const { name, value } = e.target;
+        const list = [...workingExperiences];
+        list[ind][name] = value;
+        setWorkingExperiences(list);
+    }
+    const handleRemoveWorkingExperience = (id)=> {
+        const restWorkingExperience = workingExperiences?.filter(item=> item?.id != id)
+        setWorkingExperiences([...restWorkingExperience])
+    }
+    const handleAddWorkingExperiences = ()=> {
+        const newId = workingExperiences?.length+1 
+        setWorkingExperiences([...workingExperiences, { id: newId , weWorkplace: '', weDesignation: '', weDepartment: '', wePeriod: '' }])
+    }
 
 
 
@@ -139,7 +153,7 @@ const RegistrationDoctorPage = () => {
     } = useForm();
     const handleSignupFunc = (form) => {
         setLoading(true);
-        const { firstName, secondName, photo, email, phone, total_experience, consultationFee, followupFee, workingAt, password, confirmPassword, terms } = form;
+        const { firstName, secondName, photo, email, phone, total_experience, consultationFee, followupFee, workplace, password, confirmPassword, terms } = form;
 
         formData.append("image", photo[0]);
 
@@ -231,21 +245,6 @@ const RegistrationDoctorPage = () => {
                         </div>
                     </div>
 
-                    {/* First name and last name */}
-                    <div className='md:flex gap-4 space-y-4 md:space-y-0'>
-                        <div className='flex-1'>
-                            <label htmlFor="firstName" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> First Name</label>
-                            <input type="text" id='firstName' className='my-inp-2' placeholder='First name'  {...register("firstName", { required: true })} />
-                            {errors.firstName && (<p className="text-red-500">This field is required</p>)}
-                        </div>
-                        <div className='flex-1'>
-                            <label htmlFor="lastName" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Last Name</label>
-                            <input type="text" id='lastName' className='my-inp-2' placeholder='Last name'  {...register("lastName", { required: true })} />
-                            {errors.lastName && (<p className="text-red-500">This field is required</p>)}
-                        </div>
-                    </div>
-
-
 
                     {/* Availability */}
                     <div className='xl:flex gap-4 space-y-4 md:space-y-0'>
@@ -307,26 +306,8 @@ const RegistrationDoctorPage = () => {
                         </div>
                         {/* currently working at */}
                         <div className='flex-1'>
-                            <label htmlFor="workingAt" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Working at</label>
-                            <input type="text" id='workingAt' className='my-inp-2' placeholder="Enter your current workplace/hospital"  {...register("workingAt")} />
-                        </div>
-
-                    </div>
-
-                    {/* Password & confirm password */}
-                    <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
-                        {/* Password */}
-                        <div className='flex-1'>
-                            <label htmlFor="password" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Password</label>
-                            <input type="password" id='password' className='my-inp-2' placeholder='Password' {...register("password", { required: true })} />
-                            {errors.password && (<p className="text-red-500">This field is required</p>)}
-                        </div>
-
-                        {/*Confirm Password */}
-                        <div className='flex-1'>
-                            <label htmlFor="confirmPassword" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Confirm Password</label>
-                            <input type="password" id='confirmPassword' className='my-inp-2' placeholder='Confirm Password' {...register("confirmPassword", { required: true })} />
-                            {errors.confirmPassword && (<p className="text-red-500">This field is required</p>)}
+                            <label htmlFor="workplace" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Working at</label>
+                            <input type="text" id='workplace' className='my-inp-2' placeholder="Enter your current workplace/hospital"  {...register("workplace")} />
                         </div>
 
                     </div>
@@ -361,7 +342,7 @@ const RegistrationDoctorPage = () => {
                         <div className='flex-1'>
                             <label htmlFor="total_experience" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Total Experience </label>
                             <select id='total_experience' defaultValue={''} className='my-inp-2' {...register("total_experience", { required: true })}>
-                                <option value="">Total Experiences</option>
+                                <option value="" disabled>Total Experiences</option>
                                 {
                                     totalExperiences.map((item, ind) => {
                                         return <option key={ind} value={item}>{item}</option>
@@ -371,18 +352,42 @@ const RegistrationDoctorPage = () => {
                             {errors.total_experience && (<p className="text-red-500">This field is required</p>)}
                         </div>
 
-                        {/* District */}
+                        {/* Gender */}
                         <div className='flex-1'>
-                            <label htmlFor="district" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> District </label>
-                            <select id='district' defaultValue={''} className='my-inp-2' {...register("district", { required: true })}>
-                                <option value="" disabled>District</option>
+                            <label htmlFor="gender" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Gender </label>
+                            <select id='gender' defaultValue={''} className='my-inp-2' {...register("gender", { required: true })}>
+                                <option value="" disabled>Gender</option>
                                 {
-                                    districtsOfBangladesh.map((district, ind) => {
-                                        return <option key={ind} value={district}>{district}</option>
+                                    ['Male', 'Female'].map((gender, ind) => {
+                                        return <option key={ind} value={gender}>{gender}</option>
                                     })
                                 }
                             </select>
-                            {errors.district && (<p className="text-red-500">This field is required</p>)}
+                            {errors.gender && (<p className="text-red-500">This field is required</p>)}
+                        </div>
+                    </div>
+
+                    {/* Working experience */}
+                    <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
+
+                        {/* Working Experience */}
+                        <div className='flex-1'>
+                            <label htmlFor="working_experience" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Working Experience </label>
+                          <div className='space-y-3'>
+                          {
+                                workingExperiences?.map((item, ind) => {
+                                    return <div key={ind} className='flex gap-2'>
+                                        <input type="text" id='weWorkplace' name='weWorkplace' className='my-inp-2' placeholder="Enter workplace/hospital" value={item?.weWorkplace} onChange={(e) => handleWorkingExperiences(ind, e)} />
+                                        <input type="text" id='weDepartment' name='weDepartment' className='my-inp-2' placeholder="Enter department" value={item?.weDepartment} onChange={(e) => handleWorkingExperiences(ind, e)} />
+                                        <input type="text" id='weDesignation' name='weDesignation' className='my-inp-2' placeholder="Enter working designation" value={item?.weDesignation} onChange={(e) => handleWorkingExperiences(ind, e)} />
+                                        <input type="text" id='wePeriod' name='wePeriod' className='my-inp-2' placeholder="Enter working period" value={item?.wePeriod} onChange={(e) => handleWorkingExperiences(ind, e)} />
+                                        <span className='text-secondary-main cursor-pointer' onClick={()=> handleRemoveWorkingExperience(item?.id)}><FaXmark/></span>
+                                    </div>
+                                })
+                            }
+                          </div>
+                            <button onClick={() => handleAddWorkingExperiences()} className='my-btn-one'>Add More Experience</button>
+                            {/* {errors.working_experience && (<p className="text-red-500">This field is required</p>)} */}
                         </div>
                     </div>
 

@@ -21,6 +21,13 @@ input:-webkit-autofill:active{
     background:  #132B44;
     -webkit-text-fill-color: #000
 }
+input.my-inp-2:-webkit-autofill,
+input.my-inp-2:-webkit-autofill:hover, 
+input.my-inp-2:-webkit-autofill:focus, 
+input.my-inp-2:-webkit-autofill:active{
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #fff;
+}
 
 /* select option */
 select option {
