@@ -14,13 +14,15 @@ import 'react-clock/dist/Clock.css';
 
 import { useForm } from 'react-hook-form';
 import TermsModal from '@/Components/HelpingCompo/TermsModal';
-import { FaXmark } from 'react-icons/fa6';
+import { FaPlus, FaXmark } from 'react-icons/fa6';
+import { useAuth } from '@/Providers/AuthProvider';
 
 
 const RegistrationDoctorPage = () => {
     const [dateOfBirth, setDateOfBirth] = useState(new Date());
     const [availabilityTimeStart, setAvailabilityTimeStart] = useState(new Date())
     const [availabilityTimeEnd, setAvailabilityTimeEnd] = useState(new Date())
+    const {user, authLoading} = useAuth()
 
     const districtsOfBangladesh = [
         "Dhaka",
@@ -134,13 +136,13 @@ const RegistrationDoctorPage = () => {
         list[ind][name] = value;
         setWorkingExperiences(list);
     }
-    const handleRemoveWorkingExperience = (id)=> {
-        const restWorkingExperience = workingExperiences?.filter(item=> item?.id != id)
+    const handleRemoveWorkingExperience = (id) => {
+        const restWorkingExperience = workingExperiences?.filter(item => item?.id != id)
         setWorkingExperiences([...restWorkingExperience])
     }
-    const handleAddWorkingExperiences = ()=> {
-        const newId = workingExperiences?.length+1 
-        setWorkingExperiences([...workingExperiences, { id: newId , weWorkplace: '', weDesignation: '', weDepartment: '', wePeriod: '' }])
+    const handleAddWorkingExperiences = () => {
+        const newId = workingExperiences?.length + 1
+        setWorkingExperiences([...workingExperiences, { id: newId, weWorkplace: '', weDesignation: '', weDepartment: '', wePeriod: '' }])
     }
 
 
@@ -153,7 +155,7 @@ const RegistrationDoctorPage = () => {
     } = useForm();
     const handleSignupFunc = (form) => {
         setLoading(true);
-        const { firstName, secondName, photo, email, phone, total_experience, consultationFee, followupFee, workplace, password, confirmPassword, terms } = form;
+        const { firstName, secondName, bio, total_experience, consultationFee, followupFee, workplace, password, confirmPassword, terms } = form;
 
         formData.append("image", photo[0]);
 
@@ -221,7 +223,7 @@ const RegistrationDoctorPage = () => {
 
                         {/* Title */}
                         <div className='flex-1'>
-                            <label htmlFor="title" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Title</label>
+                            <label htmlFor="title" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Title <span className='text-secondary-main'>*</span> </label>
                             <select defaultValue={''} id='title' className='my-inp-2' {...register("title", { required: true })}>
                                 <option value="" disabled>Title</option>
                                 <option value="Dr.">Dr.</option>
@@ -234,7 +236,7 @@ const RegistrationDoctorPage = () => {
 
                         {/* Doctor Type */}
                         <div className='flex-1'>
-                            <label htmlFor="doctorType" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Doctor Type</label>
+                            <label htmlFor="doctorType" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Doctor Type <span className='text-secondary-main'>*</span></label>
                             <select defaultValue={''} id='doctorType' className='my-inp-2' {...register("doctorType", { required: true })}>
                                 <option value="" disabled>Doctor Type</option>
                                 <option value="Medical">Medical</option>
@@ -245,12 +247,22 @@ const RegistrationDoctorPage = () => {
                         </div>
                     </div>
 
+                    {/* Bio */}
+                    <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
+                        {/* Bio */}
+                        <div className='flex-1'>
+                            <label htmlFor="bio" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Bio <span className='text-secondary-main'>*</span></label>
+                            <textarea id='bio' className='my-inp-2 h-[150px]' placeholder="Write something about you."  {...register("bio", {required: true})} />
+                            {errors.bio && (<p className="text-red-500">This field is required</p>)}
+                        </div>
+                    </div>
+
 
                     {/* Availability */}
-                    <div className='xl:flex gap-4 space-y-4 md:space-y-0'>
+                    <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
                         {/* Availability days */}
                         <div className='flex-1'>
-                            <label htmlFor="availabilityDays" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Availability days</label>
+                            <label htmlFor="availabilityDays" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Availability days <span className='text-secondary-main'>*</span></label>
                             <select id='availabilityDays' defaultValue={''} className='my-inp-2' {...register("availabilityDays", { required: true })}>
                                 <option value="">Availability days</option>
                                 {
@@ -266,12 +278,12 @@ const RegistrationDoctorPage = () => {
                         <div className='flex-1'>
                             <div className='md:flex gap-4 space-y-4 md:space-y-0'>
                                 <div className='flex-1'>
-                                    <label htmlFor="availabilityTimeStart" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Time start </label>
+                                    <label htmlFor="availabilityTimeStart" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Time start <span className='text-secondary-main'>*</span></label>
                                     <TimePicker id='availabilityTimeStart' onChange={setAvailabilityTimeStart} value={availabilityTimeStart} className={'w-full rounded-lg'} />
                                     {!availabilityTimeStart && (<p className="text-red-500">This field is required</p>)}
                                 </div>
                                 <div className='flex-1'>
-                                    <label htmlFor="availabilityTimeEnd" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Time end </label>
+                                    <label htmlFor="availabilityTimeEnd" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Time end <span className='text-secondary-main'>*</span></label>
                                     <TimePicker id='availabilityTimeEnd' onChange={setAvailabilityTimeEnd} value={availabilityTimeEnd} className={'w-full rounded-lg'} />
                                     {!availabilityTimeEnd && (<p className="text-red-500">This field is required</p>)}
                                 </div>
@@ -283,13 +295,13 @@ const RegistrationDoctorPage = () => {
                     {/* Consultation fee and follow up fee */}
                     <div className='md:flex gap-4 space-y-4 md:space-y-0'>
                         <div className='flex-1'>
-                            <label htmlFor="consultationFee" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Consultation fee</label>
+                            <label htmlFor="consultationFee" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Consultation fee <span className='text-secondary-main'>*</span></label>
                             <input type="text" id='consultationFee' className='my-inp-2' placeholder="Min- 100, Max- 5000"  {...register("consultationFee", { required: true, min: 100, max: 5000 })} />
                             {errors.consultationFee?.type === 'required' && (<p className="text-red-500">This field is required</p>)}
                             {(errors.consultationFee?.type === 'min' || errors.consultationFee?.type === 'max') && (<p className="text-red-500">Consultation fee must be between 100 and 3000</p>)}
                         </div>
                         <div className='flex-1'>
-                            <label htmlFor="followupFee" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Follow up fee</label>
+                            <label htmlFor="followupFee" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Follow up fee <span className='text-secondary-main'>*</span></label>
                             <input type="text" id='followupFee' className='my-inp-2' placeholder='Follow up fee (Within 30 days)'  {...register("followupFee", { required: true, min: 100, max: watch("consultationFee") })} />
                             {errors.followupFee?.type === 'required' && (<p className="text-red-500">This field is required</p>)}
                             {(errors.followupFee?.type === 'min' || errors.followupFee?.type === 'max') && (<p className="text-red-500">Follow up fee must be between 100 and {watch("consultationFee") || 5000}</p>)}
@@ -300,9 +312,8 @@ const RegistrationDoctorPage = () => {
                     <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
                         {/* Email */}
                         <div className='flex-1'>
-                            <label htmlFor="email" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Email</label>
-                            <input type="email" id='email' className='my-inp-2' placeholder='Email' {...register("email", { required: true })} />
-                            {errors.email && (<p className="text-red-500">This field is required</p>)}
+                            <label className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Email</label>
+                            <input type="email" value={user?.email} className={`my-inp-2 pointer-events-none`} placeholder='Email' {...register("email")} />
                         </div>
                         {/* currently working at */}
                         <div className='flex-1'>
@@ -316,14 +327,14 @@ const RegistrationDoctorPage = () => {
                     <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
                         {/* Date of birth */}
                         <div className='flex-1'>
-                            <label htmlFor="dateOfBirth" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Date of Birth </label>
+                            <label htmlFor="dateOfBirth" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Date of Birth <span className='text-secondary-main'>*</span></label>
                             <DatePicker id='dateOfBirth' onChange={setDateOfBirth} value={dateOfBirth} className={'w-full rounded-lg'} />
                             {!dateOfBirth && (<p className="text-red-500">This field is required</p>)}
                         </div>
 
                         {/* District */}
                         <div className='flex-1'>
-                            <label htmlFor="district" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> District </label>
+                            <label htmlFor="district" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> District <span className='text-secondary-main'>*</span></label>
                             <select id='district' defaultValue={''} className='my-inp-2' {...register("district", { required: true })}>
                                 <option value="" disabled>District</option>
                                 {
@@ -340,7 +351,7 @@ const RegistrationDoctorPage = () => {
                     <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
                         {/* Total Experience */}
                         <div className='flex-1'>
-                            <label htmlFor="total_experience" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Total Experience </label>
+                            <label htmlFor="total_experience" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Total Experience <span className='text-secondary-main'>*</span></label>
                             <select id='total_experience' defaultValue={''} className='my-inp-2' {...register("total_experience", { required: true })}>
                                 <option value="" disabled>Total Experiences</option>
                                 {
@@ -354,7 +365,7 @@ const RegistrationDoctorPage = () => {
 
                         {/* Gender */}
                         <div className='flex-1'>
-                            <label htmlFor="gender" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Gender </label>
+                            <label htmlFor="gender" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Gender <span className='text-secondary-main'>*</span></label>
                             <select id='gender' defaultValue={''} className='my-inp-2' {...register("gender", { required: true })}>
                                 <option value="" disabled>Gender</option>
                                 {
@@ -373,21 +384,20 @@ const RegistrationDoctorPage = () => {
                         {/* Working Experience */}
                         <div className='flex-1'>
                             <label htmlFor="working_experience" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Working Experience </label>
-                          <div className='space-y-3'>
-                          {
-                                workingExperiences?.map((item, ind) => {
-                                    return <div key={ind} className='flex gap-2'>
-                                        <input type="text" id='weWorkplace' name='weWorkplace' className='my-inp-2' placeholder="Enter workplace/hospital" value={item?.weWorkplace} onChange={(e) => handleWorkingExperiences(ind, e)} />
-                                        <input type="text" id='weDepartment' name='weDepartment' className='my-inp-2' placeholder="Enter department" value={item?.weDepartment} onChange={(e) => handleWorkingExperiences(ind, e)} />
-                                        <input type="text" id='weDesignation' name='weDesignation' className='my-inp-2' placeholder="Enter working designation" value={item?.weDesignation} onChange={(e) => handleWorkingExperiences(ind, e)} />
-                                        <input type="text" id='wePeriod' name='wePeriod' className='my-inp-2' placeholder="Enter working period" value={item?.wePeriod} onChange={(e) => handleWorkingExperiences(ind, e)} />
-                                        <span className='text-secondary-main cursor-pointer' onClick={()=> handleRemoveWorkingExperience(item?.id)}><FaXmark/></span>
-                                    </div>
-                                })
-                            }
-                          </div>
-                            <button onClick={() => handleAddWorkingExperiences()} className='my-btn-one'>Add More Experience</button>
-                            {/* {errors.working_experience && (<p className="text-red-500">This field is required</p>)} */}
+                            <div className='space-y-3'>
+                                {
+                                    workingExperiences?.map((item, ind) => {
+                                        return <div key={ind} className='flex items-center gap-2'>
+                                            <input type="text" id='weWorkplace' name='weWorkplace' className='my-inp-2' placeholder="Enter workplace/hospital" value={item?.weWorkplace} onChange={(e) => handleWorkingExperiences(ind, e)} />
+                                            <input type="text" id='weDepartment' name='weDepartment' className='my-inp-2' placeholder="Enter department" value={item?.weDepartment} onChange={(e) => handleWorkingExperiences(ind, e)} />
+                                            <input type="text" id='weDesignation' name='weDesignation' className='my-inp-2' placeholder="Enter working designation" value={item?.weDesignation} onChange={(e) => handleWorkingExperiences(ind, e)} />
+                                            <input type="text" id='wePeriod' name='wePeriod' className='my-inp-2' placeholder="Enter working period" value={item?.wePeriod} onChange={(e) => handleWorkingExperiences(ind, e)} />
+                                            {item?.id !== 1 && <span className='text-secondary-main cursor-pointer' onClick={() => handleRemoveWorkingExperience(item?.id)}><FaXmark /></span>}
+                                        </div>
+                                    })
+                                }
+                                <button onClick={() => handleAddWorkingExperiences()} className='my-btn-one' title='Add More Experience'><FaPlus /></button>
+                            </div>
                         </div>
                     </div>
 
@@ -396,14 +406,14 @@ const RegistrationDoctorPage = () => {
                     <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
                         {/* National ID */}
                         <div className='flex-1'>
-                            <label htmlFor="NID" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> National ID</label>
+                            <label htmlFor="NID" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> National ID <span className='text-secondary-main'>*</span></label>
                             <input type="text" id='NID' className='my-inp-2' placeholder='National ID' {...register("NID", { required: true })} />
                             {errors.NID && (<p className="text-red-500">This field is required</p>)}
                         </div>
 
                         {/* BMDC */}
                         <div className='flex-1'>
-                            <label htmlFor="BMDC" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> BMDC</label>
+                            <label htmlFor="BMDC" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> BMDC <span className='text-secondary-main'>*</span></label>
                             <input type="text" id='BMDC' className='my-inp-2' placeholder='Registration Number BMDC' {...register("BMDC", { required: true })} />
                             {errors.BMDC && (<p className="text-red-500">This field is required</p>)}
                         </div>
@@ -428,7 +438,7 @@ const RegistrationDoctorPage = () => {
                         )}
                     </div>
 
-                    <button className='my-btn-two' type='submit'>Signup</button>
+                    <button className={`my-btn-two ${authLoading && 'opacity-50'}`} type='submit' disabled={authLoading}>Signup</button>
 
                 </form>
             </div>
