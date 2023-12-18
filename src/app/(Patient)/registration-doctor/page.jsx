@@ -19,6 +19,8 @@ import { useAuth } from '@/Providers/AuthProvider';
 import Skeleton from 'react-loading-skeleton';
 
 
+// Need API for specialties - can be handle in admin dashboard (add, delete)
+
 const RegistrationDoctorPage = () => {
     const [dateOfBirth, setDateOfBirth] = useState(new Date());
     const [availabilityTimeStart, setAvailabilityTimeStart] = useState(new Date())
@@ -148,6 +150,7 @@ const RegistrationDoctorPage = () => {
     }
 
 
+    
 
     const {
         register,
@@ -157,11 +160,13 @@ const RegistrationDoctorPage = () => {
     } = useForm();
     const handleSignupFunc = (form) => {
         setLoading(true);
-        const { bio, total_experience, educationalExcellent, consultationFee, availabilityDays, followupFee, workplace, terms } = form;
+        const { title, doctorType, bio, total_experience, educationalExcellent, consultationFee, availabilityDays, followupFee, current_workplace } = form;
 
-        console.log({bio: bio, total_experience: total_experience, educationalExcellent: educationalExcellent, consultationFee: consultationFee, followupFee: followupFee, workingExperiences: workingExperiences, dateOfBirth: dateOfBirth, availabilityDays: availabilityDays, availabilityTimeStart: availabilityTimeStart, availabilityTimeEnd: availabilityTimeEnd, workplace: workplace, terms: terms});
+        console.log({ title: title, doctorType: doctorType, bio: bio, total_experience: total_experience, educationalExcellent: educationalExcellent, consultationFee: consultationFee, followupFee: followupFee, workingExperiences: workingExperiences, dateOfBirth: dateOfBirth, availabilityDays: availabilityDays, availabilityTimeStart: availabilityTimeStart, availabilityTimeEnd: availabilityTimeEnd, current_workplace: current_workplace });
 
 
+
+   setLoading(false) //TODO: remove
 
         return
 
@@ -197,7 +202,7 @@ const RegistrationDoctorPage = () => {
         <div className='bg-cover bg-center bg-slate-700 bg-blend-overlay ' style={{ backgroundImage: `url(${doctorRegistrationBg.src})` }}>
             <div className='min-h-[93vh] py-5 my-container-2'>
                 {
-                    authLoading ?<div className='flex-1 self-start'> <Skeleton className='block py-2 h-[800px]' count={1} /></div> :
+                    authLoading ? <div className='flex-1 self-start'> <Skeleton className='block py-2 h-[800px]' count={1} /></div> :
                         <form action="" className='rounded p-5 md:p-10 space-y-3 bg-[#07332Fgg] bg-slate-800 bg-opacity-70' onSubmit={handleSubmit(handleSignupFunc)}>
                             <h2 className='my-subtitle text-white'>Doctor Registration</h2>
 
@@ -311,8 +316,8 @@ const RegistrationDoctorPage = () => {
                                 </div>
                                 {/* currently working at */}
                                 <div className='flex-1'>
-                                    <label htmlFor="workplace" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Working at</label>
-                                    <input type="text" id='workplace' className='my-inp-2' placeholder="Enter your current workplace/hospital"  {...register("workplace")} />
+                                    <label htmlFor="current_workplace" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Working at</label>
+                                    <input type="text" id='current_workplace' className='my-inp-2' placeholder="Enter your current workplace/hospital"  {...register("current_workplace")} />
                                 </div>
 
                             </div>
@@ -432,7 +437,7 @@ const RegistrationDoctorPage = () => {
                                 )}
                             </div>
 
-                            <button className={`my-btn-two ${authLoading && 'opacity-50'}`} type='submit' disabled={authLoading}>Signup</button>
+                            <button className={`my-btn-two ${(authLoading || loading) && 'opacity-50'}`} type='submit' disabled={authLoading || loading}>Signup</button>
 
                         </form>
                 }

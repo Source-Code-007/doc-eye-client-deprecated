@@ -60,8 +60,6 @@ const Navbar = () => {
     }
 
 
-    console.log(user);
-
     return (
         <nav className={` ${isTop ? 'bg-transparent shadow-md' : 'bg-slate-100 shadow-lg'} sticky left-0 right-0 top-0 z-50`}>
             <div className='py-4 my-container flex justify-between'>
