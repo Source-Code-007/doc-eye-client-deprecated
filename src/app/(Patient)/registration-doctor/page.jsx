@@ -165,6 +165,7 @@ const RegistrationDoctorPage = () => {
         console.log({ title: title, doctorType: doctorType, bio: bio, total_experience: total_experience, educationalExcellent: educationalExcellent, consultationFee: consultationFee, followupFee: followupFee, workingExperiences: workingExperiences, dateOfBirth: dateOfBirth, availabilityDays: availabilityDays, availabilityTimeStart: availabilityTimeStart, availabilityTimeEnd: availabilityTimeEnd, current_workplace: current_workplace });
 
 
+        
 
    setLoading(false) //TODO: remove
 
