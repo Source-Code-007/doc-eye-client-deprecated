@@ -150,7 +150,6 @@ const RegistrationDoctorPage = () => {
     }
 
 
-    
 
     const {
         register,
@@ -162,7 +161,7 @@ const RegistrationDoctorPage = () => {
         setLoading(true);
         const { title, doctorType, bio, total_experience, educationalExcellent, consultationFee, availabilityDays, followupFee, current_workplace } = form;
 
-        console.log({ title: title, doctorType: doctorType, bio: bio, total_experience: total_experience, educationalExcellent: educationalExcellent, consultationFee: consultationFee, followupFee: followupFee, workingExperiences: workingExperiences, dateOfBirth: dateOfBirth, availabilityDays: availabilityDays, availabilityTimeStart: availabilityTimeStart, availabilityTimeEnd: availabilityTimeEnd, current_workplace: current_workplace });
+        console.log({ title: title, doctorType: doctorType, bio: bio, total_experience: total_experience, educationalExcellent: educationalExcellent, consultationFee: consultationFee, followupFee: followupFee, workingExperiences: workingExperiences, dateOfBirth: dateOfBirth, availabilityDays: availabilityDays, availabilityTimeStart: availabilityTimeStart, availabilityTimeEnd: availabilityTimeEnd, current_workplace: current_workplace, joined_docEye: new Date(Date.now) });
 
 
         

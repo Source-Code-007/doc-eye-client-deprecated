@@ -101,6 +101,7 @@ const ForDoctorsPage = () => {
                         className="mySwiper"
                     >
 
+
                         {
                             doctorsReviews.map(dr => {
                                 return <SwiperSlide key={dr.id} className=' bg-white p-5'>
