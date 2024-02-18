@@ -8,7 +8,7 @@ const MyMenu = ({ href, children }) => {
     const isActive = pathname === href
     return (
         <li>
-            <Link href={href} className={`inline-block text-slate-700 hover:text-[#09528C] font-semibold pb-2 ${isActive && '!text-[#09528C] border-b-2 border-[#09528C]'}`}>{children}</Link>
+            <Link href={href} className={`inline-block text-slate-700 hover:text-primary-main font-semibold pb-2 ${isActive && '!text-primary-main border-b-2 border-primary-main'}`}>{children}</Link>
         </li>
     );
 };
