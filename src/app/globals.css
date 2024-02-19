@@ -67,6 +67,9 @@ select option {
   @apply rounded-lg px-4 py-3 outline-none focus:border-l-2 focus:border-[#E57373] w-full text-slate-200;
   background: rgba(255, 255, 255, 0.05);
 }
+.my-file-inp{
+  @apply file-input file-input-bordered file-input-error bg-slate-900 text-white w-full
+}
 
 
 

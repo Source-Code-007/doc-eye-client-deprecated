@@ -245,7 +245,6 @@ const RegistrationDoctorPage = () => {
                                 </div>
                             </div>
 
-
                             {/* Availability */}
                             <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
                                 {/* Availability days */}
