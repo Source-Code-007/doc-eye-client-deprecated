@@ -70,6 +70,9 @@ select option {
 .my-file-inp{
   @apply file-input file-input-bordered file-input-error bg-slate-900 text-white w-full
 }
+.my-inp-label{
+  @apply block mb-2 text-sm font-medium text-slate-300 dark:text-white
+}
 
 
 

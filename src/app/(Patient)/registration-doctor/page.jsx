@@ -20,9 +20,9 @@ import Skeleton from 'react-loading-skeleton';
 // Need API for specialties - can be handle in admin dashboard (add, delete)
 
 const RegistrationDoctorPage = () => {
-    const [dateOfBirth, setDateOfBirth] = useState(new Date());
-    const [availabilityTimeStart, setAvailabilityTimeStart] = useState(new Date())
-    const [availabilityTimeEnd, setAvailabilityTimeEnd] = useState(new Date())
+    const [dateOfBirth, setDateOfBirth] = useState(new Date().toLocaleDateString());
+    const [availabilityTimeStart, setAvailabilityTimeStart] = useState(new Date().toLocaleTimeString())
+    const [availabilityTimeEnd, setAvailabilityTimeEnd] = useState(new Date().toLocaleTimeString())
     const [loading, setLoading] = useState(false)
     const { user, authLoading } = useAuth()
 
