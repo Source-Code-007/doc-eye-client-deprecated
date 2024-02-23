@@ -1,11 +1,24 @@
-import React from 'react';
+'use client'
+import React, { useState } from 'react';
 import contactBanner from '/public/assets/img/contactBannerOne.jpg'
 import CommonBanner from '@/Components/HelpingCompo/CommonBanner';
 import { FaLocationArrow, FaMessage, FaPhone } from 'react-icons/fa6';
 import Link from 'next/link';
 import MyMotion from '@/Components/HelpingCompo/MyMotion';
 
+
+import DatePicker from 'react-date-picker';
+import 'react-date-picker/dist/DatePicker.css';
+import 'react-calendar/dist/Calendar.css';
+
+import TimePicker from 'react-time-picker';
+import 'react-time-picker/dist/TimePicker.css';
+import 'react-clock/dist/Clock.css';
+
 const ContactPage = () => {
+    const [appointmentDate, setAppointmentDate] = useState(new Date().toLocaleDateString())
+    const [appointmentTime, setAppointmentTime] = useState(new Date().toLocaleTimeString())
+
     return (
         <div className='pb-20'>
             <CommonBanner img={contactBanner} title={'Contact with us'} subtitle={'Leading the way in daily healthcare excellence'}></CommonBanner>
@@ -41,9 +54,17 @@ const ContactPage = () => {
                                     <input type="text" className='my-inp-2' placeholder='Mobile' />
                                     <input type="text" className='my-inp-2' placeholder='Doctor' />
                                 </div>
+
                                 <div className='flex gap-4'>
-                                    <input type="text" className='rounded-lg px-4 py-3 outline-none focus:border-l-2 focus:border-[#E57373] w-full' placeholder='Date' style={{ background: 'rgba(255, 255, 255, 0.05)' }} />
-                                    <input type="text" className='my-inp-2' placeholder='Time' />
+                                    <div className='flex-1 text-black'>
+                                        <DatePicker onChange={setAppointmentDate} value={appointmentDate} className={'w-full rounded-lg'} placeholder='Date' />
+                                        {!appointmentDate && (<p className="text-red-500">This field is required</p>)}
+                                    </div>
+
+                                    <div className='flex-1 text-black'>
+                                        <TimePicker onChange={setAppointmentTime} value={appointmentTime} className={'w-full rounded-lg'} />
+                                        {!appointmentTime && (<p className="text-red-500">This field is required</p>)}
+                                    </div>
                                 </div>
                                 <textarea type="text" placeholder="your query here..." className="my-inp-2 h-52" />
 

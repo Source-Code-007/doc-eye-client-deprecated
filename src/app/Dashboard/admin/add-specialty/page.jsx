@@ -1,8 +1,12 @@
 'use client'
-import React from 'react';
+import useAxiosInstance from '@/Hooks/Axios/useAxiosInstance';
 import { useForm } from 'react-hook-form';
 
+
 const AddSpecialty = () => {
+    const axiosInstance = useAxiosInstance()
+
+
 
     const {
         register,

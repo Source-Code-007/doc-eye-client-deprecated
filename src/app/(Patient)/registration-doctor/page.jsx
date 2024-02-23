@@ -1,7 +1,5 @@
 'use client'
 import React, { useState } from 'react';
-import Lottie from "lottie-react";
-import doctorRegistrationLottie from '/public/assets/lottieAnimation/doctor-registration-lottie.json'
 import doctorRegistrationBg from '/public/assets/img/doctor-registration-bg.jpg'
 
 import DatePicker from 'react-date-picker';
