@@ -10,7 +10,6 @@ import axios from 'axios';
 
 const Signup = () => {
     const { user, setUser, authLoading, setAuthLoading, createUserWithEmailPass, updateProfileFunc } = useAuth()
-    const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const [showPass, setShowPass] = useState({ password: false, confirmPassword: false })
 
@@ -18,17 +17,11 @@ const Signup = () => {
     const onSubmit = form => {
         setAuthLoading(true)
         setLoading(true)
-        setError('')
         const { email, password, confirmPassword, name, signupPhoto, number } = form
 
         const formData = new FormData();
         formData.append("image", signupPhoto[0]);
 
-        if (password !== confirmPassword) {
-            setError('Your password is not match')
-            setLoading(false)
-            return
-        }
         // password regexp
         const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
         if (!passwordRegex.test(password)) {
@@ -60,7 +53,6 @@ const Signup = () => {
                     setError('account exists with different credential')
                     return
                 }
-                setError(e.message)
             })
 
         }).catch(e => {
@@ -68,7 +60,6 @@ const Signup = () => {
         })
 
     };
-
 
     return (
         <div className='min-h-screen flex items-center justify-center bg-cover bg-center bg-slate-800 bg-blend-overlay my-28 md:my-0' style={{ backgroundImage: `url(${signinBG.src})` }}>
@@ -91,7 +82,6 @@ const Signup = () => {
                         </div>
 
                         {/* Phone number */}
-                        {/* TODO: Will be store somewhere */}
                         <div>
                             <label htmlFor="signupNumber" className='text-slate-600'>Your number here</label>
                             <input type='number' {...register("number", { required: true })} id='signupNumber' className={`sign-my-inp shadow-inner ${errors.number ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your number here' />
@@ -120,20 +110,34 @@ const Signup = () => {
                         <div>
                             <label htmlFor="signupPass" className='text-slate-600'>Your password here</label>
                             <div className='relative'>
-                                <input type={`${showPass.pass ? 'text' : 'password'}`} {...register("password", { required: true, pattern: !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/ })} id='signupPass' className={`sign-my-inp shadow-inner ${errors.password ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your password here' />
+                                <input type={`${showPass.pass ? 'text' : 'password'}`} {
+                                    ...register("password", {
+                                        required: 'Password is required',
+                                        pattern: {
+                                            value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+                                            message: 'Minimum 8 characters, at least 1 letter and 1 digit.'
+                                        }
+                                    })
+                                }
+                                    id='signupPass' className={`sign-my-inp shadow-inner ${errors.password ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your password here' />
                                 <span onClick={() => setShowPass({ ...showPass, pass: !showPass.pass })} className='cursor-pointer absolute top-[18px] right-2'>{showPass.pass ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}</span>
                             </div>
-                            {errors.password && <span className='text-red-500'>*{errors?.password?.type === 'pattern' ? 'Minimum 8 characters, at least 1 letter and 1 digit.' : 'Password is required'}</span>}
+                            
+                            {errors.password && <span className='text-red-500'>*{errors?.password?.message}</span>}
                         </div>
 
                         {/* Confirm Pass */}
                         <div>
                             <label htmlFor="signupConfirmPass" className='text-slate-600'>Confirm your password</label>
                             <div className='relative'>
-                                <input type={`${showPass.confirmPass ? 'text' : 'password'}`} {...register("confirmPassword", { required: true, pattern: !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/ })} id='signupConfirmPass' className={`sign-my-inp shadow-inner ${errors.confirmPassword ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Confirm password' />
+                                <input type={`${showPass.confirmPass ? 'text' : 'password'}`} {...register("confirmPassword", {
+                                    required: "Confirm password is required", validate:
+                                        value => value === watch("password") || "Password do not match"
+
+                                })} id='signupConfirmPass' className={`sign-my-inp shadow-inner ${errors.confirmPassword ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Confirm password' />
                                 <span onClick={() => setShowPass({ ...showPass, confirmPass: !showPass.confirmPass })} className='cursor-pointer absolute top-[18px] right-2'>{showPass.confirmPass ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}</span>
                             </div>
-                            {errors.confirmPassword && <span className='text-red-500'>*{errors?.confirmPassword?.type === 'pattern' ? 'Minimum 8 characters, at least 1 letter and 1 digit.' : 'Password is required'}</span>}
+                            {errors.confirmPassword && <span className='text-red-500'>*{errors?.confirmPassword?.message}</span>}
                         </div>
 
                         {/* Terms */}
@@ -150,10 +154,6 @@ const Signup = () => {
                             </div>
                             {errors.terms && <p className='text-red-500'>*You need to checked terms & condition! </p>}
                         </div>
-
-
-                        {error && <p className='text-red-500'>*{error}</p>}
-
 
                         <div className='w-5/6 mx-auto'>
                             <button type="submit" className='my-btn-one w-full'>Signup</button>
