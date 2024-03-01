@@ -3,6 +3,7 @@ import logo from '../../../public/assets/img/logo.png'
 import Image from 'next/image';
 import DashboardLink from './DashboardLink';
 import Link from 'next/link';
+import { ToastContainer } from 'react-toastify';
 
 const DashboardLayout = ({ children }) => {
     const role = 'admin'
@@ -30,6 +31,19 @@ const DashboardLayout = ({ children }) => {
                 {children}
             </div>
 
+            {/* Toast container */}
+            <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </div>
     );
 };

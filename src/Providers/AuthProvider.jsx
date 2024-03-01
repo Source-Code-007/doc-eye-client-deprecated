@@ -85,8 +85,8 @@ const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => {
-    const { user, setUser, authLoading, setAuthLoading, createUserWithEmailPass, updateProfileFunc, signinUserFunc, signOutFunc } = useContext(myAuth)
-    return { user, setUser, authLoading, setAuthLoading, createUserWithEmailPass, updateProfileFunc, signinUserFunc, signOutFunc }
+    const authData = useContext(myAuth)
+    return authData
 }
 
 export default AuthProvider;

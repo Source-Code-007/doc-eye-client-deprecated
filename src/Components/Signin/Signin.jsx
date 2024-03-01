@@ -6,21 +6,56 @@ import Link from 'next/link';
 import { FaEye, FaEyeSlash, FaFacebook, FaGithub } from 'react-icons/fa6';
 import { useAuth } from '@/Providers/AuthProvider';
 import { useRouter } from 'next/navigation';
+import useAxiosInstance from '@/Hooks/Axios/useAxiosInstance';
+import { toast } from 'react-toastify';
+import useCookies from '@/Hooks/useCookies';
 
 const Signin = () => {
     const [showPass, setShowPass] = useState(false)
     const {signinUserFunc, setAuthLoading} = useAuth()
     const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
     const router = useRouter()
+    const axiosInstance = useAxiosInstance()
+    const cookies = useCookies()
 
     const onSubmit = form => {
         const { email, password } = form
-        signinUserFunc(email, password).then(res=> {
-                setAuthLoading(false)
-                reset()
-                router.push('/')
-        }).catch(e=> {
-            console.log(e?.message);
+        axiosInstance.post('/signin', { email, password }).then(res => {
+            setAuthLoading(false)
+
+            cookies.set('docEyeAccessToken', res?.data?.token);
+
+            toast.success('User signin successfully!', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+
+            router.push('/')
+            reset()
+
+        }).catch(e => {
+            setAuthLoading(false)
+
+            if (e?.response?.data?.message) {
+                toast.error(e?.response?.data?.message, {
+                    position: "bottom-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            } else {
+                console.log(e?.message);
+            }
         })
     };
 
@@ -74,9 +109,6 @@ const Signin = () => {
                 </div>
 
             </form>
-
-
-
 
         </div>
     );
