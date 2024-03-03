@@ -58,20 +58,20 @@ const AuthProvider = ({ children }) => {
 
 
     useEffect(() => {
-        const authMonitoring = onAuthStateChanged(auth, (currUser) => {
+        // const authMonitoring = onAuthStateChanged(auth, (currUser) => {
 
-            if (currUser) {
-                // const uid = user.uid;
-                setAuthLoading(false)
-                setUser(currUser)
-            } else {
-                setAuthLoading(false)
-                setUser(null)
-            }
-        });
-        return () => {
-            authMonitoring()
-        }
+        //     if (currUser) {
+        //         // const uid = user.uid;
+        //         setAuthLoading(false)
+        //         setUser(currUser)
+        //     } else {
+        //         setAuthLoading(false)
+        //         setUser(null)
+        //     }
+        // });
+        // return () => {
+        //     authMonitoring()
+        // }
     }, [])
 
 
