@@ -23,6 +23,7 @@ const Signup = () => {
         setLoading(true)
         const { email, password, name, signupPhoto, phoneNumber } = form
 
+        
         axiosInstance.post('/signup', { name, email, phone:parseInt(phoneNumber), password, role: 'user', avatar: signupPhoto?.[0] }, { headers: { "Content-Type": "multipart/form-data" } }).then(res => {
             setAuthLoading(false)
 
