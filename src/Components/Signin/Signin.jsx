@@ -12,7 +12,7 @@ import useCookies from '@/Hooks/useCookies';
 
 const Signin = () => {
     const [showPass, setShowPass] = useState(false)
-    const {signinUserFunc, setAuthLoading} = useAuth()
+    const { signinUserFunc, setAuthLoading, profileControl, setProfileControl } = useAuth()
     const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
     const router = useRouter()
     const axiosInstance = useAxiosInstance()
@@ -22,7 +22,8 @@ const Signin = () => {
         const { email, password } = form
         axiosInstance.post('/signin', { email, password }).then(res => {
             setAuthLoading(false)
-
+            
+            cookies.remove('docEyeAccessToken')
             cookies.set('docEyeAccessToken', res?.data?.token);
 
             toast.success('User signin successfully!', {
@@ -36,6 +37,7 @@ const Signin = () => {
                 theme: "light",
             });
 
+            setProfileControl(!profileControl)
             router.push('/')
             reset()
 

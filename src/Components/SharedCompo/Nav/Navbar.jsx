@@ -56,7 +56,7 @@ const Navbar = () => {
     // signout func
     const handleSignOutFunc = () => {
         setAuthLoading(true);
-        return signOutFunc()
+        signOutFunc()
     }
 
 

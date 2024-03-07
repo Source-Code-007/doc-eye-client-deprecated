@@ -7,16 +7,16 @@ const axiosSecure = axios.create({
     baseURL: `${process.env.NEXT_PUBLIC_BACKEND_API}`
 })
 
-
 const useAxiosSecure = () => {
     const cookies = useCookies()
     const docEyeAccessToken = cookies.get('docEyeAccessToken')
 
-
         // Add a request interceptor
         axiosSecure.interceptors.request.use(function (config) {
             // Do something before request is sent
-            config.headers.Authorization = `Bearer ${docEyeAccessToken}`
+            if(docEyeAccessToken){
+                config.headers.Authorization = `Bearer ${docEyeAccessToken}`
+            }
             return config;
         }, function (error) {
             // Do something with request error

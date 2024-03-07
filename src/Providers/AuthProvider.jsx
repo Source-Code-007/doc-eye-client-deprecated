@@ -15,10 +15,10 @@ export const myAuth = createContext()
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [authLoading, setAuthLoading] = useState(true)
+    const [profileControl, setProfileControl] = useState(true)
     const axiosSecure = useAxiosSecure()
     const cookies = useCookies()
-    const docEyeAccessToken = cookies.get('docEyeAccessToken')
-
+    const docEyeAccessToken = cookies.get('docEyeAccessToken') || null
 
 
     // create user func
@@ -59,8 +59,9 @@ const AuthProvider = ({ children }) => {
 
     // signout user func
     const signOutFunc = () => {
-        setAuthLoading(true)
-        return signOut(auth)
+        cookies.remove('docEyeAccessToken')
+        setAuthLoading(false)
+        setUser(false)
     }
 
 
@@ -78,15 +79,22 @@ const AuthProvider = ({ children }) => {
         // return () => {
         //     authMonitoring()
         // }
+        console.log('get docEyeAccessToken', docEyeAccessToken);
 
-        console.log('auth provider use effect', 82);
-
-        axiosSecure('/user-profile',).then(res=> {setUser(res?.data?.data); setAuthLoading(false)}).catch(e=> {console.log(e?.response?.data?.errors?.common?.message); setAuthLoading(false)})
-
-    }, [axiosSecure])
+        setAuthLoading(true)
 
 
-    const myObj = { user, setUser, authLoading, setAuthLoading, createUserWithEmailPass, createUserWithGoogle, createUserWithFacebook, createUserWithGithub, updateProfileFunc, signinUserFunc, signOutFunc }
+        if (docEyeAccessToken) {
+            axiosSecure('/user-profile',).then(res => { setUser(res?.data?.data); setAuthLoading(false) }).catch(e => { console.log(e?.response?.data?.errors?.common?.message); setAuthLoading(false) })
+        } else {
+            setAuthLoading(false)
+            setUser(null)
+        }
+
+    }, [axiosSecure, docEyeAccessToken, profileControl])
+
+
+    const myObj = { user, setUser, authLoading, setAuthLoading, createUserWithEmailPass, createUserWithGoogle, createUserWithFacebook, createUserWithGithub, updateProfileFunc, signinUserFunc, signOutFunc, profileControl, setProfileControl }
 
     return (
         <myAuth.Provider value={myObj}>
