@@ -2,6 +2,8 @@
 import { getAuth, createUserWithEmailAndPassword, signOut, updateProfile, onAuthStateChanged, GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { app } from '../../firebase.config';
+import useAxiosSecure from "@/Hooks/Axios/useAxiosSecure";
+import useCookies from "@/Hooks/useCookies";
 
 
 const auth = getAuth(app);
@@ -13,6 +15,11 @@ export const myAuth = createContext()
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [authLoading, setAuthLoading] = useState(true)
+    const axiosSecure = useAxiosSecure()
+    const cookies = useCookies()
+    const docEyeAccessToken = cookies.get('docEyeAccessToken')
+
+
 
     // create user func
     const createUserWithEmailPass = (email, password) => {
@@ -59,7 +66,6 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         // const authMonitoring = onAuthStateChanged(auth, (currUser) => {
-
         //     if (currUser) {
         //         // const uid = user.uid;
         //         setAuthLoading(false)
@@ -72,7 +78,12 @@ const AuthProvider = ({ children }) => {
         // return () => {
         //     authMonitoring()
         // }
-    }, [])
+
+        console.log('auth provider use effect', 82);
+
+        axiosSecure('/user-profile',).then(res=> {setUser(res?.data?.data); setAuthLoading(false)}).catch(e=> {console.log(e?.response?.data?.errors?.common?.message); setAuthLoading(false)})
+
+    }, [axiosSecure])
 
 
     const myObj = { user, setUser, authLoading, setAuthLoading, createUserWithEmailPass, createUserWithGoogle, createUserWithFacebook, createUserWithGithub, updateProfileFunc, signinUserFunc, signOutFunc }

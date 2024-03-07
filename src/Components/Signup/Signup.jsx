@@ -149,8 +149,8 @@ const Signup = () => {
                                     <div className="flex items-center h-5">
                                         <input id="terms" name='terms' aria-describedby="terms" type="checkbox" {...register('terms', { required: true })} className="w-4 h-4" />
                                     </div>
-                                    <div className="ml-3 text-sm">
-                                        <label htmlFor="terms" className='text-primary-desc'>Accept <Link className='link-hover link-primary' href={'#'}>Terms and Condition</Link></label>
+                                    <div className="text-sm">
+                                        <label htmlFor="terms" className='text-primary-desc cursor-pointer' style={{paddingLeft:'5px'}}>Accept <Link className='link-hover link-primary' href={'#'}>Terms and Condition</Link></label>
                                     </div>
                                 </div>
                             </div>

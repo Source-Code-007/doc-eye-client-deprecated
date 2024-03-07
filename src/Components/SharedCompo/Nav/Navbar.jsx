@@ -95,9 +95,10 @@ const Navbar = () => {
                             <li className='py-[16px] px-[10px] flex items-center gap-[10px] hover:bg-dark-4 cursor-pointer rounded-[10px]'>
                                 <div>
                                     <div style={{ position: 'relative', width: '40px', height: '40px' }}>
+                                        {/* TODO: replace actual user?.avatar */}
                                         <Image
-                                            src={user?.photoURL || 'https://cdn.pixabay.com/photo/2020/05/09/13/29/photographer-5149664_640.jpg'}
-                                            alt={user.displayName || 'user'}
+                                            src={'https://cdn.pixabay.com/photo/2020/05/09/13/29/photographer-5149664_640.jpg'}
+                                            alt={user.name || 'user'}
                                             layout='fill'
                                             style={{
                                                 objectFit: 'cover',
@@ -107,8 +108,8 @@ const Navbar = () => {
                                     </div>
                                 </div>
                                 <div className='text-white space-y-px text-[12px] w-[140px] break-words'>
-                                    <h2 className='font-bold'>{user?.displayName}</h2>
-                                    <p className='text-primary-desc opacity-60'>{user?.uid}</p>
+                                    <h2 className='font-bold'>{user?.name}</h2>
+                                    <p className='text-primary-desc opacity-60'>{`DocEye-${user?._id.slice(-9)}`}</p>
                                 </div>
 
                             </li>
