@@ -39,8 +39,8 @@ const DashboardLayout = ({ children }) => {
                                         </ul> : isRole === 'user' &&
                                         <ul>
                                             <DashboardLink href={'/user-dashboard'}> Dashboard </DashboardLink>
-                                            <DashboardLink href={'/user-dashboard/'}> My appointments </DashboardLink>
-                                            <DashboardLink href={'/admin-dashboard/add-a-doctor'}> My history </DashboardLink>
+                                            <DashboardLink href={'/user-dashboard/my-appointments'}> My appointments </DashboardLink>
+                                            <DashboardLink href={'/user-dashboard/my-history'}> My history </DashboardLink>
                                         </ul>
                                 }
                             </>
