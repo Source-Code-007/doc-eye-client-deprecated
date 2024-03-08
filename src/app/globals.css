@@ -4,6 +4,11 @@
 
 
 
+/* Common style */
+.my-h-screen{
+  @apply h-[calc(100vh-72px)]
+}
+
 /* hide number arrow */
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 

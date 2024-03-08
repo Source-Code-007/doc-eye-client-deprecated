@@ -15,7 +15,7 @@ const ServicesPage = () => {
 
 
     useEffect(() => {
-        axios.get('/services.json').then(res => {
+        axios('/services.json').then(res => {
             console.log(res?.data, 10);
             setServices(res?.data)
         }).catch(e => {

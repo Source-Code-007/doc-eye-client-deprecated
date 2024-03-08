@@ -85,7 +85,7 @@ const AuthProvider = ({ children }) => {
 
 
         if (docEyeAccessToken) {
-            axiosSecure('/user-profile',).then(res => { setUser(res?.data?.data); setAuthLoading(false) }).catch(e => { console.log(e?.response?.data?.errors?.common?.message); setAuthLoading(false) })
+            axiosSecure('/user-profile',).then(res => { setUser(res?.data?.data); setAuthLoading(false) }).catch(e => { console.log(e?.response?.data?.message); setAuthLoading(false) })
         } else {
             setAuthLoading(false)
             setUser(null)

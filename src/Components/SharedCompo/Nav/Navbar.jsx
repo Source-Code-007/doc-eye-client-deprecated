@@ -19,6 +19,7 @@ const Navbar = () => {
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
     const userDropdownRef = useRef(null);
 
+    const isRole = user?.role
 
     // modify nav when in top
     useEffect(() => {
@@ -61,7 +62,7 @@ const Navbar = () => {
 
 
     return (
-        <nav className={` ${isTop ? 'bg-transparent shadow-md' : 'bg-slate-100 shadow-lg'} sticky left-0 right-0 top-0 z-50`}>
+        <nav className={` ${isTop ? 'bg-transparent shadow-sm' : 'bg-opacity-75 backdrop-filter backdrop-blur-md backdrop-saturate-180 shadow'} sticky left-0 right-0 top-0 z-50`}>
             <div className='py-4 my-container flex justify-between'>
                 <Link href={'/'}><Image height={40} width={40} src={logo} alt='DocEye'></Image></Link>
                 <ul className='flex gap-10 items-center text-slate-700 text-xl'>
@@ -94,7 +95,7 @@ const Navbar = () => {
 
                             <li className='py-[16px] px-[10px] flex items-center gap-[10px] hover:bg-dark-4 cursor-pointer rounded-[10px]'>
                                 <div>
-                                    <div style={{ position: 'relative', width: '40px', height: '40px' }}>
+                                    <figure className='relative h-10 w-10'>
                                         {/* TODO: replace actual user?.avatar */}
                                         <Image
                                             src={'https://cdn.pixabay.com/photo/2020/05/09/13/29/photographer-5149664_640.jpg'}
@@ -105,7 +106,7 @@ const Navbar = () => {
                                             }}
                                             className='rounded-full'
                                         />
-                                    </div>
+                                    </figure>
                                 </div>
                                 <div className='text-white space-y-px text-[12px] w-[140px] break-words'>
                                     <h2 className='font-bold'>{user?.name}</h2>
@@ -114,7 +115,7 @@ const Navbar = () => {
 
                             </li>
 
-                            <Link href='/user-dashboard' className='py-[16px] px-[10px] flex items-center gap-2 hover:bg-dark-4 cursor-pointer rounded-[10px]'>
+                            <Link href={`${isRole === 'admin' ? '/admin-dashboard' : isRole === 'doctor' ? '/doctor-dashboard' : isRole === 'user' && '/user-dashboard'}`} className='py-[16px] px-[10px] flex items-center gap-2 hover:bg-dark-4 cursor-pointer rounded-[10px]'>
                                 <LuLayoutDashboard className='h-[24px] w-[24px]' /> Dashboard</Link>
                             <li className='py-[16px] px-[10px] flex items-center gap-2 hover:bg-dark-4 cursor-pointer rounded-[10px]' onClick={handleSignOutFunc}> <GoSignOut className='h-[24px] w-[24px]' /> Log Out</li>
                         </ul>}

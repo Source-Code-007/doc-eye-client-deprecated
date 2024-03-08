@@ -9,14 +9,21 @@ import { useRouter } from 'next/navigation';
 import useAxiosInstance from '@/Hooks/Axios/useAxiosInstance';
 import { toast } from 'react-toastify';
 import useCookies from '@/Hooks/useCookies';
+import MyLoading from '../HelpingCompo/MyLoading';
 
 const Signin = () => {
     const [showPass, setShowPass] = useState(false)
-    const { signinUserFunc, setAuthLoading, profileControl, setProfileControl } = useAuth()
+    const { user, authLoading, setAuthLoading, profileControl, setProfileControl } = useAuth()
     const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
     const router = useRouter()
     const axiosInstance = useAxiosInstance()
     const cookies = useCookies()
+
+    if(authLoading){
+        return <div className='my-h-screen flex items-center justify-center bg-slate-100'><MyLoading/></div>
+    } else if(user){
+        router.push('/')
+    }
 
     const onSubmit = form => {
         const { email, password } = form

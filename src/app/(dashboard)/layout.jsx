@@ -1,3 +1,4 @@
+'use client'
 import DashboardLayout from '@/Components/HelpingCompo/DashboardLayout';
 import React from 'react';
 
