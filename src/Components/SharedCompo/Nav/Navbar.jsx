@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import logo from '/public/assets/img/logo.png'
 import MyMenu from '@/Components/HelpingCompo/MyMenu';
 import { useAuth } from '@/Providers/AuthProvider';
-import MyLoading from '@/Components/HelpingCompo/MyLoading';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import Skeleton from 'react-loading-skeleton';
@@ -74,11 +73,11 @@ const Navbar = () => {
                     <MyMenu href={'/for-doctors'}>For Doctors</MyMenu>
                 </ul>
 
-                {authLoading ? <MyLoading className='h-12 w-12' /> : !user ? <Link href={'signin'}>
+                {authLoading ? <Skeleton className='h-10 w-10 rounded-full'/> : !user ? <Link href={'signin'}>
                     <button className='my-btn-one'>Login</button>
                 </Link> : <div className="relative">
                     <div className='text-primary-desc cursor-pointer relative' ref={userDropdownRef}>
-                        <div className='relative h-10 w-10' onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}>
+                        <figure className='relative h-10 w-10' onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}>
                             <Image
                                 src={user?.photoURL || 'https://cdn.pixabay.com/photo/2020/05/09/13/29/photographer-5149664_640.jpg'}
                                 alt={user.displayName || 'user'}
@@ -88,7 +87,7 @@ const Navbar = () => {
                                 }}
                                 className='rounded-full'
                             />
-                        </div>
+                        </figure>
 
                         {/* user dropdown */}
                         {isUserMenuOpen && <ul className={`w-[220px] triangle-dropdown  rounded-[10px] font-bold text-[12px] p-[10px] text-primary-desc absolute top-[140%] right-[-87px] -translate-x-1/3 rounded-b-md transition-all duration-500 !z-[998] !bg-primary-main ${isUserMenuOpen ? 'visible opacity-100' : 'invisible opacity-0'}`}>

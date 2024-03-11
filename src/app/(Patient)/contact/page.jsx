@@ -92,7 +92,7 @@ const ContactPage = () => {
                                     </div>
                                     <div className='flex-1'>
                                         <label htmlFor='email' className='my-inp-label'>Email <span className='text-secondary-main'>*</span></label>
-                                        <input type="text" id='email' className='my-inp-2' placeholder='Email'  {...register('email', {
+                                        <input type="text" id='email' className='my-inp-2' placeholder='Email'  {...register('username', {
                                             required: "Email is required",
                                             pattern: {
                                                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,

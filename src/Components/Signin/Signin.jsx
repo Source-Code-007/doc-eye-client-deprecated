@@ -19,17 +19,18 @@ const Signin = () => {
     const axiosInstance = useAxiosInstance()
     const cookies = useCookies()
 
-    if(authLoading){
-        return <div className='my-h-screen flex items-center justify-center bg-slate-100'><MyLoading/></div>
-    } else if(user){
+    if (authLoading) {
+        return <div className='my-h-screen flex items-center justify-center bg-slate-100'><MyLoading /></div>
+    } else if (user) {
         router.push('/')
     }
 
     const onSubmit = form => {
-        const { email, password } = form
-        axiosInstance.post('/signin', { email, password }).then(res => {
+        // Using email or phone as username to signin
+        const { username, password } = form
+        axiosInstance.post('/signin', { username, password }).then(res => {
             setAuthLoading(false)
-            
+
             cookies.remove('docEyeAccessToken')
             cookies.set('docEyeAccessToken', res?.data?.token);
 
@@ -51,8 +52,10 @@ const Signin = () => {
         }).catch(e => {
             setAuthLoading(false)
 
-            if (e?.response?.data?.message) {
-                toast.error(e?.response?.data?.message, {
+            console.log(e?.response?.data?.errors);
+
+            if (e?.response?.data?.errors?.common?.msg) {
+                toast.error(e?.response?.data?.errors?.common?.msg, {
                     position: "bottom-right",
                     autoClose: 3000,
                     hideProgressBar: false,
@@ -62,8 +65,6 @@ const Signin = () => {
                     progress: undefined,
                     theme: "light",
                 });
-            } else {
-                console.log(e?.message);
             }
         })
     };
@@ -82,13 +83,14 @@ const Signin = () => {
 
                     <div className='space-y-4'>
                         <div>
-                            <label htmlFor="signinEmail">Your email here</label>
-                            <input {...register("email", { required: true })} type='email' id='signinEmail' className={`sign-my-inp shadow-inner ${errors.email ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your email here' />
-                            {errors.email && <span className='text-red-500'>*Email is required</span>}
+                            <label htmlFor="signinUsername">Email or phone</label>
+                            <input {...register("username", { required: true })} type='text' id='signinUsername' className={`sign-my-inp shadow-inner ${errors.username ? 'shadow-red-700' : 'shadow-slate-700'}`} 
+                            placeholder='Your email or phone here' />
+                            {errors.email && <span className='text-red-500'>*Email or phone is required</span>}
                         </div>
 
                         <div>
-                            <label htmlFor="signinPassword">Your password here</label>
+                            <label htmlFor="signinPassword">Password</label>
                             <div className='relative'>
                                 <input {...register("password", { required: true })} type={`${showPass ? 'text' : 'password'}`} id='signinPassword' className={`sign-my-inp shadow-inner ${errors.password ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your password here' />
                                 <span onClick={() => setShowPass(!showPass)} className='cursor-pointer absolute top-[18px] right-2'>{showPass ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}</span>

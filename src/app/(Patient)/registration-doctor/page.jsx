@@ -309,7 +309,7 @@ const RegistrationDoctorPage = () => {
                                 {/* Email */}
                                 <div className='flex-1'>
                                     <label className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Email <span className='text-secondary-main'>*</span></label>
-                                    <input type="email" value={user?.email} className={`my-inp-2 pointer-events-none opacity-50`} placeholder='Email' {...register("email")} />
+                                    <input type="email" value={user?.email} className={`my-inp-2 pointer-events-none opacity-50`} placeholder='Email' {...register("username")} />
                                 </div>
                                 {/* currently working at */}
                                 <div className='flex-1'>

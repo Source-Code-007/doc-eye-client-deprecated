@@ -16,16 +16,17 @@ const Signup = () => {
     const [showPass, setShowPass] = useState({ password: false, confirmPassword: false })
     const axiosInstance = useAxiosInstance()
     const router = useRouter()
+    const [myErrors, setMyErrors] = useState(null)
 
     const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
     const onSubmit = form => {
-        setAuthLoading(true)
         setLoading(true)
-        const { email, password, name, signupPhoto, phoneNumber } = form
+        setMyErrors(null)
+        const { email, password, name, signupPhoto, phone } = form
 
         
-        axiosInstance.post('/signup', { name, email, phone:parseInt(phoneNumber), password, role: 'user', avatar: signupPhoto?.[0] }, { headers: { "Content-Type": "multipart/form-data" } }).then(res => {
-            setAuthLoading(false)
+        axiosInstance.post('/signup', { name, email, phone, password, role: 'user', avatar: signupPhoto?.[0] }, { headers: { "Content-Type": "multipart/form-data" } }).then(res => {
+            setLoading(false)
 
             toast.success('User created successfully!', {
                 position: "bottom-right",
@@ -41,23 +42,10 @@ const Signup = () => {
             reset()
 
         }).catch(e => {
-            setAuthLoading(false)
+            setLoading(false)
 
-            console.log(e, 'err from signup');
-            if (e?.response?.data?.message) {
-                toast.error(e?.response?.data?.message, {
-                    position: "bottom-right",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-            } else {
-                console.log(e?.message);
-            }
+            console.log(e.response?.data?.errors, 'err from signup');
+            setMyErrors(e.response?.data?.errors)
         })
 
     };
@@ -79,15 +67,15 @@ const Signup = () => {
                         {/* Name */}
                         <div>
                             <label htmlFor="signupName" className='text-slate-600'>Your name here</label>
-                            <input {...register("name", { required: true })} type='text' id='signupName' className={`sign-my-inp shadow-inner ${errors.name ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your name here' />
-                            {errors.name && <span className='text-red-500'>*Name is required</span>}
+                            <input {...register("name", { required: true })} type='text' id='signupName' className={`sign-my-inp shadow-inner ${(errors.name || myErrors?.name) ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your name here' />
+                            {errors.name ? <span className='text-red-500'>*Name is required</span> : myErrors?.name && <span className='text-red-500'>*{myErrors?.name?.msg}</span>}
                         </div>
 
                         {/* Phone number */}
                         <div>
                             <label htmlFor="signupNumber" className='text-slate-600'>Your number here</label>
-                            <input type='number' {...register("phoneNumber", { required: true })} id='signupNumber' className={`sign-my-inp shadow-inner ${errors.phoneNumber ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your number here' />
-                            {errors.phoneNumber && <span className='text-red-500'>*Number is required</span>}
+                            <input type='number' {...register("phone", { required: true })} id='signupNumber' className={`sign-my-inp shadow-inner ${(errors.phone || myErrors?.phone) ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your number here' />
+                            {errors.phone ? <span className='text-red-500'>*Phone is required</span> : myErrors?.phone && <span className='text-red-500'>*{myErrors?.phone?.msg}</span>}
                         </div>
 
                         {/* Photo */}
@@ -104,8 +92,9 @@ const Signup = () => {
                         {/* Email */}
                         <div>
                             <label htmlFor="signupEmail" className='text-slate-600'>Your email here</label>
-                            <input type='email' {...register("email", { required: true, pattern: /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/ })} id='signupEmail' className={`sign-my-inp shadow-inner ${errors.email ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your email here' />
-                            {errors.email && <span className='text-red-500'>*{errors?.email?.type === 'pattern' ? 'Please provide valid email' : 'Email is required'}</span>}
+                            <input type='email' {...register("email", { required: true, pattern: /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/ })} id='signupEmail' className={`sign-my-inp shadow-inner ${(errors.email || myErrors?.email) ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your email here' />
+
+                            {errors.email ? <span className='text-red-500'>*{errors?.email?.type === 'pattern' ? 'Please provide valid email' : 'Email is required'}</span> : myErrors?.email && <span className='text-red-500'>*{myErrors?.email?.msg}</span>}
                         </div>
 
                         {/* Pass */}
@@ -121,11 +110,12 @@ const Signup = () => {
                                         }
                                     })
                                 }
-                                    id='signupPass' className={`sign-my-inp !pr-[25px] shadow-inner ${errors.password ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your password here' />
+                                    id='signupPass' className={`sign-my-inp !pr-[25px] shadow-inner ${(errors.password || myErrors?.password) ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your password here' />
                                 <span onClick={() => setShowPass({ ...showPass, pass: !showPass.pass })} className='cursor-pointer absolute top-[18px] right-2'>{showPass.pass ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}</span>
                             </div>
 
-                            {errors.password && <span className='text-red-500'>*{errors?.password?.message}</span>}
+                     
+                            {errors.password ? <span className='text-red-500'>*{errors?.password?.message}</span> : myErrors?.name && <span className='text-red-500'>*{myErrors?.name?.msg}</span>}
                         </div>
 
                         {/* Confirm Pass */}
@@ -158,7 +148,7 @@ const Signup = () => {
                         </div>
 
                         <div className='w-5/6 mx-auto'>
-                            <button type="submit" className='my-btn-one w-full'>Signup</button>
+                            <button type="submit" className={`${loading? 'my-disable-btn-one' : 'my-btn-one'} w-full`}>Signup</button>
                         </div>
 
                         <p className='text-slate-700'>Already have an account? <Link href={'/signin'}><button className='text-primary cursor-pointer font-bold'>Signin</button></Link></p>
@@ -183,19 +173,6 @@ const Signup = () => {
 
             </form>
 
-            {/* Toast container */}
-            {/* <ToastContainer
-                  position="bottom-right"
-                  autoClose={5000}
-                  hideProgressBar={false}
-                  newestOnTop={false}
-                  closeOnClick
-                  rtl={false}
-                  pauseOnFocusLoss
-                  draggable
-                  pauseOnHover
-                  theme="light"
-              /> */}
         </div>
     );
 };
