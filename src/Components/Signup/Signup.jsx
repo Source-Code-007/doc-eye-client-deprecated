@@ -115,7 +115,7 @@ const Signup = () => {
                             </div>
 
                      
-                            {errors.password ? <span className='text-red-500'>*{errors?.password?.message}</span> : myErrors?.name && <span className='text-red-500'>*{myErrors?.name?.msg}</span>}
+                            {errors.password ? <span className='text-red-500'>*{errors?.password?.message}</span> : myErrors?.password && <span className='text-red-500'>*{myErrors?.password?.msg}</span>}
                         </div>
 
                         {/* Confirm Pass */}

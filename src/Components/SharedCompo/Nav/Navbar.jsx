@@ -59,7 +59,7 @@ const Navbar = () => {
         signOutFunc()
     }
 
-
+console.log(user, 'user from navbar');
     return (
         <nav className={` ${isTop ? 'bg-transparent shadow-sm' : 'bg-opacity-75 backdrop-filter backdrop-blur-md backdrop-saturate-180 shadow'} sticky left-0 right-0 top-0 z-50`}>
             <div className='py-4 my-container flex justify-between'>
@@ -79,8 +79,8 @@ const Navbar = () => {
                     <div className='text-primary-desc cursor-pointer relative' ref={userDropdownRef}>
                         <figure className='relative h-10 w-10' onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}>
                             <Image
-                                src={user?.photoURL || 'https://cdn.pixabay.com/photo/2020/05/09/13/29/photographer-5149664_640.jpg'}
-                                alt={user.displayName || 'user'}
+                                src={user?.avatar || 'https://cdn.pixabay.com/photo/2020/05/09/13/29/photographer-5149664_640.jpg'}
+                                alt={user.name || 'user'}
                                 layout='fill'
                                 style={{
                                     objectFit: 'cover',
@@ -97,7 +97,7 @@ const Navbar = () => {
                                     <figure className='relative h-10 w-10'>
                                         {/* TODO: replace actual user?.avatar */}
                                         <Image
-                                            src={'https://cdn.pixabay.com/photo/2020/05/09/13/29/photographer-5149664_640.jpg'}
+                                            src={user?.avatar || 'https://cdn.pixabay.com/photo/2020/05/09/13/29/photographer-5149664_640.jpg'}
                                             alt={user.name || 'user'}
                                             layout='fill'
                                             style={{
