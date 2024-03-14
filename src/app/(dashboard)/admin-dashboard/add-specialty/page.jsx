@@ -1,12 +1,11 @@
 'use client'
-import useAxiosInstance from '@/Hooks/Axios/useAxiosInstance';
+import useAxiosSecure from '@/Hooks/Axios/useAxiosSecure';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 
 const AddSpecialty = () => {
-    const axiosInstance = useAxiosInstance()
-
-
+    const axiosSecure = useAxiosSecure()
 
     const {
         register,
@@ -17,6 +16,24 @@ const AddSpecialty = () => {
 
     const handleSubmitFunc = (form) => {
         console.log(form);
+        axiosSecure.post('/admin/add-specialty', form).then(res=> {
+            console.log(res?.data);
+        }).catch(e=> {
+            if(e.response?.data?.errors?.common?.msg){
+                toast.error(e.response?.data?.errors?.common?.msg, {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
+            } else{
+                console.log(e.response?.data?.errors);
+            }
+        })
     }
 
     return (
@@ -39,8 +56,8 @@ const AddSpecialty = () => {
                     <input type="text" className={`my-inp`} placeholder='Specialty description' {...register("specialtyDescription", {
                         required: "This field is required",
                         maxLength: { 
-                            value: 75,
-                            message: "Maximum 75 words allowed" 
+                            value: 110,
+                            message: "Maximum 110 characters allowed" 
                         }
                     })} />
                     {errors.specialtyDescription && (<p className="text-red-500">*{errors.specialtyDescription?.message}</p>)}

@@ -210,7 +210,7 @@ const RegistrationDoctorPage = () => {
                                 {/* Title */}
                                 <div className='flex-1'>
                                     <label htmlFor="title" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Title <span className='text-secondary-main'>*</span> </label>
-                                    <select defaultValue={''} id='title' className='my-inp-2' {...register("title", { required: true })}>
+                                    <select defaultValue={''} id='title' className='my-inp' {...register("title", { required: true })}>
                                         <option value="" disabled>Title</option>
                                         <option value="Dr.">Dr.</option>
                                         <option value="Prof. Dr.Prof">Prof. Dr.</option>
@@ -223,7 +223,7 @@ const RegistrationDoctorPage = () => {
                                 {/* Doctor Type */}
                                 <div className='flex-1'>
                                     <label htmlFor="doctorType" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Doctor Type <span className='text-secondary-main'>*</span></label>
-                                    <select defaultValue={''} id='doctorType' className='my-inp-2' {...register("doctorType", { required: true })}>
+                                    <select defaultValue={''} id='doctorType' className='my-inp' {...register("doctorType", { required: true })}>
                                         <option value="" disabled>Doctor Type</option>
                                         <option value="Medical">Medical</option>
                                         <option value="Dental">Dental</option>
@@ -238,7 +238,7 @@ const RegistrationDoctorPage = () => {
                                 {/* Bio */}
                                 <div className='flex-1'>
                                     <label htmlFor="bio" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Bio <span className='text-secondary-main'>*</span></label>
-                                    <textarea id='bio' className='my-inp-2 h-[150px]' placeholder="Write something about you."  {...register("bio", { required: true })} />
+                                    <textarea id='bio' className='my-inp h-[150px]' placeholder="Write something about you."  {...register("bio", { required: true })} />
                                     {errors.bio && (<p className="text-red-500">This field is required</p>)}
                                 </div>
                             </div>
@@ -248,7 +248,7 @@ const RegistrationDoctorPage = () => {
                                 {/* Availability days */}
                                 <div className='flex-1'>
                                     <label htmlFor="availabilityDays" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Availability days <span className='text-secondary-main'>*</span></label>
-                                    <select id='availabilityDays' defaultValue={''} className='my-inp-2' {...register("availabilityDays", { required: true })}>
+                                    <select id='availabilityDays' defaultValue={''} className='my-inp' {...register("availabilityDays", { required: true })}>
                                         <option value="">Availability days</option>
                                         {
                                             availabilityDaysOptions.map((item, ind) => {
@@ -281,13 +281,13 @@ const RegistrationDoctorPage = () => {
                             <div className='md:flex gap-4 space-y-4 md:space-y-0'>
                                 <div className='flex-1'>
                                     <label htmlFor="consultationFee" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Consultation fee <span className='text-secondary-main'>*</span></label>
-                                    <input type="text" id='consultationFee' className='my-inp-2' placeholder="Min- 100, Max- 5000"  {...register("consultationFee", { required: true, min: 100, max: 5000 })} />
+                                    <input type="text" id='consultationFee' className='my-inp' placeholder="Min- 100, Max- 5000"  {...register("consultationFee", { required: true, min: 100, max: 5000 })} />
                                     {errors.consultationFee?.type === 'required' && (<p className="text-red-500">This field is required</p>)}
                                     {(errors.consultationFee?.type === 'min' || errors.consultationFee?.type === 'max') && (<p className="text-red-500">Consultation fee must be between 100 and 3000</p>)}
                                 </div>
                                 <div className='flex-1'>
                                     <label htmlFor="followupFee" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Follow up fee <span className='text-secondary-main'>*</span></label>
-                                    <input type="text" id='followupFee' className='my-inp-2' placeholder='Follow up fee (Within 30 days)'  {...register("followupFee", { required: true, min: 100, max: watch("consultationFee") })} />
+                                    <input type="text" id='followupFee' className='my-inp' placeholder='Follow up fee (Within 30 days)'  {...register("followupFee", { required: true, min: 100, max: watch("consultationFee") })} />
                                     {errors.followupFee?.type === 'required' && (<p className="text-red-500">This field is required</p>)}
                                     {(errors.followupFee?.type === 'min' || errors.followupFee?.type === 'max') && (<p className="text-red-500">Follow up fee must be between 100 and {watch("consultationFee") || 5000}</p>)}
                                 </div>
@@ -298,7 +298,7 @@ const RegistrationDoctorPage = () => {
                                 {/* Educational excellent */}
                                 <div className='flex-1'>
                                     <label className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Educational excellent <span className='text-secondary-main'>*</span></label>
-                                    <input type="text" className={`my-inp-2`} placeholder='BSc (Psychology), MPhil (Psychology), Diploma (Psychology) (UK), MS (Psychology)' {...register("educationalExcellent", { required: true })} />
+                                    <input type="text" className={`my-inp`} placeholder='BSc (Psychology), MPhil (Psychology), Diploma (Psychology) (UK), MS (Psychology)' {...register("educationalExcellent", { required: true })} />
                                     {errors.educationalExcellent && (<p className="text-red-500">This field is required</p>)}
                                 </div>
 
@@ -309,12 +309,12 @@ const RegistrationDoctorPage = () => {
                                 {/* Email */}
                                 <div className='flex-1'>
                                     <label className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Email <span className='text-secondary-main'>*</span></label>
-                                    <input type="email" value={user?.email} className={`my-inp-2 pointer-events-none opacity-50`} placeholder='Email' {...register("username")} />
+                                    <input type="email" value={user?.email} className={`my-inp pointer-events-none opacity-50`} placeholder='Email' {...register("username")} />
                                 </div>
                                 {/* currently working at */}
                                 <div className='flex-1'>
                                     <label htmlFor="current_workplace" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Working at</label>
-                                    <input type="text" id='current_workplace' className='my-inp-2' placeholder="Enter your current workplace/hospital"  {...register("current_workplace")} />
+                                    <input type="text" id='current_workplace' className='my-inp' placeholder="Enter your current workplace/hospital"  {...register("current_workplace")} />
                                 </div>
 
                             </div>
@@ -331,7 +331,7 @@ const RegistrationDoctorPage = () => {
                                 {/* District */}
                                 <div className='flex-1'>
                                     <label htmlFor="district" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> District <span className='text-secondary-main'>*</span></label>
-                                    <select id='district' defaultValue={''} className='my-inp-2' {...register("district", { required: true })}>
+                                    <select id='district' defaultValue={''} className='my-inp' {...register("district", { required: true })}>
                                         <option value="" disabled>District</option>
                                         {
                                             districtsOfBangladesh.map((district, ind) => {
@@ -348,7 +348,7 @@ const RegistrationDoctorPage = () => {
                                 {/* Total Experience */}
                                 <div className='flex-1'>
                                     <label htmlFor="total_experience" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Total Experience <span className='text-secondary-main'>*</span></label>
-                                    <select id='total_experience' defaultValue={''} className='my-inp-2' {...register("total_experience", { required: true })}>
+                                    <select id='total_experience' defaultValue={''} className='my-inp' {...register("total_experience", { required: true })}>
                                         <option value="" disabled>Total Experiences</option>
                                         {
                                             totalExperiences.map((item, ind) => {
@@ -362,7 +362,7 @@ const RegistrationDoctorPage = () => {
                                 {/* Gender */}
                                 <div className='flex-1'>
                                     <label htmlFor="gender" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Gender <span className='text-secondary-main'>*</span></label>
-                                    <select id='gender' defaultValue={''} className='my-inp-2' {...register("gender", { required: true })}>
+                                    <select id='gender' defaultValue={''} className='my-inp' {...register("gender", { required: true })}>
                                         <option value="" disabled>Gender</option>
                                         {
                                             ['Male', 'Female'].map((gender, ind) => {
@@ -384,10 +384,10 @@ const RegistrationDoctorPage = () => {
                                         {
                                             workingExperiences?.map((item, ind) => {
                                                 return <div key={ind} className='flex items-center gap-2'>
-                                                    <input type="text" id='weWorkplace' name='weWorkplace' className='my-inp-2' placeholder="Enter workplace/hospital" value={item?.weWorkplace} onChange={(e) => handleWorkingExperiences(ind, e)} />
-                                                    <input type="text" id='weDepartment' name='weDepartment' className='my-inp-2' placeholder="Enter department" value={item?.weDepartment} onChange={(e) => handleWorkingExperiences(ind, e)} />
-                                                    <input type="text" id='weDesignation' name='weDesignation' className='my-inp-2' placeholder="Enter working designation" value={item?.weDesignation} onChange={(e) => handleWorkingExperiences(ind, e)} />
-                                                    <input type="text" id='wePeriod' name='wePeriod' className='my-inp-2' placeholder="Enter working period" value={item?.wePeriod} onChange={(e) => handleWorkingExperiences(ind, e)} />
+                                                    <input type="text" id='weWorkplace' name='weWorkplace' className='my-inp' placeholder="Enter workplace/hospital" value={item?.weWorkplace} onChange={(e) => handleWorkingExperiences(ind, e)} />
+                                                    <input type="text" id='weDepartment' name='weDepartment' className='my-inp' placeholder="Enter department" value={item?.weDepartment} onChange={(e) => handleWorkingExperiences(ind, e)} />
+                                                    <input type="text" id='weDesignation' name='weDesignation' className='my-inp' placeholder="Enter working designation" value={item?.weDesignation} onChange={(e) => handleWorkingExperiences(ind, e)} />
+                                                    <input type="text" id='wePeriod' name='wePeriod' className='my-inp' placeholder="Enter working period" value={item?.wePeriod} onChange={(e) => handleWorkingExperiences(ind, e)} />
                                                     {item?.id !== 1 && <span className='text-secondary-main cursor-pointer' onClick={() => handleRemoveWorkingExperience(item?.id)}><FaXmark /></span>}
                                                 </div>
                                             })
@@ -403,14 +403,14 @@ const RegistrationDoctorPage = () => {
                                 {/* National ID */}
                                 <div className='flex-1'>
                                     <label htmlFor="NID" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> National ID <span className='text-secondary-main'>*</span></label>
-                                    <input type="text" id='NID' className='my-inp-2' placeholder='National ID' {...register("NID", { required: true })} />
+                                    <input type="text" id='NID' className='my-inp' placeholder='National ID' {...register("NID", { required: true })} />
                                     {errors.NID && (<p className="text-red-500">This field is required</p>)}
                                 </div>
 
                                 {/* BMDC */}
                                 <div className='flex-1'>
                                     <label htmlFor="BMDC" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> BMDC <span className='text-secondary-main'>*</span></label>
-                                    <input type="text" id='BMDC' className='my-inp-2' placeholder='Registration Number BMDC' {...register("BMDC", { required: true })} />
+                                    <input type="text" id='BMDC' className='my-inp' placeholder='Registration Number BMDC' {...register("BMDC", { required: true })} />
                                     {errors.BMDC && (<p className="text-red-500">This field is required</p>)}
                                 </div>
                             </div>

@@ -25,10 +25,10 @@ input:-webkit-autofill:active{
     background:  #132B44;
     -webkit-text-fill-color: #000
 }
-input.my-inp-2:-webkit-autofill,
-input.my-inp-2:-webkit-autofill:hover, 
-input.my-inp-2:-webkit-autofill:focus, 
-input.my-inp-2:-webkit-autofill:active{
+input.my-inp:-webkit-autofill,
+input.my-inp:-webkit-autofill:hover, 
+input.my-inp:-webkit-autofill:focus, 
+input.my-inp:-webkit-autofill:active{
     transition: background-color 5000s ease-in-out 0s;
     -webkit-text-fill-color: #fff;
 }
@@ -66,11 +66,12 @@ select option {
   @apply block w-full p-3 bg-slate-100 text-slate-700 placeholder:text-slate-500 border-none rounded focus:outline-none
 }
 .my-inp{
-  @apply block w-full p-3 bg-slate-900 text-slate-300 placeholder:text-slate-500 focus:shadow-inner focus:shadow-slate-500 border-none rounded focus:outline-none
-}
-.my-inp-2{
-  @apply rounded-lg px-4 py-3 outline-none focus:border-l-2 focus:border-[#E57373] w-full text-slate-200;
+  @apply rounded-lg px-4 py-3 outline-none focus:border-l-2 focus:border-[#E57373]  w-full text-black;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
   background: rgba(255, 255, 255, 0.05);
+}
+.my-inp:focus{
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
 }
 .my-file-inp{
   @apply file-input file-input-bordered file-input-error bg-slate-900 text-white w-full

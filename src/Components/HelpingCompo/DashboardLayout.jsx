@@ -12,7 +12,6 @@ const DashboardLayout = ({ children }) => {
     const { user, authLoading } = useAuth()
     const isRole = user?.role
 
-    console.log(user, 'from  dashboard layout');
 
     return (
         <div className='flex'>
@@ -33,15 +32,16 @@ const DashboardLayout = ({ children }) => {
                                         <DashboardLink href={'/admin-dashboard/add-specialty'}> Add a specialty </DashboardLink>
                                         <DashboardLink href={'/admin-dashboard/add-a-doctor'}> Add a doctor </DashboardLink>
                                         <DashboardLink href={'/admin-dashboard/manage-doctors'}>Manage doctors</DashboardLink>
+                                        <DashboardLink href={'/admin-dashboard/manage-users'}>Manage users</DashboardLink>
                                     </ul> : isRole === 'doctor' ?
                                         <ul>
                                             <DashboardLink href={'/doctor-dashboard'}> Dashboard </DashboardLink>
-                                        </ul> : isRole === 'user' &&
+                                        </ul> : isRole === 'user' ?
                                         <ul>
                                             <DashboardLink href={'/user-dashboard'}> Dashboard </DashboardLink>
                                             <DashboardLink href={'/user-dashboard/my-appointments'}> My appointments </DashboardLink>
                                             <DashboardLink href={'/user-dashboard/my-history'}> My history </DashboardLink>
-                                        </ul>
+                                        </ul> : <DashboardLayoutSkeleton/>
                                 }
                             </>
                     }

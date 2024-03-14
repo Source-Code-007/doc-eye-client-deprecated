@@ -12,9 +12,9 @@ import useCookies from '@/Hooks/useCookies';
 import MyLoading from '../HelpingCompo/MyLoading';
 
 const Signin = () => {
+    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
     const [showPass, setShowPass] = useState(false)
     const { user, authLoading, setAuthLoading, profileControl, setProfileControl } = useAuth()
-    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
     const router = useRouter()
     const axiosInstance = useAxiosInstance()
     const cookies = useCookies()

@@ -67,7 +67,7 @@ const ContactPage = () => {
                                 <div className='flex gap-4'>
                                     <div className='flex-1'>
                                         <label htmlFor='appointmentDept' className='my-inp-label'>Department <span className='text-secondary-main'>*</span></label>
-                                        <select defaultValue={''} id='appointmentDept' className='my-inp-2' {...register("appointmentDept", { required: true })}>
+                                        <select defaultValue={''} id='appointmentDept' className='my-inp' {...register("appointmentDept", { required: true })}>
                                             <option value="">Department</option>
                                             <option value="Cardiology">Cardiology</option>
                                             <option value="Dermatology">Dermatology</option>
@@ -78,7 +78,7 @@ const ContactPage = () => {
                                     </div>
                                     <div className="flex-1">
                                         <label htmlFor='mobile' className='my-inp-label'>Mobile <span className='text-secondary-main'>*</span></label>
-                                        <input type="number" id='mobile' className='my-inp-2' placeholder='Mobile' {...register("mobile", { required: true })}/>
+                                        <input type="number" id='mobile' className='my-inp' placeholder='Mobile' {...register("mobile", { required: true })}/>
                                         {errors.mobile && (<p className="text-red-500 mt-1">*This field is required</p>)}
                                     </div>
                                 </div>
@@ -87,12 +87,12 @@ const ContactPage = () => {
                                 <div className='flex gap-4'>
                                     <div className='flex-1'>
                                         <label htmlFor='name' className='my-inp-label'>Name <span className='text-secondary-main'>*</span></label>
-                                        <input type="text" id='name' className='my-inp-2' placeholder='Name' {...register("name", { required: true })} />
+                                        <input type="text" id='name' className='my-inp' placeholder='Name' {...register("name", { required: true })} />
                                         {errors.name && (<p className="text-red-500 mt-1">*This field is required</p>)}
                                     </div>
                                     <div className='flex-1'>
                                         <label htmlFor='email' className='my-inp-label'>Email <span className='text-secondary-main'>*</span></label>
-                                        <input type="text" id='email' className='my-inp-2' placeholder='Email'  {...register('username', {
+                                        <input type="text" id='email' className='my-inp' placeholder='Email'  {...register('username', {
                                             required: "Email is required",
                                             pattern: {
                                                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -146,7 +146,7 @@ const ContactPage = () => {
                                 {/* Query */}
                                 <div className='w-full'>
                                     <label htmlFor='query' className='my-inp-label'>Your message<span className='text-secondary-main'>*</span></label>
-                                    <textarea type="text" id='query' placeholder="your query here..." className="my-inp-2 min-h-[150px] h-52 max-h-[350px]" {...register('query', { required: true })} />
+                                    <textarea type="text" id='query' placeholder="your query here..." className="my-inp min-h-[150px] h-52 max-h-[350px]" {...register('query', { required: true })} />
                                     {errors.query && <p className='text-red-500 mt-1'>*This field is required</p>}
                                 </div>
 

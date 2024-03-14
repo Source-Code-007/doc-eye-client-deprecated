@@ -8,9 +8,11 @@ import { useAuth } from '@/Providers/AuthProvider';
 import useAxiosInstance from '@/Hooks/Axios/useAxiosInstance';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import MyLoading from '../HelpingCompo/MyLoading';
 
 
 const Signup = () => {
+    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
     const { user, setUser, authLoading, setAuthLoading, createUserWithEmailPass, updateProfileFunc } = useAuth()
     const [loading, setLoading] = useState(false)
     const [showPass, setShowPass] = useState({ password: false, confirmPassword: false })
@@ -18,14 +20,20 @@ const Signup = () => {
     const router = useRouter()
     const [myErrors, setMyErrors] = useState(null)
 
-    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
+    if (authLoading) {
+        return <div className='my-h-screen flex items-center justify-center bg-slate-100'><MyLoading /></div>
+    } else if (user) {
+        router.push('/')
+    }
+
     const onSubmit = form => {
         setLoading(true)
         setMyErrors(null)
-        const { email, password, name, signupPhoto, phone } = form
-
+        console.log(form, '32');
         
-        axiosInstance.post('/signup', { name, email, phone, password, role: 'user', avatar: signupPhoto?.[0] }, { headers: { "Content-Type": "multipart/form-data" } }).then(res => {
+        const { email, password, name, signupPhoto, phone, gender } = form
+
+        axiosInstance.post('/signup', { name, email, phone, password, gender, role: 'user', avatar: signupPhoto?.[0] }, { headers: { "Content-Type": "multipart/form-data" } }).then(res => {
             setLoading(false)
 
             toast.success('User created successfully!', {
@@ -50,7 +58,6 @@ const Signup = () => {
 
     };
 
-
     return (
         <div className='min-h-screen flex items-center justify-center bg-cover bg-center bg-slate-800 bg-blend-overlay my-28 md:my-0' style={{ backgroundImage: `url(${signinBG.src})` }}>
 
@@ -73,15 +80,32 @@ const Signup = () => {
 
                         {/* Phone number */}
                         <div>
-                            <label htmlFor="signupNumber" className='text-slate-600'>Your number here</label>
-                            <input type='number' {...register("phone", { required: true })} id='signupNumber' className={`sign-my-inp shadow-inner ${(errors.phone || myErrors?.phone) ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your number here' />
+                            <label htmlFor="signupNumber" className='text-slate-600'>Your phone here</label>
+                            <input type='number' {...register("phone", { required: true })} id='signupNumber' className={`sign-my-inp shadow-inner ${(errors.phone || myErrors?.phone) ? 'shadow-red-700' : 'shadow-slate-700'}`} placeholder='Your phone here' />
                             {errors.phone ? <span className='text-red-500'>*Phone is required</span> : myErrors?.phone && <span className='text-red-500'>*{myErrors?.phone?.msg}</span>}
+                        </div>
+
+                        {/* Gender */}
+                        <div>
+                            <div className='flex items-center gap-4'>
+                                <label htmlFor="gender" className='text-slate-600'>Gender</label>
+                                <div className='flex items-center gap-2'>
+                                    {[{ value: 'male', title: 'Male' }, { value: 'female', title: 'Female' }, { value: 'other', title: 'Other' }].map((elem, ind) => {
+                                        return <div key={ind} className='flex items-center gap-1'>
+                                            <input type="radio" className='radio' value={elem.value} {...register("gender", { required: true })} id={elem?.value} />
+                                            <label className='font-semibold cursor-pointer' htmlFor={elem?.value}>{elem?.title}</label>
+                                        </div>
+                                    })}
+                                </div>
+                            </div>
+
+                            {errors.gender ? <span className='text-red-500'>*Gender is required</span> : myErrors?.gender && <span className='text-red-500'>*{myErrors?.gender?.msg}</span>}
                         </div>
 
                         {/* Photo */}
                         <div>
                             <label htmlFor="signupPhoto" className='text-slate-600'>Your photo here</label>
-                            <input type='file' {...register("signupPhoto", { required: true })} id='signupPhoto'
+                            <input type='file' {...register("signupPhoto")} id='signupPhoto'
                                 className={`file-input file-input-bordered file-input-error !p-0 sign-my-inp ${errors.signupPhoto ? 'shadow-red-700' : 'shadow-slate-700'}`}
                                 // className="file-input file-input-bordered focus:outline-0 file-input-error my-inp !p-0"
 
@@ -114,7 +138,7 @@ const Signup = () => {
                                 <span onClick={() => setShowPass({ ...showPass, pass: !showPass.pass })} className='cursor-pointer absolute top-[18px] right-2'>{showPass.pass ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}</span>
                             </div>
 
-                     
+
                             {errors.password ? <span className='text-red-500'>*{errors?.password?.message}</span> : myErrors?.password && <span className='text-red-500'>*{myErrors?.password?.msg}</span>}
                         </div>
 
@@ -140,7 +164,7 @@ const Signup = () => {
                                         <input id="terms" name='terms' aria-describedby="terms" type="checkbox" {...register('terms', { required: true })} className="w-4 h-4" />
                                     </div>
                                     <div className="text-sm">
-                                        <label htmlFor="terms" className='text-primary-desc cursor-pointer' style={{paddingLeft:'5px'}}>Accept <Link className='link-hover link-primary' href={'#'}>Terms and Condition</Link></label>
+                                        <label htmlFor="terms" className='text-primary-desc cursor-pointer' style={{ paddingLeft: '5px' }}>Accept <Link className='link-hover link-primary' href={'#'}>Terms and Condition</Link></label>
                                     </div>
                                 </div>
                             </div>
@@ -148,7 +172,7 @@ const Signup = () => {
                         </div>
 
                         <div className='w-5/6 mx-auto'>
-                            <button type="submit" className={`${loading? 'my-disable-btn-one' : 'my-btn-one'} w-full`}>Signup</button>
+                            <button type="submit" className={`${loading ? 'my-disable-btn-one' : 'my-btn-one'} w-full`}>Signup</button>
                         </div>
 
                         <p className='text-slate-700'>Already have an account? <Link href={'/signin'}><button className='text-primary cursor-pointer font-bold'>Signin</button></Link></p>

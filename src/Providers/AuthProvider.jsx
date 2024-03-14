@@ -79,7 +79,6 @@ const AuthProvider = ({ children }) => {
         // return () => {
         //     authMonitoring()
         // }
-        console.log('get docEyeAccessToken', docEyeAccessToken);
 
         setAuthLoading(true)
 
@@ -89,7 +88,7 @@ const AuthProvider = ({ children }) => {
                 setUser(res?.data?.data);
                 setAuthLoading(false)
             }).catch(e => {
-                console.log(e?.response?.data?.message);
+                console.log(e?.response?.data?.errors?.common?.msg, 'err from ger user profile from auth provider');
                 setAuthLoading(false)
             })
         } else {
