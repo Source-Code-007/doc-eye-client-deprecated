@@ -15,8 +15,8 @@ const AddSpecialty = () => {
     } = useForm();
 
     const handleSubmitFunc = (form) => {
-        console.log(form);
-        axiosSecure.post('/admin/add-specialty', form).then(res=> {
+        const {specialtyName, specialtyDescription, specialtyLogo} = form
+        axiosSecure.post('/admin/add-specialty', {specialtyName, specialtyDescription, specialtyLogo: specialtyLogo?.[0]}, {headers:{"Content-Type": "multipart/form-data"}}).then(res=> {
             console.log(res?.data);
         }).catch(e=> {
             if(e.response?.data?.errors?.common?.msg){
