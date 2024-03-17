@@ -1,5 +1,8 @@
 {
     "cSpell.words": [
         "signin"
+    ],
+    "cSpell.enableFiletypes": [
+        "jsonl"
     ]
 }

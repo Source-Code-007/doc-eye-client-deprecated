@@ -29,7 +29,7 @@ const DashboardLayout = ({ children }) => {
                                 {isRole === 'admin' ?
                                     <ul>
                                         <DashboardLink href={'/admin-dashboard'}> Dashboard </DashboardLink>
-                                        <DashboardLink href={'/admin-dashboard/add-specialty'}> Add a specialty </DashboardLink>
+                                        <DashboardLink href={'/admin-dashboard/manage-specialty'}> Manage specialty </DashboardLink>
                                         <DashboardLink href={'/admin-dashboard/add-a-doctor'}> Add a doctor </DashboardLink>
                                         <DashboardLink href={'/admin-dashboard/manage-doctors'}>Manage doctors</DashboardLink>
                                         <DashboardLink href={'/admin-dashboard/manage-users'}>Manage users</DashboardLink>

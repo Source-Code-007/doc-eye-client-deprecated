@@ -147,6 +147,12 @@ select option {
 .my-btn-one-outline{
   @apply bg-slate-50 hover:bg-[#09528C] border-2 font-semibold hover:text-slate-100 text-[#09528C] rounded py-3 px-6 border-[#09528C]
 }
+.my-tab-btn-one{
+  @apply bg-[#09528C] border-2 border-transparent text-slate-100 rounded py-3 px-6
+}
+.my-tab-btn-one-outline{
+  @apply bg-slate-50 border-2 font-semibold text-[#09528C] rounded py-3 px-6 border-[#09528C]
+}
 
 /* Scrollbar */
 body::-webkit-scrollbar {
@@ -212,3 +218,17 @@ body::-webkit-scrollbar-thumb {
   stroke: white;
 }
 
+
+/* React tab */
+.react-tabs__tab-list{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  border-bottom: none !important;
+}
+.react-tabs__tab--selected{
+  border: none !important;
+}
+.react-tabs__tab{
+  padding: 0 !important;
+}
