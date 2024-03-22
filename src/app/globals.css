@@ -168,8 +168,6 @@ body::-webkit-scrollbar-thumb {
   outline: 1px solid slategrey;
 }
 
-
-
 /* vertical timeline - why use DocEye section*/
 .vertical-timeline::before{
   background-color: #09528C !important;

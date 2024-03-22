@@ -4,6 +4,8 @@ import AuthProvider from '@/Providers/AuthProvider'
 import { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-tabs/style/react-tabs.css';
+
 
 
 const inter = Inter({ subsets: ['latin'] })
