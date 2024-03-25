@@ -1,19 +1,28 @@
 import useAxiosSecure from '@/Hooks/Axios/useAxiosSecure';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
-import { FaEye } from "react-icons/fa";
 
 import { AgGridReact } from 'ag-grid-react'; // AG Grid Component
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the grid
+import UpdateSpecialtyModal from '@/Components/HelpingCompo/Modal/UpdateSpecialtyModal';
 
 
 
-const CustomButtonComponent = (props) => {
-  return <button className='bg-primary-main px-2 py-[2px] rounded text-white font-semibold' onClick={() => console.log(props?.data, 'data')}>Push Me!</button>;
+const SpecialtyActionCompo = (props) => {
+  const [currentSpecialty, setCurrentSpecialty] = useState({})
+  return <div className='h-full flex items-center gap-1'>
+    <span className='cursor-pointer text-xl ' onClick={() => {document.getElementById('update_specialty_modal').showModal(); setCurrentSpecialty(props.data)}}><CiEdit /></span>
+    <span className='cursor-pointer text-xl text-danger-desc' onClick={() => console.log(props._id)}><MdDelete /></span>
+
+      {/* Modal */}
+      <UpdateSpecialtyModal currentSpecialty={currentSpecialty}/>
+  </div>
 };
+
+
 
 const UpdateSpecialty = () => {
   const axiosSecure = useAxiosSecure()
@@ -25,14 +34,19 @@ const UpdateSpecialty = () => {
 
   // Column Definitions: Defines the columns to be displayed.
   const [colDefs, setColDefs] = useState([
-    { field: "name", filter: true },
-    { field: "description", flex: 1},
-    { field: "action", sortable: false, cellRenderer: CustomButtonComponent },
+    { field: "name" },
+    { field: "description", flex: 1 },
+    { field: "action", sortable: false, filter: false, cellRenderer: SpecialtyActionCompo },
   ]);
+  const defaultColDef = useMemo(() => ({
+    sortable: true,
+    filter: true
+  }), [])
+
   useEffect(() => {
     axiosSecure('/admin/specialties').then(res => {
       if (res.data?.length > 0) {
-        setRowData(res.data.map(elem=> ( {name: elem.specialtyName, description: elem.specialtyDescription})))
+        setRowData(res.data.map(elem => ({_id: elem._id, name: elem.specialtyName, description: elem.specialtyDescription })))
         setSpecialties(res.data)
         console.log(res.data);
       }
@@ -89,6 +103,7 @@ const UpdateSpecialty = () => {
         <AgGridReact
           rowData={rowData}
           columnDefs={colDefs}
+          defaultColDef={defaultColDef}
 
           pagination={pagination}
           paginationPageSize={paginationPageSize}
@@ -96,8 +111,8 @@ const UpdateSpecialty = () => {
         />
       </div>
 
-
     </div>
+
   );
 };
 
