@@ -230,3 +230,15 @@ body::-webkit-scrollbar-thumb {
 .react-tabs__tab{
   padding: 0 !important;
 }
+
+
+
+/* AG grid */
+.ag-theme-quartz {
+     --ag-grid-size: 15px !important;
+    display: flex;
+    align-items: center;
+  }
+  .ag-theme-quartz>div{
+    width: 100%;
+  }

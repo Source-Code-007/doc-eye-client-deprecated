@@ -1,7 +1,7 @@
 'use client'
 
 import AddSpecialty from "@/Components/Dashboard/Admin/Specialty/AddSpecialty";
-import UpdateSpecialty from "@/Components/Dashboard/Admin/UpdateSpecialty";
+import UpdateSpecialty from "@/Components/Dashboard/Admin/Specialty/UpdateSpecialty";
 import { useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 

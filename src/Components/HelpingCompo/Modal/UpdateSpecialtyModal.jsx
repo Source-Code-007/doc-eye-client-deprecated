@@ -48,7 +48,7 @@ const UpdateSpecialtyModal = ({ currentSpecialty }) => {
         })
     }
 
-    console.log(currentSpecialty, 'from update modal');
+    // console.log(currentSpecialty, 'from update modal');
     return (
         <dialog id="update_specialty_modal" className="modal">
             <div className="modal-box relative">

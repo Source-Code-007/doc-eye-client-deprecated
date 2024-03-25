@@ -3,24 +3,63 @@ import Image from 'next/image';
 import React, { useEffect, useMemo, useState } from 'react';
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
+import UpdateSpecialtyModal from '@/Components/HelpingCompo/Modal/UpdateSpecialtyModal';
+import useAxiosInstance from '@/Hooks/Axios/useAxiosInstance';
 
+// AG grid
 import { AgGridReact } from 'ag-grid-react'; // AG Grid Component
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the grid
-import UpdateSpecialtyModal from '@/Components/HelpingCompo/Modal/UpdateSpecialtyModal';
 
+// SWAL
+import Swal from 'sweetalert2';
 
 
 const SpecialtyActionCompo = (props) => {
   const [currentSpecialty, setCurrentSpecialty] = useState({})
-  return <div className='h-full flex items-center gap-1'>
-    <span className='cursor-pointer text-xl ' onClick={() => {document.getElementById('update_specialty_modal').showModal(); setCurrentSpecialty(props.data)}}><CiEdit /></span>
-    <span className='cursor-pointer text-xl text-danger-desc' onClick={() => console.log(props._id)}><MdDelete /></span>
+  const axiosInstance = useAxiosInstance()
 
-      {/* Modal */}
-      <UpdateSpecialtyModal currentSpecialty={currentSpecialty}/>
+  // Delete specialty handler
+  const deleteSpecialty = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#09528C",
+      cancelButtonColor: "#E57373",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosInstance.delete(`/admin/delete-specialty/${id}`).then(res => {
+          if (res.status == 200) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success"
+            });
+          }
+        }).catch(e => {
+          console.log(e);
+        })
+      }
+    });
+
+  }
+
+  return <div className='h-full flex items-center gap-1'>
+    <span className='cursor-pointer text-xl ' onClick={() => { document.getElementById('update_specialty_modal').showModal(); setCurrentSpecialty(props.data) }}><CiEdit /></span>
+    <span className='cursor-pointer text-xl text-danger-desc' onClick={() => deleteSpecialty(props.data?._id)}><MdDelete /></span>
+
+    {/* Modal */}
+    <UpdateSpecialtyModal currentSpecialty={currentSpecialty} />
   </div>
 };
+
+const SpecialtyImageCompo = (props) => {
+  // console.log(props.data?.name, props.value, 'from image compo');
+  return <figure className='h-full flex items-center'><Image src={props.value} alt={props.data?.name} height={50} width={50} /></figure>
+}
 
 
 
@@ -36,6 +75,7 @@ const UpdateSpecialty = () => {
   const [colDefs, setColDefs] = useState([
     { field: "name" },
     { field: "description", flex: 1 },
+    { field: "image", cellRenderer: SpecialtyImageCompo },
     { field: "action", sortable: false, filter: false, cellRenderer: SpecialtyActionCompo },
   ]);
   const defaultColDef = useMemo(() => ({
@@ -46,7 +86,8 @@ const UpdateSpecialty = () => {
   useEffect(() => {
     axiosSecure('/admin/specialties').then(res => {
       if (res.data?.length > 0) {
-        setRowData(res.data.map(elem => ({_id: elem._id, name: elem.specialtyName, description: elem.specialtyDescription })))
+        console.log(res?.data);
+        setRowData(res.data.map(elem => ({ _id: elem._id, name: elem.specialtyName, description: elem.specialtyDescription, image: elem.specialtyLogo })))
         setSpecialties(res.data)
         console.log(res.data);
       }
