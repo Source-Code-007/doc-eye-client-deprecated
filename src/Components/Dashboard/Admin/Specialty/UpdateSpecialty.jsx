@@ -18,6 +18,8 @@ import Swal from 'sweetalert2';
 const SpecialtyActionCompo = (props) => {
   const [currentSpecialty, setCurrentSpecialty] = useState({})
   const axiosInstance = useAxiosInstance()
+  const {control, setControl} = props
+
 
   // Delete specialty handler
   const deleteSpecialty = (id) => {
@@ -52,7 +54,7 @@ const SpecialtyActionCompo = (props) => {
     <span className='cursor-pointer text-xl text-danger-desc' onClick={() => deleteSpecialty(props.data?._id)}><MdDelete /></span>
 
     {/* Modal */}
-    <UpdateSpecialtyModal currentSpecialty={currentSpecialty} />
+    <UpdateSpecialtyModal currentSpecialty={currentSpecialty} control={control} setControl={setControl} />
   </div>
 };
 
@@ -66,6 +68,7 @@ const SpecialtyImageCompo = (props) => {
 const UpdateSpecialty = () => {
   const axiosSecure = useAxiosSecure()
   const [specialties, setSpecialties] = useState([])
+  const [control, setControl] = useState(true)
 
 
   // Row Data: The data to be displayed.
@@ -76,7 +79,10 @@ const UpdateSpecialty = () => {
     { field: "name" },
     { field: "description", flex: 1 },
     { field: "image", cellRenderer: SpecialtyImageCompo },
-    { field: "action", sortable: false, filter: false, cellRenderer: SpecialtyActionCompo },
+    { field: "action", sortable: false, filter: false, cellRenderer: SpecialtyActionCompo, cellRendererParams: {
+      control: control,
+      setControl: setControl
+    } },
   ]);
   const defaultColDef = useMemo(() => ({
     sortable: true,
@@ -94,7 +100,7 @@ const UpdateSpecialty = () => {
     }).catch(e => {
       console.log(e);
     })
-  }, [axiosSecure])
+  }, [axiosSecure, control])
 
   const pagination = true;
   const paginationPageSize = 10;
