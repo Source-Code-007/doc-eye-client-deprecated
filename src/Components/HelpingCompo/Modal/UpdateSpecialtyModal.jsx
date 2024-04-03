@@ -132,7 +132,7 @@ const UpdateSpecialtyModal = ({ currentSpecialty, control, setControl }) => {
                         {errors.specialtyDescription && (<p className="text-red-500">*{errors.specialtyDescription?.message}</p>)}
                     </div>
 
-                    <button type='submit' className='my-btn-one !mt-5'>Submit</button>
+                    <button type='submit' className='my-btn-one !mt-5 !pt-0 !pb-0'>Submit</button>
                 </form>
 
 

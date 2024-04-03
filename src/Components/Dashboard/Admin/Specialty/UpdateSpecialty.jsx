@@ -13,16 +13,17 @@ import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied
 
 // SWAL
 import Swal from 'sweetalert2';
+import MyLoading from '@/Components/HelpingCompo/MyLoading';
 
 
 const SpecialtyActionCompo = (props) => {
   const [currentSpecialty, setCurrentSpecialty] = useState({})
   const axiosInstance = useAxiosInstance()
-  const {control, setControl} = props
+  const { control, setControl } = props
 
 
   // Delete specialty handler
-  const deleteSpecialty = (id) => {
+  const deleteSpecialtyHandler = (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -42,20 +43,20 @@ const SpecialtyActionCompo = (props) => {
             });
           }
         }).catch(e => {
-          if(e.response?.data?.errors?.common?.msg){
+          if (e.response?.data?.errors?.common?.msg) {
             toast.error(e.response?.data?.errors?.common?.msg, {
-                position: "bottom-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-                });
-        } else{
+              position: "bottom-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          } else {
             console.log(e.response?.data?.errors);
-        }
+          }
         })
       }
     });
@@ -64,7 +65,7 @@ const SpecialtyActionCompo = (props) => {
 
   return <div className='h-full flex items-center gap-1'>
     <span className='cursor-pointer text-xl ' onClick={() => { document.getElementById('update_specialty_modal').showModal(); setCurrentSpecialty(props.data) }}><CiEdit /></span>
-    <span className='cursor-pointer text-xl text-danger-desc' onClick={() => deleteSpecialty(props.data?._id)}><MdDelete /></span>
+    <span className='cursor-pointer text-xl text-danger-desc' onClick={() => deleteSpecialtyHandler(props.data?._id)}><MdDelete /></span>
 
     {/* Modal */}
     <UpdateSpecialtyModal currentSpecialty={currentSpecialty} control={control} setControl={setControl} />
@@ -80,6 +81,7 @@ const SpecialtyImageCompo = (props) => {
 
 const UpdateSpecialty = () => {
   const axiosSecure = useAxiosSecure()
+  const [specialtiesLoading, setSpecialtiesLoading] = useState(false)
   const [specialties, setSpecialties] = useState([])
   const [control, setControl] = useState(true)
 
@@ -92,10 +94,12 @@ const UpdateSpecialty = () => {
     { field: "name" },
     { field: "description", flex: 1 },
     { field: "image", cellRenderer: SpecialtyImageCompo },
-    { field: "action", sortable: false, filter: false, cellRenderer: SpecialtyActionCompo, cellRendererParams: {
-      control: control,
-      setControl: setControl
-    } },
+    {
+      field: "action", sortable: false, filter: false, cellRenderer: SpecialtyActionCompo, cellRendererParams: {
+        control: control,
+        setControl: setControl
+      }
+    },
   ]);
   const defaultColDef = useMemo(() => ({
     sortable: true,
@@ -103,14 +107,16 @@ const UpdateSpecialty = () => {
   }), [])
 
   useEffect(() => {
+    setSpecialtiesLoading(true)
     axiosSecure('/admin/specialties').then(res => {
       if (res.data?.length > 0) {
         console.log(res?.data);
         setRowData(res.data.map(elem => ({ _id: elem._id, name: elem.specialtyName, description: elem.specialtyDescription, image: elem.specialtyLogo })))
         setSpecialties(res.data)
-        console.log(res.data);
+        setSpecialtiesLoading(false)
       }
     }).catch(e => {
+      setSpecialtiesLoading(false)
       console.log(e);
     })
   }, [axiosSecure, control])
@@ -156,20 +162,23 @@ const UpdateSpecialty = () => {
         </table>
       </div> */}
 
-      <div
-        className="ag-theme-quartz" // applying the grid theme
-        style={{ height: 500 }} // the grid will fill the size of the parent container
-      >
-        <AgGridReact
-          rowData={rowData}
-          columnDefs={colDefs}
-          defaultColDef={defaultColDef}
+{
+  specialtiesLoading? <div className='my-h-screen flex items-center justify-center'><MyLoading/></div> :    <div
+  className="ag-theme-quartz" // applying the grid theme
+  style={{ height: 500 }} // the grid will fill the size of the parent container
+>
+  <AgGridReact
+    rowData={rowData}
+    columnDefs={colDefs}
+    defaultColDef={defaultColDef}
 
-          pagination={pagination}
-          paginationPageSize={paginationPageSize}
-          paginationPageSizeSelector={paginationPageSizeSelector}
-        />
-      </div>
+    pagination={pagination}
+    paginationPageSize={paginationPageSize}
+    paginationPageSizeSelector={paginationPageSizeSelector}
+  />
+</div>
+}
+   
 
     </div>
 
