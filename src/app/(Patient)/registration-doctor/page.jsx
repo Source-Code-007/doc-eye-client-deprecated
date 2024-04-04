@@ -131,6 +131,7 @@ const RegistrationDoctorPage = () => {
     ];
 
 
+    // Manage working experiences
     const [workingExperiences, setWorkingExperiences] = useState([{ id: 1, weWorkplace: '', weDesignation: '', weDepartment: '', wePeriod: '' }])
     const handleWorkingExperiences = (ind, e) => {
         const { name, value } = e.target;
@@ -162,9 +163,9 @@ const RegistrationDoctorPage = () => {
         console.log({ title: title, doctorType: doctorType, bio: bio, total_experience: total_experience, educationalExcellent: educationalExcellent, consultationFee: consultationFee, followupFee: followupFee, workingExperiences: workingExperiences, dateOfBirth: dateOfBirth, availabilityDays: availabilityDays, availabilityTimeStart: availabilityTimeStart, availabilityTimeEnd: availabilityTimeEnd, current_workplace: current_workplace, joined_docEye: new Date(Date.now) });
 
 
-        
 
-   setLoading(false) //TODO: remove
+
+        setLoading(false) //TODO: remove
 
         return
 
@@ -293,8 +294,9 @@ const RegistrationDoctorPage = () => {
                                 </div>
                             </div>
 
-                            {/* Educational excellent */}
+                            {/* Educational excellent and total experience*/}
                             <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
+
                                 {/* Educational excellent */}
                                 <div className='flex-1'>
                                     <label className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Educational excellent <span className='text-secondary-main'>*</span></label>
@@ -302,7 +304,22 @@ const RegistrationDoctorPage = () => {
                                     {errors.educationalExcellent && (<p className="text-red-500">This field is required</p>)}
                                 </div>
 
+                                {/* Total Experience */}
+                                <div className='flex-1'>
+                                    <label htmlFor="total_experience" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Total Experience <span className='text-secondary-main'>*</span></label>
+                                    <select id='total_experience' defaultValue={''} className='my-inp' {...register("total_experience", { required: true })}>
+                                        <option value="" disabled>Total Experiences</option>
+                                        {
+                                            totalExperiences.map((item, ind) => {
+                                                return <option key={ind} value={item}>{item}</option>
+                                            })
+                                        }
+                                    </select>
+                                    {errors.total_experience && (<p className="text-red-500">This field is required</p>)}
+                                </div>
+
                             </div>
+
 
                             {/* Email & currently working at */}
                             <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
@@ -343,36 +360,6 @@ const RegistrationDoctorPage = () => {
                                 </div>
                             </div>
 
-                            {/* Total Experience & Gender */}
-                            <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
-                                {/* Total Experience */}
-                                <div className='flex-1'>
-                                    <label htmlFor="total_experience" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Total Experience <span className='text-secondary-main'>*</span></label>
-                                    <select id='total_experience' defaultValue={''} className='my-inp' {...register("total_experience", { required: true })}>
-                                        <option value="" disabled>Total Experiences</option>
-                                        {
-                                            totalExperiences.map((item, ind) => {
-                                                return <option key={ind} value={item}>{item}</option>
-                                            })
-                                        }
-                                    </select>
-                                    {errors.total_experience && (<p className="text-red-500">This field is required</p>)}
-                                </div>
-
-                                {/* Gender */}
-                                <div className='flex-1'>
-                                    <label htmlFor="gender" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Gender <span className='text-secondary-main'>*</span></label>
-                                    <select id='gender' defaultValue={''} className='my-inp' {...register("gender", { required: true })}>
-                                        <option value="" disabled>Gender</option>
-                                        {
-                                            ['Male', 'Female'].map((gender, ind) => {
-                                                return <option key={ind} value={gender}>{gender}</option>
-                                            })
-                                        }
-                                    </select>
-                                    {errors.gender && (<p className="text-red-500">This field is required</p>)}
-                                </div>
-                            </div>
 
                             {/* Working experience */}
                             <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>

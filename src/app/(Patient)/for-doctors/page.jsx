@@ -2,9 +2,9 @@ import React from 'react';
 import areYouDoctorBanner from '/public/assets/img/areYouDoctor.jpg'
 import Link from 'next/link';
 import DoctorReview from '@/Components/ForDoctors/DoctorReview';
+import JoinNowButton from '@/Components/ForDoctors/JoinNowButton';
 
 const ForDoctorsPage = () => {
-
 
 
 
@@ -18,9 +18,7 @@ const ForDoctorsPage = () => {
                     <h2 className='my-title'>Are you <br /> A Certified Doctor?</h2>
                     <h6 className='my-subtitle'>Join Our Healthcare Network</h6>
                     <p className='pr-20 md:pr-[520px] xl:pr-[830px]'>Join DocEye network and create your virtual chamber provide medical consultancy via video call and expand the reach of your service. As a member of our healthcare network, you{"'"}ll gain access to a wealth of medical knowledge, research, and the latest advancements in the field.</p>
-                    <Link href={'/registration-doctor'}>
-                        <button className='my-btn-two w-fit'>Join now</button>
-                    </Link>
+                       <JoinNowButton/>
 
                 </div>
                 <div>
