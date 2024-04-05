@@ -13,7 +13,7 @@ const JoinNowButton = () => {
 
         if (!user) {
             Swal.fire({
-                title: "Are you sure?",
+                title: "Please signin first!",
                 text: "You have to signin first to register as a doctor!",
                 icon: "warning",
                 showCancelButton: true,

@@ -8,7 +8,7 @@ const getSpecialties = async () => {
         const data = await res.json()
         return data
     } catch (e) {
-        return e.message
+        return e
     }
 };
 

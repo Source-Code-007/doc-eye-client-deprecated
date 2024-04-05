@@ -15,9 +15,9 @@ import TermsModal from '@/Components/HelpingCompo/TermsModal';
 import { FaPlus, FaXmark } from 'react-icons/fa6';
 import { useAuth } from '@/Providers/AuthProvider';
 import Skeleton from 'react-loading-skeleton';
+import useSpecialtiesData from '@/Hooks/useData/useSpecialtiesData';
 
 
-// Need API for specialties - can be handle in admin dashboard (add, delete)
 
 const RegistrationDoctorPage = () => {
     const [dateOfBirth, setDateOfBirth] = useState(new Date().toLocaleDateString());
@@ -25,6 +25,7 @@ const RegistrationDoctorPage = () => {
     const [availabilityTimeEnd, setAvailabilityTimeEnd] = useState(new Date().toLocaleTimeString())
     const [loading, setLoading] = useState(false)
     const { user, authLoading } = useAuth()
+    const { medicalSpecialties, medicalSpecialtiesLoading } = useSpecialtiesData()
 
     const districtsOfBangladesh = [
         "Dhaka",
@@ -131,6 +132,7 @@ const RegistrationDoctorPage = () => {
     ];
 
 
+
     // Manage working experiences
     const [workingExperiences, setWorkingExperiences] = useState([{ id: 1, weWorkplace: '', weDesignation: '', weDepartment: '', wePeriod: '' }])
     const handleWorkingExperiences = (ind, e) => {
@@ -158,11 +160,14 @@ const RegistrationDoctorPage = () => {
     } = useForm();
     const handleSignupFunc = (form) => {
         setLoading(true);
-        const { title, doctorType, bio, total_experience, educationalExcellent, consultationFee, availabilityDays, followupFee, current_workplace } = form;
+        const { title, doctorType, bio, medical_specialty, total_experience, educationalExcellent, consultationFee, availabilityDays, followupFee, current_workplace } = form;
 
-        console.log({ title: title, doctorType: doctorType, bio: bio, total_experience: total_experience, educationalExcellent: educationalExcellent, consultationFee: consultationFee, followupFee: followupFee, workingExperiences: workingExperiences, dateOfBirth: dateOfBirth, availabilityDays: availabilityDays, availabilityTimeStart: availabilityTimeStart, availabilityTimeEnd: availabilityTimeEnd, current_workplace: current_workplace, joined_docEye: new Date(Date.now) });
+        // const basicInformation = {name: user.name, avatar: user.avatar,gender: user.gender, email:user.email, phone:user.phone }
+        const availability  = {availabilityDays, availabilityTimeStart, availabilityTimeEnd}
 
+        const newDoctor = { title, doctorType, bio, medical_specialty, total_experience, educationalExcellent, consultationFee, followupFee, workingExperiences, dateOfBirth , current_workplace, availability }
 
+        console.log(newDoctor);
 
 
         setLoading(false) //TODO: remove
@@ -198,10 +203,10 @@ const RegistrationDoctorPage = () => {
 
 
     return (
-        <div className='bg-cover bg-center bg-slate-700 bg-blend-overlay ' style={{ backgroundImage: `url(${doctorRegistrationBg.src})` }}>
+        <div className='bg-cover bg-center bg-slate-700 bg-blend-overlay' style={{ backgroundImage: `url(${doctorRegistrationBg.src})` }}>
             <div className='min-h-[93vh] py-5 my-container-2'>
                 {
-                    authLoading ? <div className='flex-1 self-start'> <Skeleton className='block py-2 h-[800px]' count={1} /></div> :
+                    authLoading || medicalSpecialtiesLoading ? <div className='flex-1 self-start'> <Skeleton className='block py-2 h-[800px]' count={1} /></div> :
                         <form action="" className='rounded p-5 md:p-10 space-y-3 bg-[#07332Fgg] bg-slate-800 bg-opacity-70' onSubmit={handleSubmit(handleSignupFunc)}>
                             <h2 className='my-subtitle text-white'>Doctor Registration</h2>
 
@@ -213,10 +218,7 @@ const RegistrationDoctorPage = () => {
                                     <label htmlFor="title" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Title <span className='text-secondary-main'>*</span> </label>
                                     <select defaultValue={''} id='title' className='my-inp' {...register("title", { required: true })}>
                                         <option value="" disabled>Title</option>
-                                        <option value="Dr.">Dr.</option>
-                                        <option value="Prof. Dr.Prof">Prof. Dr.</option>
-                                        <option value="Assoc. Prof. Dr.">Assoc. Prof. Dr.</option>
-                                        <option value="Asst. Prof. Dr.">Asst. Prof. Dr.</option>
+                                        {["Dr.", "Prof. Dr.", "Assoc. Prof. Dr.", "Asst. Prof. Dr."].map((elem, ind)=> <option key={ind} value={elem}>{elem}</option>)}
                                     </select>
                                     {errors.title && (<p className="text-red-500">This field is required</p>)}
                                 </div>
@@ -225,13 +227,31 @@ const RegistrationDoctorPage = () => {
                                 <div className='flex-1'>
                                     <label htmlFor="doctorType" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Doctor Type <span className='text-secondary-main'>*</span></label>
                                     <select defaultValue={''} id='doctorType' className='my-inp' {...register("doctorType", { required: true })}>
+                                        {}
                                         <option value="" disabled>Doctor Type</option>
-                                        <option value="Medical">Medical</option>
-                                        <option value="Dental">Dental</option>
-                                        <option value="Veterinary">Veterinary</option>
+                                        {["Medical", "Dental", "Veterinary"].map((elem, ind)=> <option key={ind} value={elem}>{elem}</option>)}
                                     </select>
                                     {errors.doctorType && (<p className="text-red-500">This field is required</p>)}
                                 </div>
+                            </div>
+
+
+                            {/* Medical specialty */}
+                            <div className='flex-1'>
+                                <label htmlFor="medical_specialty" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Medical specialty <span className='text-secondary-main'>*</span> </label>
+                                {medicalSpecialties?.length > 0 ? <div className='flex flex-wrap items-center gap-2'>
+                                    {
+                                        medicalSpecialties.map((elem, ind) => {
+                                            const { specialtyName } = elem
+                                            return <div key={ind} className="form-control">
+                                                <label className="cursor-pointer label">
+                                                    <input type="checkbox" name='medical_specialty' {...register('medical_specialty')} value={specialtyName} className="checkbox checkbox-error mx-1" />
+                                                    <span className="label-text !text-white">{specialtyName}</span>
+                                                </label>
+                                            </div>
+                                        })
+                                    }
+                                </div> : 'No medical specialties found'}
                             </div>
 
                             {/* Bio */}
@@ -299,8 +319,8 @@ const RegistrationDoctorPage = () => {
 
                                 {/* Educational excellent */}
                                 <div className='flex-1'>
-                                    <label className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Educational excellent <span className='text-secondary-main'>*</span></label>
-                                    <input type="text" className={`my-inp`} placeholder='BSc (Psychology), MPhil (Psychology), Diploma (Psychology) (UK), MS (Psychology)' {...register("educationalExcellent", { required: true })} />
+                                    <label htmlFor='educational_excellent' className="block mb-2 text-sm font-medium text-slate-300 dark:text-white">Educational excellent <span className='text-secondary-main'>*</span></label>
+                                    <input type="text" id='educational_excellent' className={`my-inp`} placeholder='BSc (Psychology), MPhil (Psychology), Diploma (Psychology) (UK), MS (Psychology)' {...register("educationalExcellent", { required: true })} />
                                     {errors.educationalExcellent && (<p className="text-red-500">This field is required</p>)}
                                 </div>
 
