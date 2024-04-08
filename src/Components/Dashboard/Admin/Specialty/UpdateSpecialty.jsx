@@ -109,17 +109,18 @@ const UpdateSpecialty = () => {
   useEffect(() => {
     setSpecialtiesLoading(true)
     axiosSecure('/admin/specialties').then(res => {
-      if (res.data?.length > 0) {
-        console.log(res?.data);
-        setRowData(res.data.map(elem => ({ _id: elem._id, name: elem.specialtyName, description: elem.specialtyDescription, image: elem.specialtyLogo })))
-        setSpecialties(res.data)
+      if (res.data?.data?.length > 0) {
+        setRowData(res.data?.data.map(elem => ({ _id: elem._id, name: elem.specialtyName, description: elem.specialtyDescription, image: elem.specialtyLogo })))
+        setSpecialties(res.data?.data)
+        setSpecialtiesLoading(false)
+      } else{
         setSpecialtiesLoading(false)
       }
     }).catch(e => {
       setSpecialtiesLoading(false)
       console.log(e);
     })
-  }, [axiosSecure, control])
+  }, [control])
 
   const pagination = true;
   const paginationPageSize = 10;

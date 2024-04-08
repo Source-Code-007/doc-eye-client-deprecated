@@ -73,6 +73,15 @@ select option {
 .my-inp:focus{
   box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
 }
+.registrationDoctorParent .my-inp{
+  @apply rounded-lg px-4 py-3 outline-none focus:border-l-2 focus:border-[#E57373]  w-full text-white;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+  background: rgba(255, 255, 255, 0.05);
+
+}
+.registrationDoctorParent .my-inp:focus{
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+}
 .my-textarea{
   @apply rounded-lg px-4 py-3 outline-none focus:border-l-2 focus:border-[#E57373]  w-full text-black min-h-[150px] max-h-[300px];
   box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
@@ -81,6 +90,15 @@ select option {
 .my-textarea:focus{
   box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
 }
+.registrationDoctorParent .my-textarea{
+  @apply rounded-lg px-4 py-3 outline-none focus:border-l-2 focus:border-[#E57373]  w-full text-white min-h-[150px] max-h-[300px];
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+  background: rgba(255, 255, 255, 0.05);
+}
+.registrationDoctorParent .my-textarea:focus{
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+}
+
 .my-file-inp{
   @apply file-input file-input-bordered file-input-error bg-slate-900 text-white w-full
 }

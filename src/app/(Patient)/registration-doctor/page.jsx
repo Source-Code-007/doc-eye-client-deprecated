@@ -18,6 +18,7 @@ import Skeleton from 'react-loading-skeleton';
 import useSpecialtiesData from '@/Hooks/useData/useSpecialtiesData';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '@/Hooks/Axios/useAxiosSecure';
+import { useRouter } from 'next/navigation';
 
 
 
@@ -30,6 +31,7 @@ const RegistrationDoctorPage = () => {
     const { medicalSpecialties, medicalSpecialtiesLoading } = useSpecialtiesData()
     const axiosSecure = useAxiosSecure()
     const [myErrors, setMyErrors] = useState(null)
+    const router = useRouter()
 
     const districtsOfBangladesh = [
         "Dhaka",
@@ -175,18 +177,15 @@ const RegistrationDoctorPage = () => {
         console.log(newDoctor);
 
 
-        // setLoading(false) //TODO: remove
-
-
-        // TODO: Need to replace register API
         axiosSecure
             .post("/doctor/doctor-register", newDoctor)
             .then((res) => {
                 if (res.data) {
                     setLoading(false);
+                    console.log(res.data);
 
                     Swal.fire({
-                        title: "Please wait for admin verification!",
+                        title: "Doctor registration successful. Please wait for admin verification!",
                         html: "I will land homepage after <b></b> milliseconds.",
                         timer: 1500,
                         timerProgressBar: true,
@@ -201,6 +200,7 @@ const RegistrationDoctorPage = () => {
             })
             .catch((error) => {
                 console.log(error.response?.data?.errors, 'err from register doctor')
+                setLoading(false)
                 setMyErrors(error.response?.data?.errors)
             });
     };
@@ -209,7 +209,7 @@ const RegistrationDoctorPage = () => {
     // console.log(dateOfBirth, 'dateOfBirth');
 
     return (
-        <div className='bg-cover bg-center bg-slate-700 bg-blend-overlay' style={{ backgroundImage: `url(${doctorRegistrationBg.src})` }}>
+        <div className='bg-cover bg-center bg-slate-700 bg-blend-overlay registrationDoctorParent' style={{ backgroundImage: `url(${doctorRegistrationBg.src})` }}>
             <div className='min-h-[93vh] py-5 my-container-2'>
                 {
                     authLoading || medicalSpecialtiesLoading ? <div className='flex-1 self-start'> <Skeleton className='block py-2 h-[800px]' count={1} /></div> :
@@ -272,56 +272,62 @@ const RegistrationDoctorPage = () => {
                                 </div>
                             </div>
 
+
                             {/* Availability */}
-                            <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
+                            <div className='!my-6'>
+                                <h2 className='font-semibold text-md xl:text-lg text-white mb-2'>Availability</h2>
+
+                                <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
 
 
-                                {/* Availability days */}
-                                <div className='flex-1'>
-                                    <div className='md:flex gap-4 space-y-4 md:space-y-0'>
-                                        {/* Availability day start */}
-                                        <div className='flex-1'>
-                                            <label htmlFor="availabilityDayStart" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Availability day start <span className='text-secondary-main'>*</span></label>
-                                            <select id='availabilityDayStart' defaultValue={''} className='my-inp' {...register("availabilityDayStart", { required: true })}>
-                                                <option value="">Availability day start</option>
-                                                {
-                                                    ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].map((item, ind) => {
-                                                        return <option key={ind} value={item}>{item}</option>
-                                                    })
-                                                }
-                                            </select>
-                                            {errors.availabilityDayStart ? <p className="text-red-500">*This field is required</p> : myErrors?.availabilityDayStart && <span className='text-red-500'>*{myErrors?.availabilityDayStart?.msg}</span>}
-                                        </div>
-                                        {/* Availability day end */}
-                                        <div className='flex-1'>
-                                            <label htmlFor="availabilityDayEnd" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Availability day start <span className='text-secondary-main'>*</span></label>
-                                            <select id='availabilityDayEnd' defaultValue={''} className='my-inp' {...register("availabilityDayEnd", { required: true })}>
-                                                <option value="">Availability day end</option>
-                                                {
-                                                    ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].map((item, ind) => {
-                                                        return <option key={ind} value={item}>{item}</option>
-                                                    })
-                                                }
-                                            </select>
-                                            {errors.availabilityDayEnd ? <p className="text-red-500">*This field is required</p> : myErrors?.availabilityDayEnd && <span className='text-red-500'>*{myErrors?.availabilityDayEnd?.msg}</span>}
+                                    {/* Availability days */}
+                                    <div className='flex-1'>
+                                        <div className='md:flex gap-4 space-y-4 md:space-y-0'>
+                                            {/* Availability day start */}
+                                            <div className='flex-1'>
+                                                <label htmlFor="availabilityDayStart" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Availability day start <span className='text-secondary-main'>*</span></label>
+                                                <select id='availabilityDayStart' defaultValue={''} className='my-inp' {...register("availabilityDayStart", { required: true })}>
+                                                    <option value="">Availability day start</option>
+                                                    {
+                                                        ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].map((item, ind) => {
+                                                            return <option key={ind} value={item}>{item}</option>
+                                                        })
+                                                    }
+                                                </select>
+                                                {errors.availabilityDayStart ? <p className="text-red-500">*This field is required</p> : myErrors?.availabilityDayStart && <span className='text-red-500'>*{myErrors?.availabilityDayStart?.msg}</span>}
+                                            </div>
+                                            {/* Availability day end */}
+                                            <div className='flex-1'>
+                                                <label htmlFor="availabilityDayEnd" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Availability day end <span className='text-secondary-main'>*</span></label>
+                                                <select id='availabilityDayEnd' defaultValue={''} className='my-inp' {...register("availabilityDayEnd", { required: true })}>
+                                                    <option value="">Availability day end</option>
+                                                    {
+                                                        ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].map((item, ind) => {
+                                                            return <option key={ind} value={item}>{item}</option>
+                                                        })
+                                                    }
+                                                </select>
+                                                {errors.availabilityDayEnd ? <p className="text-red-500">*This field is required</p> : myErrors?.availabilityDayEnd && <span className='text-red-500'>*{myErrors?.availabilityDayEnd?.msg}</span>}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                {/* Availability times */}
-                                <div className='flex-1'>
-                                    <div className='md:flex gap-4 space-y-4 md:space-y-0'>
-                                        <div className='flex-1'>
-                                            <label htmlFor="availabilityTimeStart" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Time start <span className='text-secondary-main'>*</span></label>
-                                            <TimePicker id='availabilityTimeStart' onChange={setAvailabilityTimeStart} value={availabilityTimeStart} className={'w-full rounded-lg'} />
-                                            {isSubmitted && !availabilityTimeStart ? <p className="text-red-500">*This field is required</p> : myErrors?.availabilityTimeStart && <span className='text-red-500'>*{myErrors?.availabilityTimeStart?.msg}</span>}
-                                        </div>
-                                        <div className='flex-1'>
-                                            <label htmlFor="availabilityTimeEnd" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Time end <span className='text-secondary-main'>*</span></label>
-                                            <TimePicker id='availabilityTimeEnd' onChange={setAvailabilityTimeEnd} value={availabilityTimeEnd} className={'w-full rounded-lg'} />
-                                            {isSubmitted && !availabilityTimeEnd ? <p className="text-red-500">*This field is required</p> : myErrors?.availabilityTimeEnd && <span className='text-red-500'>*{myErrors?.availabilityTimeEnd?.msg}</span>}
+                                    {/* Availability times */}
+                                    <div className='flex-1'>
+                                        <div className='md:flex gap-4 space-y-4 md:space-y-0'>
+                                            <div className='flex-1'>
+                                                <label htmlFor="availabilityTimeStart" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Time start <span className='text-secondary-main'>*</span></label>
+                                                <TimePicker id='availabilityTimeStart' onChange={setAvailabilityTimeStart} value={availabilityTimeStart} className={'w-full rounded-lg'} />
+                                                {isSubmitted && !availabilityTimeStart ? <p className="text-red-500">*This field is required</p> : myErrors?.availabilityTimeStart && <span className='text-red-500'>*{myErrors?.availabilityTimeStart?.msg}</span>}
+                                            </div>
+                                            <div className='flex-1'>
+                                                <label htmlFor="availabilityTimeEnd" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Time end <span className='text-secondary-main'>*</span></label>
+                                                <TimePicker id='availabilityTimeEnd' onChange={setAvailabilityTimeEnd} value={availabilityTimeEnd} className={'w-full rounded-lg'} />
+                                                {isSubmitted && !availabilityTimeEnd ? <p className="text-red-500">*This field is required</p> : myErrors?.availabilityTimeEnd && <span className='text-red-500'>*{myErrors?.availabilityTimeEnd?.msg}</span>}
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
 
                             </div>

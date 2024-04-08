@@ -13,7 +13,7 @@ const ForDoctorsPage = () => {
         <div className=''>
 
             {/* banner */}
-            <div className='h-[93vh] bg-cover bg-center bg-slate-600 bg-blend-overlay' style={{ backgroundImage: `url(${areYouDoctorBanner.src})` }}>
+            <div className='h-[93vh] bg-cover bg-center bg-slate-500 bg-blend-overlay' style={{ backgroundImage: `url(${areYouDoctorBanner.src})` }}>
                 <div className='my-container h-full flex flex-col justify-center gap-5 text-black'>
                     <h2 className='my-title'>Are you <br /> A Certified Doctor?</h2>
                     <h6 className='my-subtitle'>Join Our Healthcare Network</h6>
