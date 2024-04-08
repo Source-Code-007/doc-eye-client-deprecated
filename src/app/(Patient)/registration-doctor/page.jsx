@@ -165,10 +165,9 @@ const RegistrationDoctorPage = () => {
     const handleSignupFunc = (form) => {
         setMyErrors(null)
         setLoading(true);
-        const { title, doctorType, bio, medical_specialty, total_experience, medical_degree, consultationFee, availabilityDays, followupFee, current_workplace, district } = form;
+        const { title, doctorType, bio, medical_specialty, total_experience, medical_degree, consultationFee, availabilityDayStart, availabilityDayEnd, followupFee, current_workplace, district } = form;
 
-        // const basicInformation = {name: user.name, avatar: user.avatar,gender: user.gender, email:user.email, phone:user.phone }
-        const availability = { availabilityDays, availabilityTimeStart, availabilityTimeEnd }
+        const availability = { availabilityDayStart, availabilityDayEnd, availabilityTimeStart, availabilityTimeEnd }
 
         const newDoctor = { title, doctorType, bio, medical_specialty, total_experience, medical_degree, consultationFee, followupFee, workingExperiences, dateOfBirth, current_workplace, availability, district }
 
@@ -275,18 +274,38 @@ const RegistrationDoctorPage = () => {
 
                             {/* Availability */}
                             <div className='xl:flex gap-4 space-y-4 xl:space-y-0'>
+
+
                                 {/* Availability days */}
                                 <div className='flex-1'>
-                                    <label htmlFor="availabilityDays" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Availability days <span className='text-secondary-main'>*</span></label>
-                                    <select id='availabilityDays' defaultValue={''} className='my-inp' {...register("availabilityDays", { required: true })}>
-                                        <option value="">Availability days</option>
-                                        {
-                                            availabilityDaysOptions.map((item, ind) => {
-                                                return <option key={ind} value={item?.value}>{item?.label}</option>
-                                            })
-                                        }
-                                    </select>
-                                    {errors.availabilityDays ? <p className="text-red-500">*This field is required</p> : myErrors?.availabilityDays && <span className='text-red-500'>*{myErrors?.availabilityDays?.msg}</span>}
+                                    <div className='md:flex gap-4 space-y-4 md:space-y-0'>
+                                        {/* Availability day start */}
+                                        <div className='flex-1'>
+                                            <label htmlFor="availabilityDayStart" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Availability day start <span className='text-secondary-main'>*</span></label>
+                                            <select id='availabilityDayStart' defaultValue={''} className='my-inp' {...register("availabilityDayStart", { required: true })}>
+                                                <option value="">Availability day start</option>
+                                                {
+                                                    ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].map((item, ind) => {
+                                                        return <option key={ind} value={item}>{item}</option>
+                                                    })
+                                                }
+                                            </select>
+                                            {errors.availabilityDayStart ? <p className="text-red-500">*This field is required</p> : myErrors?.availabilityDayStart && <span className='text-red-500'>*{myErrors?.availabilityDayStart?.msg}</span>}
+                                        </div>
+                                        {/* Availability day end */}
+                                        <div className='flex-1'>
+                                            <label htmlFor="availabilityDayEnd" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Availability day start <span className='text-secondary-main'>*</span></label>
+                                            <select id='availabilityDayEnd' defaultValue={''} className='my-inp' {...register("availabilityDayEnd", { required: true })}>
+                                                <option value="">Availability day end</option>
+                                                {
+                                                    ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].map((item, ind) => {
+                                                        return <option key={ind} value={item}>{item}</option>
+                                                    })
+                                                }
+                                            </select>
+                                            {errors.availabilityDayEnd ? <p className="text-red-500">*This field is required</p> : myErrors?.availabilityDayEnd && <span className='text-red-500'>*{myErrors?.availabilityDayEnd?.msg}</span>}
+                                        </div>
+                                    </div>
                                 </div>
 
                                 {/* Availability times */}
@@ -360,7 +379,7 @@ const RegistrationDoctorPage = () => {
                                 {/* currently working at */}
                                 <div className='flex-1'>
                                     <label htmlFor="current_workplace" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Working at</label>
-                                    <input type="text" id='current_workplace' className='my-inp' placeholder="Enter your current workplace/hospital"  {...register("current_workplace", {required: true})} />
+                                    <input type="text" id='current_workplace' className='my-inp' placeholder="Enter your current workplace/hospital"  {...register("current_workplace", { required: true })} />
                                     {errors.current_workplace ? <p className="text-red-500">*This field is required</p> : myErrors?.current_workplace && <span className='text-red-500'>*{myErrors?.current_workplace?.msg}</span>}
                                 </div>
 
@@ -412,7 +431,7 @@ const RegistrationDoctorPage = () => {
                                         <button onClick={() => handleAddWorkingExperiences()} className='my-btn-one' title='Add More Experience'><FaPlus /></button>
                                     </div>
 
-                                    
+
                                 </div>
                             </div>
 
