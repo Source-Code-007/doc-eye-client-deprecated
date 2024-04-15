@@ -130,12 +130,6 @@ const RegistrationDoctorPage = () => {
         '29 years',
         '30 years'
     ];
-    const availabilityDaysOptions = [
-        { value: 'sat-thu', label: 'Sat - Thu' },
-        { value: 'sun-fri', label: 'Sun - Fri' },
-        { value: 'mon-sat', label: 'Mon - Sat' },
-        { value: 'sun-sat', label: 'Sun - Sat' },
-    ];
 
 
 
@@ -259,7 +253,7 @@ const RegistrationDoctorPage = () => {
                                     }
                                 </div>
                                     {errors.medical_specialty ? <p className='text-red-500'>*Medical specialty is required</p> : myErrors?.medical_specialty && <span className='text-red-500'>*{myErrors?.medical_specialty?.msg}</span>}
-                                </> : 'No medical specialties found'}
+                                </> : <p className='text-white font-bold'>No medical specialties found</p>}
                             </div>
 
                             {/* Bio */}

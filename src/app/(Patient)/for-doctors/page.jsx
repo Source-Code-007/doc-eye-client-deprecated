@@ -7,8 +7,6 @@ import JoinNowButton from '@/Components/ForDoctors/JoinNowButton';
 const ForDoctorsPage = () => {
 
 
-
-
     return (
         <div className=''>
 

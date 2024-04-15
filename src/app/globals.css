@@ -263,3 +263,16 @@ body::-webkit-scrollbar-thumb {
   .ag-theme-quartz>div{
     width: 100%;
   }
+.ag-menu.ag-ltr.ag-popup-child.ag-popup-positioned-under{
+  width: fit-content;
+}
+
+/* AG cell focus none */
+.ag-cell-focus,.ag-cell-no-focus{
+  border:none !important;
+}
+/* This CSS is to not apply the border for the column having 'no-border' class */
+.no-border.ag-cell:focus{
+  border:none !important;
+  outline: none;
+}

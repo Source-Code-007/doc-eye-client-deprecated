@@ -1,13 +1,48 @@
 'use client'
+import ViewDoctorModal from '@/Components/HelpingCompo/Modal/ViewDoctorModal';
 import MyLoading from '@/Components/HelpingCompo/MyLoading';
 import useAxiosSecure from '@/Hooks/Axios/useAxiosSecure';
 import { AgGridReact } from 'ag-grid-react';
 import Image from 'next/image';
 import React, { useEffect, useMemo, useState } from 'react';
+import { FaEye } from 'react-icons/fa6';
+import { MdDelete } from 'react-icons/md';
+import { FaCheck } from "react-icons/fa6";
 
 const DoctorImageCompo = (props) => {
     // console.log(props.data?.name, props.value, 'from image compo');
     return <figure className='h-full flex items-center'><Image src={props.value} alt={props.data?.name} height={50} width={50} /></figure>
+}
+const MedicalSpecialtyCompo = (props)=> {
+    console.log(props.value, ' props.value from specialy  compo from doctor manage page');
+    if(props?.value?.length> 0){
+        return props?.value?.map((elem, ind)=> {
+            return <div key={ind} className='py-[2px] text-green-500'>{elem}</div>
+        })
+    } else{
+        return <div className='text-red-500'>No medical specialty</div>
+    }
+}
+
+const ActionCompo = (props)=> {
+    const [currentDoctor, setCurrentDoctor] = useState({})
+
+    const doctorActionHandler = (_id, status)=> {
+        if(status === 'reject'){
+            console.log('Reject');
+        } else if(status === 'approve'){    
+        console.log('Approve');
+        }
+    }
+
+    return <div className='h-full flex items-center gap-1'>
+    <span className='cursor-pointer text-xl ' onClick={() => { document.getElementById('view_doctor_modal').showModal(); setCurrentDoctor(props.data) }}><FaEye /></span>
+    <span className='cursor-pointer text-xl text-danger-desc' onClick={() => doctorActionHandler(props.data?._id, 'reject')}><MdDelete /></span>
+    <span className='cursor-pointer text-xl text-danger-desc' onClick={() => doctorActionHandler(props.data?._id, 'approve')}><FaCheck /></span>
+
+    {/* Modal */}
+    <ViewDoctorModal currentDoctor={currentDoctor}/>
+  </div>
 }
 
 const ManageDoctorsPage = () => {
@@ -23,7 +58,9 @@ const ManageDoctorsPage = () => {
     const [colDefs, setColDefs] = useState([
         { field: "name" },
         { field: "title", flex: 1 },
-        { field: "image", cellRenderer: DoctorImageCompo },
+        { field: "specialty", cellRenderer:  MedicalSpecialtyCompo},
+        { field: "current_workplace" },
+        { field: "action", cellRenderer: ActionCompo },
     ]);
     const defaultColDef = useMemo(() => ({
         sortable: true,
@@ -35,7 +72,7 @@ const ManageDoctorsPage = () => {
         axiosSecure('/doctor/all-doctors').then(res => {
             if (res.data?.data?.length > 0) {
                 console.log(res.data?.data, 'doctors data');
-                setRowData(res.data?.data?.map(elem => ({ _id: elem._id, name: elem.personalInformation?.name, title: elem.title, image: elem.personalInformation?.avatar })))
+                setRowData(res.data?.data?.map(elem => ({ _id: elem._id, name: elem.personalInformation?.name, title: elem.title, specialty: elem.medical_specialty, current_workplace: elem.current_workplace })))
                 setDoctorsLoading(false)
             } else{
                 setDoctorsLoading(false)
@@ -44,7 +81,7 @@ const ManageDoctorsPage = () => {
             setDoctorsLoading(false)
             console.log(e);
         })
-    }, [ control])
+    }, [control])
 
     console.log(rowData)
 

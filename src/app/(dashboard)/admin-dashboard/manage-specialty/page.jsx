@@ -23,12 +23,17 @@ const ManageSpecialty = () => {
                     }
                 </TabList>
 
-                <TabPanel>
-                   <AddSpecialty/>
+{
+    ['Add specialty', 'Manage specialties'].map((elem,ind)=> {
+                return <TabPanel key={ind}>
+                   {currPageStatus === 'Add specialty' && <AddSpecialty/>}
+                   {currPageStatus === 'Manage specialties' && <UpdateSpecialty/>}
                 </TabPanel>
-                <TabPanel>
+    })
+}
+                {/* <TabPanel>
                    <UpdateSpecialty/>
-                </TabPanel>
+                </TabPanel> */}
             </Tabs>
 
         </div>

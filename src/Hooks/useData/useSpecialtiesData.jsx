@@ -10,7 +10,7 @@ const useSpecialtiesData = () => {
         setMedicalSpecialtiesLoading(true)
         axiosInstance('/admin/specialties').then(res => {
             setMedicalSpecialtiesLoading(false)
-            setMedicalSpecialties(res.data)
+            setMedicalSpecialties(res.data?.data)
         }).catch(e => {
             setMedicalSpecialtiesLoading(false)
             console.log(e);
