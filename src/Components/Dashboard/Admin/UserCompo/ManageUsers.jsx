@@ -14,12 +14,9 @@ import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied
 // SWAL
 import Swal from 'sweetalert2';
 import MyLoading from '@/Components/HelpingCompo/MyLoading';
-import { FaEye } from 'react-icons/fa6';
-import ViewUserModal from '@/Components/HelpingCompo/Modal/Dashboard/Admin/ViewUserModal';
 
 
 const UsersActionCompo = (props) => {
-  const [currentUser, setCurrentUser] = useState({})
   const axiosSecure = useAxiosSecure()
   const { control, setControl } = props
 
@@ -40,7 +37,7 @@ const UsersActionCompo = (props) => {
           if (res.status == 200) {
             Swal.fire({
               title: "Deleted!",
-              text: "Your file has been deleted.",
+              text: "User has been deleted.",
               icon: "success"
             });
             setControl(!control)
@@ -67,11 +64,8 @@ const UsersActionCompo = (props) => {
   }
 
   return <div className='h-full flex items-center gap-1'>
-    <span className='cursor-pointer text-xl' title='View doctor' onClick={() => { setCurrentUser(props.data); document.getElementById('view_user_modal').showModal() }}><FaEye /></span>
     <span className='cursor-pointer text-xl text-danger-desc' onClick={() => deleteUserHandler(props.data?._id)}><MdDelete /></span>
 
-    {/* Modal */}
-    <ViewUserModal currentUser={currentUser} />
   </div>
 };
 
