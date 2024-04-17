@@ -1,4 +1,5 @@
 'use client'
+import ManageUsers from '@/Components/Dashboard/Admin/UserCompo/ManageUsers';
 import React, { useState } from 'react';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
@@ -22,7 +23,7 @@ const ManageUsersPage = () => {
                    Add user
                 </TabPanel>
                 <TabPanel>
-                   Update users
+                   <ManageUsers/>
                 </TabPanel>
             </Tabs>
 

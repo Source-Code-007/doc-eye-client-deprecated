@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React, { useEffect, useMemo, useState } from 'react';
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
-import UpdateSpecialtyModal from '@/Components/HelpingCompo/Modal/UpdateSpecialtyModal';
+import UpdateSpecialtyModal from '@/Components/HelpingCompo/Modal/Dashboard/Admin/UpdateSpecialtyModal';
 import useAxiosInstance from '@/Hooks/Axios/useAxiosInstance';
 
 // AG grid
@@ -18,7 +18,7 @@ import MyLoading from '@/Components/HelpingCompo/MyLoading';
 
 const SpecialtyActionCompo = (props) => {
   const [currentSpecialty, setCurrentSpecialty] = useState({})
-  const axiosInstance = useAxiosInstance()
+  const axiosSecure = useAxiosSecure()
   const { control, setControl } = props
 
 
@@ -34,7 +34,7 @@ const SpecialtyActionCompo = (props) => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosInstance.delete(`/admin/delete-specialty/${id}`).then(res => {
+        axiosSecure.delete(`/admin/delete-specialty/${id}`).then(res => {
           if (res.status == 200) {
             Swal.fire({
               title: "Deleted!",
@@ -79,7 +79,7 @@ const SpecialtyImageCompo = (props) => {
 
 
 
-const UpdateSpecialty = () => {
+const ManageSpecialty = () => {
   const axiosSecure = useAxiosSecure()
   const [specialtiesLoading, setSpecialtiesLoading] = useState(false)
   const [specialties, setSpecialties] = useState([])
@@ -113,7 +113,7 @@ const UpdateSpecialty = () => {
         setRowData(res.data?.data.map(elem => ({ _id: elem._id, name: elem.specialtyName, description: elem.specialtyDescription, image: elem.specialtyLogo })))
         setSpecialties(res.data?.data)
         setSpecialtiesLoading(false)
-      } else{
+      } else {
         setSpecialtiesLoading(false)
       }
     }).catch(e => {
@@ -129,61 +129,27 @@ const UpdateSpecialty = () => {
     <div>
       <h2 className='font-bold text-2xl md:text-3xl pb-3'>Manage Specialty</h2>
 
-      {/* <div className='overflow-hidden overflow-x-auto text-nowrap'>
-        <table className='min-w-full w-full table-auto mb-1 border border-black'>
-          <thead>
-            <tr>
-              <th className='border border-black p-3'>Name</th>
-              <th className='border border-black p-3'>Description</th>
-              <th className='border border-black p-3'>Image</th>
-              <th className='border border-black p-3'>Action</th>
-            </tr>
-          </thead>
+      {
+        specialtiesLoading ? <div className='my-h-screen flex items-center justify-center'><MyLoading /></div> : <div
+          className="ag-theme-quartz" // applying the grid theme
+          style={{ height: 500 }} // the grid will fill the size of the parent container
+        >
+          <AgGridReact
+            rowData={rowData}
+            columnDefs={colDefs}
+            defaultColDef={defaultColDef}
 
-          <tbody className=' text-center font-semibold'>
-            {specialties.map((elem, ind) => {
-              const { specialtyName, specialtyDescription, specialtyLogo } = elem
-              return <tr key={ind} >
-                <td className='border border-black p-3'>{specialtyName}</td>
-                <td className='border border-black p-3'>{specialtyDescription}</td>
-                <td className='border border-black p-3'>
-                    <Image src={specialtyLogo} height={100} width={100} alt={specialtyName}/>
-                </td>
-                <td className='border border-black p-3'>
-                    <div className='flex items-center gap-1'>
-                        <span className='cursor-pointer text-xl'><CiEdit /></span>
-                        <span className='cursor-pointer text-xl'><MdDelete /></span>
-                        <span className='cursor-pointer text-xl'><FaEye /></span>
-                    </div>
-                </td>
-              </tr>
-            })
-            }
-          </tbody>
-        </table>
-      </div> */}
+            pagination={pagination}
+            paginationPageSize={paginationPageSize}
+            paginationPageSizeSelector={paginationPageSizeSelector}
+          />
+        </div>
+      }
 
-{
-  specialtiesLoading? <div className='my-h-screen flex items-center justify-center'><MyLoading/></div> :    <div
-  className="ag-theme-quartz" // applying the grid theme
-  style={{ height: 500 }} // the grid will fill the size of the parent container
->
-  <AgGridReact
-    rowData={rowData}
-    columnDefs={colDefs}
-    defaultColDef={defaultColDef}
-
-    pagination={pagination}
-    paginationPageSize={paginationPageSize}
-    paginationPageSizeSelector={paginationPageSizeSelector}
-  />
-</div>
-}
-   
 
     </div>
 
   );
 };
 
-export default UpdateSpecialty;
+export default ManageSpecialty;

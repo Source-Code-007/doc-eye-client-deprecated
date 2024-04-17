@@ -11,7 +11,7 @@ import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
 
 import { useForm } from 'react-hook-form';
-import TermsModal from '@/Components/HelpingCompo/TermsModal';
+import TermsModal from '@/Components/HelpingCompo/Modal/TermsModal';
 import { FaPlus, FaXmark } from 'react-icons/fa6';
 import { useAuth } from '@/Providers/AuthProvider';
 import Skeleton from 'react-loading-skeleton';
@@ -161,11 +161,11 @@ const RegistrationDoctorPage = () => {
     const handleSignupFunc = (form) => {
         setMyErrors(null)
         setLoading(true);
-        const { title, doctorType, bio, medical_specialty, total_experience, medical_degree, consultationFee, availabilityDayStart, availabilityDayEnd, followupFee, current_workplace, district } = form;
+        const { title, doctorType, bio, medical_specialty, total_experience, medical_degree, consultationFee, availabilityDayStart, availabilityDayEnd, followupFee, current_workplace, district, NID, BMDC } = form;
 
         const availability = { availabilityDayStart, availabilityDayEnd, availabilityTimeStart, availabilityTimeEnd }
 
-        const newDoctor = { title, doctorType, bio, medical_specialty, total_experience, medical_degree, consultationFee, followupFee, workingExperiences, dateOfBirth, current_workplace, availability, district }
+        const newDoctor = { title, doctorType, bio, medical_specialty, total_experience, medical_degree, consultationFee, followupFee, workingExperiences, dateOfBirth, current_workplace, availability, district, NID, BMDC }
 
 
         console.log(newDoctor);
@@ -441,14 +441,14 @@ const RegistrationDoctorPage = () => {
                                 {/* National ID */}
                                 <div className='flex-1'>
                                     <label htmlFor="NID" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> National ID <span className='text-secondary-main'>*</span></label>
-                                    <input type="text" id='NID' className='my-inp' placeholder='National ID' {...register("NID", { required: true })} />
+                                    <input type="number" id='NID' className='my-inp' placeholder='National ID' {...register("NID", { required: true })} />
                                     {errors.NID ? <p className="text-red-500">*This field is required</p> : myErrors?.NID && <span className='text-red-500'>*{myErrors?.NID?.msg}</span>}
                                 </div>
 
                                 {/* BMDC */}
                                 <div className='flex-1'>
                                     <label htmlFor="BMDC" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> BMDC <span className='text-secondary-main'>*</span></label>
-                                    <input type="text" id='BMDC' className='my-inp' placeholder='Registration Number BMDC' {...register("BMDC", { required: true })} />
+                                    <input type="number" id='BMDC' className='my-inp' placeholder='Registration Number BMDC' {...register("BMDC", { required: true })} />
                                     {errors.BMDC ? <p className="text-red-500">*This field is required</p> : myErrors?.BMDC && <span className='text-red-500'>*{myErrors?.BMDC?.msg}</span>}
                                 </div>
                             </div>

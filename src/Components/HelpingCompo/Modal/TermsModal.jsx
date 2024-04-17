@@ -96,7 +96,7 @@ const TermsModal = () => {
                             <ol start="55">
                                 <li>The Doctors will receive payments from DocEye weekly on every Monday for the consultation provided in the last 7 days upon deduction of any DocEye product &amp; service fee.</li>
                                 <li>The Doctor agrees and consents to the deduction of payment processing fee, product &amp; service fee of such amounts in such percentage, as is agreed between the Doctor and DocEye from time to time, as from his/her net fees (after deduction of applicable tax and VAT) earned against consultation using the Services.</li>
-                                <li>The Doctors will receive payment from the platform either by mobile banking (bKash, Nagad, Rocket) or to their bank account. If it's mobile banking, additional transaction fee may be applicable.</li>
+                                <li>The Doctors will receive payment from the platform either by mobile banking (bKash, Nagad, Rocket) or to their bank account. If it{"'"}s mobile banking, additional transaction fee may be applicable.</li>
                                 <li>The PLATFORM reserves the right to increase payment processing fee, product &amp; service fee at any time. All the Doctors will be given 2 days{"'"} advance notice of any update on payment processing fee, product &amp; service fee of DocEye.</li>
                                 <li>The Doctors warrant that s/he shall not charge any additional fees from the patients for the consultations provided using the PLATFORM.</li>
                                 <li>DocEye may deduct such taxes, including VAT, relating to the payments applicable under the prevailing laws of Bangladesh.</li>

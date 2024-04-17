@@ -1,16 +1,8 @@
-import useAxiosSecure from '@/Hooks/Axios/useAxiosSecure';
-import { useForm } from 'react-hook-form';
-import { FaFile, FaXmark } from 'react-icons/fa6';
-import React, { useCallback, useState } from 'react'
-import { useDropzone } from 'react-dropzone'
-import Image from 'next/image';
-import { toast } from 'react-toastify';
+import { FaXmark } from 'react-icons/fa6';
 
-const ViewDoctorModal = ({ doctor }) => {
+const ViewDoctorModal = ({ currentDoctor }) => {
 
-
-
-
+    console.log(currentDoctor , 'View details doctor from modal');
 
     return (
         <dialog id="view_doctor_modal" className="modal">

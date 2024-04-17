@@ -154,13 +154,13 @@ select option {
 }
 
 .my-btn-one{
-  @apply bg-[#09528C] border-2 border-transparent text-slate-100 rounded py-3 px-6 hover:bg-slate-100 hover:border-2 hover:border-[#09528C] hover:text-[#09528C] flex gap-2 items-center
+  @apply bg-[#09528C] border-2 border-transparent text-slate-100 rounded py-3 px-6 hover:bg-slate-100 hover:border-2 hover:border-[#09528C] hover:text-[#09528C] flex gap-2 items-center justify-center
 }
 .my-disable-btn-one{
   @apply bg-[#09528C] opacity-50 pointer-events-none border-2 border-transparent text-slate-100 rounded py-3 px-6
 }
 .my-btn-two{
-  @apply bg-[#E57373] text-slate-100 rounded py-3 px-6 hover:scale-105 transition flex gap-2 items-center
+  @apply bg-[#E57373] text-slate-100 rounded py-3 px-6 hover:scale-105 transition flex gap-2 items-center justify-center
 }
 .my-disable-btn-two{
   @apply bg-[#E57373] opacity-50 pointer-events-none border-2 border-transparent text-slate-100 rounded py-3 px-6
