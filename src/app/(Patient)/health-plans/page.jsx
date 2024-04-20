@@ -97,7 +97,7 @@ const HealthPlansPage = () => {
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                     {healthPlans.map((hp, ind) => {
                         const { planName, description, price, features } = hp
-                        return <div key={ind} className='rounded-lg space-y-4 my-shadow-2 p-5 relative pb-20'>
+                        return <div key={ind} className='rounded-lg space-y-4 my-shadow p-5 relative pb-20'>
                             <h2 className='my-subtitle text-primary'>{planName}</h2>
                             <h3 className='my-title'>৳{price} <span className='!text-lg font-semibold'>/monthly</span></h3>
                             <p className='text-slate-700'> {description}</p>

@@ -147,10 +147,10 @@ select option {
 
 
 .my-shadow{
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: rgba(100, 100, 111, 0.299) 0px 7px 29px 0px !important;
 }
 .my-shadow-2{
-  box-shadow: rgb(223 223 228 / 42%) 0px 0px 19px 4px;
+  box-shadow: rgba(223, 223, 228, 0.397) 0px 0px 15px 4px !important;
 }
 
 .my-btn-one{

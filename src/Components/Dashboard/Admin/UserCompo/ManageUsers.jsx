@@ -65,13 +65,12 @@ const UsersActionCompo = (props) => {
 
   return <div className='h-full flex items-center gap-1'>
     <span className='cursor-pointer text-xl text-danger-desc' onClick={() => deleteUserHandler(props.data?._id)}><MdDelete /></span>
-
   </div>
 };
 
 const UsersImageCompo = (props) => {
   // console.log(props.data?.name, props.value, 'from image compo');
-  return <figure className='h-full flex items-center'><Image src={props.value} alt={props.data?.name} height={40} width={40} /></figure>
+  return <figure className='h-full flex items-center'><Image src={props.value} alt={props.data?.name} height={40} width={40}/></figure>
 }
 
 
@@ -89,6 +88,7 @@ const ManageUsers = () => {
   const [colDefs, setColDefs] = useState([
     { field: "name" },
     { field: "email", flex: 1 },
+    { field: "role", },
     { field: "image", cellRenderer: UsersImageCompo },
     {
       field: "action", sortable: false, filter: false, cellRenderer: UsersActionCompo, cellRendererParams: {
@@ -106,7 +106,7 @@ const ManageUsers = () => {
     setUsersLoading(true)
     axiosSecure('/all-users?role=user,doctor').then(res => {
       if (res.data?.data?.length > 0) {
-        setRowData(res.data?.data.map(elem => ({ _id: elem._id, name: elem.name, email: elem.email, image: elem.avatar })))
+        setRowData(res.data?.data.map(elem => ({ _id: elem._id, name: elem.name, email: elem.email, role: elem.role, image: elem.avatar })))
         setUsersLoading(false)
       } else {
         setUsersLoading(false)
