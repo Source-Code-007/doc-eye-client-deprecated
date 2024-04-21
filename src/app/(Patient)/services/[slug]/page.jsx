@@ -15,8 +15,6 @@ const ServicePage = () => {
     const [doctors, setDoctors] = useState([])
     const [doctorsLoading, setDoctorsLoading] = useState(false)
 
-    const doctorsInfo = ['one', 'two', 'three', 'four']
-
     useEffect(() => {
         setDoctorsLoading(true)
 
@@ -40,23 +38,23 @@ const ServicePage = () => {
                 </div>
                 <div className='col-span-10'>
                     {!doctorsLoading && doctors?.length > 0 && <h2 className='mb-3'>
-                        <span className='font-bold'>69</span> doctors found for <span className='my-subtitle text-secondary-main'>{modifiedSlug}</span>
+                        <span className='font-bold'>{doctors?.length}</span> doctors found for <span className='my-subtitle text-secondary-main'>{modifiedSlug}</span>
                     </h2>}
                     <div className='space-y-2'>
                         {
                             doctorsLoading ? <SpecialtyDoctorsSkeleton /> : !doctors?.length > 0 ?
                                 <div className='h-[50vh] flex items-center justify-center'>
-                                    <h2 className='font-bold text-lg md:text-xl p-2 bg-slate-100 shadow-xl flex items-center gap-2'>Doctors not found! <MdWarning className='text-warning' /></h2>
+                                    <h2 className='font-bold text-lg sm:text-xl p-2 bg-slate-100 shadow-xl flex items-center gap-2'>Doctors not found! <MdWarning className='text-warning' /></h2>
                                 </div> : doctors?.map((item, ind) => {
                                     const { name, avatar } = item?.personalInformation
-                                    const { medical_specialty, medical_degree, current_workplace, consultationFee, total_experience } = item
-                                    return <div key={ind} className='rounded-lg my-shadow flex flex-col md:flex-row items-center justify-between gap-4 p-3 md:p-5'>
-                                        <div className='flex flex-1 gap-1 md:gap-2 items-center'>
+                                    const { title, medical_specialty, medical_degree, current_workplace, consultationFee, total_experience } = item
+                                    return <div key={ind} className='rounded-lg my-shadow flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-3 sm:p-5'>
+                                        <div className='flex flex-1 gap-1 sm:gap-2 items-center'>
                                             <figure>
                                                 <Image src={avatar} alt={name} height={85} width={85} />
                                             </figure>
                                             <div className='space-y-1'>
-                                                <p className='font-semibold'>{name}</p>
+                                                <p className='font-semibold'>{title} {name}</p>
                                                 <p>{medical_degree}</p>
                                                 <div>
                                                     <p className='text-gray-400'>Specialties</p>
@@ -72,7 +70,7 @@ const ServicePage = () => {
                                                 <p className='text-gray-400'>Working in</p>
                                                 <p className='font-bold'>{current_workplace}</p>
                                             </div>
-                                            <div className='flex justify-between'>
+                                            <div className='flex justify-start sm:justify-between gap-4'>
                                                 <div>
                                                     <p className='text-gray-400'>Experience</p>
                                                     <p className='font-bold'>{total_experience}</p>
@@ -83,11 +81,11 @@ const ServicePage = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className='flex-1 flex items-center justify-center'>
+                                        <div className='flex-1 flex items-center justify-center py-5 sm:py-0'>
                                             <div>
 
                                                 <p className='text-gray-400'>Consultation fee</p>
-                                                <p className='font-bold text-2xl md:text-4xl text-primary-main flex gap-1 items-center'>	৳ {consultationFee} <FaArrowRight /></p>
+                                                <p className='font-bold text-3xl sm:text-4xl text-primary-main flex gap-1 items-center'>	৳ {consultationFee} <FaArrowRight /></p>
                                             </div>
                                         </div>
                                     </div>

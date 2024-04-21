@@ -1,9 +1,14 @@
 'use client'
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const ServiceFilter = () => {
 
-    const [consultationFee, setConsultationFee] = useState(100);
+    const minConsultationFee2 = useSelector(state => state.doctors.minConsultationFee)
+    const [minConsultationFee, setMinConsultationFee] = useState(100);
+    const [maxConsultationFee, setMaxConsultationFee] = useState(3000);
+
+    console.log(minConsultationFee2,'from redux');
 
 
     const availability = ['Online Now', 'Available Today', 'Available in next 3 hours', 'Female Doctors Only']
@@ -15,23 +20,40 @@ const ServiceFilter = () => {
                 <span className='btn btn-sm font-bold'>Reset</span>
             </div>
 
-            <div className='space-y-6'>
-                
-                {/* Consultation fees range */}
-                <div className='my-2 space-y-1'>
-                    <h2 className='font-semibold md:font-bold'>Consultation Fee</h2>
-                    <div className="tooltip tooltip-open tooltip-bottom tooltip-error block" data-tip={`Min ${consultationFee} BDT`}>
+            <div className='space-y-4 md:space-y-6'>
+              
+                {/* Consultation fee max range */}
+                <div className='mb-12 space-y-1'>
+                    <h2 className='font-semibold md:font-bold'>Consultation Fee Max</h2>
+                    <div className="tooltip tooltip-open tooltip-bottom tooltip-error block" data-tip={`Max ${maxConsultationFee} BDT`}>
                         <input
                             type="range"
                             min={100}
                             max={3000}
                             step={100}
                             className="range range-xs block"
-                            value={consultationFee}
-                            onChange={(e)=> setConsultationFee(e.target.value)}
+                            value={maxConsultationFee}
+                            onChange={(e)=> setMaxConsultationFee(e.target.value)}
                         />
                     </div>
                 </div>
+
+                {/* Consultation fees min range */}
+                <div className='my-2 space-y-1'>
+                    <h2 className='font-semibold md:font-bold'>Consultation Fee Min</h2>
+                    <div className="tooltip tooltip-open tooltip-bottom tooltip-error block" data-tip={`Min ${minConsultationFee} BDT`}>
+                        <input
+                            type="range"
+                            min={100}
+                            max={3000}
+                            step={100}
+                            className="range range-xs block"
+                            value={minConsultationFee}
+                            onChange={(e)=> setMinConsultationFee(e.target.value)}
+                        />
+                    </div>
+                </div>
+
 
                 {/* Availability */}
                 <div>
