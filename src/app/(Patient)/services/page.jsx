@@ -5,22 +5,10 @@ import Link from 'next/link';
 
 
 const ServicesPage = async () => {
-    // const axiosInstance = useAxiosInstance()
-    // const [services, setServices] = useState()
-    // const router = useRouter()
     const services = await getSpecialties()
 
     console.log(services, 15);
 
-
-    // useEffect(() => {
-    //     axios('/services.json').then(res => {
-    //         console.log(res?.data, 10);
-    //         setServices(res?.data)
-    //     }).catch(e => {
-    //         console.log(e);
-    //     })
-    // }, [])
 
     return (
         <div className='container mx-auto'>

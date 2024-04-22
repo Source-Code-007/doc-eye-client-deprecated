@@ -5,7 +5,7 @@ import { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-tabs/style/react-tabs.css';
-import StoreProvider from './storeProvider'
+import StoreProvider from '@/Providers/StoreProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
