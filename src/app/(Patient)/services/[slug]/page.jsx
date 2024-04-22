@@ -2,6 +2,7 @@
 import SpecialtyDoctorsSkeleton from '@/Components/HelpingCompo/Skeleton/SpecialtyDoctorsSkeleton';
 import ServiceFilter from '@/Components/Services/ServiceFilter';
 import useAxiosInstance from '@/Hooks/Axios/useAxiosInstance';
+import { useAppSelector } from '@/Redux/hooks';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
@@ -15,18 +16,25 @@ const ServicePage = () => {
     const [doctors, setDoctors] = useState([])
     const [doctorsLoading, setDoctorsLoading] = useState(false)
 
+    const minConsultationFee = useAppSelector(state => state.doctors.minConsultationFee)
+    const maxConsultationFee = useAppSelector(state => state.doctors.maxConsultationFee)
+    const sortBy = useAppSelector(state => state.doctors.sortBy)
+    const availability = useAppSelector(state => state.doctors.availability)
+    const rating = useAppSelector(state => state.doctors.rating)
+
     useEffect(() => {
         setDoctorsLoading(true)
 
-        axiosInstance(`/doctor/all-doctors?specialty=${modifiedSlug}`).then(res => {
+        axiosInstance(`/doctor/all-doctors?specialty=${modifiedSlug}&minConsultationFee=${minConsultationFee}&maxConsultationFee=${maxConsultationFee}&sortBy=${sortBy}&availability=${availability}&rating=${rating}`).then(res => {
             setDoctorsLoading(false)
             setDoctors(res.data?.data)
         }).catch(e => {
             setDoctorsLoading(false)
             console.log(e.response);
         })
-    }, [modifiedSlug])
+    }, [modifiedSlug, minConsultationFee, maxConsultationFee, sortBy, availability, rating])
 
+    
     console.log(doctors, 'doctors from service slug page');
 
 
