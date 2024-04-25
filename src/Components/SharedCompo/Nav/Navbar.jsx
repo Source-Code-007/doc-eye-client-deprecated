@@ -5,7 +5,6 @@ import logo from '/public/assets/img/logo.png'
 import MyMenu from '@/Components/HelpingCompo/MyMenu';
 import { useAuth } from '@/Providers/AuthProvider';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
 import Skeleton from 'react-loading-skeleton';
 import { GoSignOut } from "react-icons/go";
 import { LuLayoutDashboard } from "react-icons/lu";
@@ -14,7 +13,6 @@ import { LuLayoutDashboard } from "react-icons/lu";
 const Navbar = () => {
     const [isTop, setIsTop] = useState(true)
     const { user, authLoading, setAuthLoading, signOutFunc } = useAuth()
-    const pathName = usePathname()
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
     const userDropdownRef = useRef(null);
 

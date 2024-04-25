@@ -73,6 +73,15 @@ select option {
 .my-inp:focus{
   box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
 }
+.registrationDoctorParent .my-inp{
+  @apply rounded-lg px-4 py-3 outline-none focus:border-l-2 focus:border-[#E57373]  w-full text-white;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+  background: rgba(255, 255, 255, 0.05);
+
+}
+.registrationDoctorParent .my-inp:focus{
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+}
 .my-textarea{
   @apply rounded-lg px-4 py-3 outline-none focus:border-l-2 focus:border-[#E57373]  w-full text-black min-h-[150px] max-h-[300px];
   box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
@@ -81,6 +90,15 @@ select option {
 .my-textarea:focus{
   box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
 }
+.registrationDoctorParent .my-textarea{
+  @apply rounded-lg px-4 py-3 outline-none focus:border-l-2 focus:border-[#E57373]  w-full text-white min-h-[150px] max-h-[300px];
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+  background: rgba(255, 255, 255, 0.05);
+}
+.registrationDoctorParent .my-textarea:focus{
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+}
+
 .my-file-inp{
   @apply file-input file-input-bordered file-input-error bg-slate-900 text-white w-full
 }
@@ -129,20 +147,23 @@ select option {
 
 
 .my-shadow{
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: rgba(100, 100, 111, 0.299) 0px 7px 29px 0px !important;
 }
 .my-shadow-2{
-  box-shadow: rgb(223 223 228 / 42%) 0px 0px 19px 4px;
+  box-shadow: rgba(223, 223, 228, 0.397) 0px 0px 15px 4px !important;
 }
 
 .my-btn-one{
-  @apply bg-[#09528C] border-2 border-transparent text-slate-100 rounded py-3 px-6 hover:bg-slate-100 hover:border-2 hover:border-[#09528C] hover:text-[#09528C]
+  @apply bg-[#09528C] border-2 border-transparent text-slate-100 rounded py-3 px-6 hover:bg-slate-100 hover:border-2 hover:border-[#09528C] hover:text-[#09528C] flex gap-2 items-center justify-center
 }
 .my-disable-btn-one{
   @apply bg-[#09528C] opacity-50 pointer-events-none border-2 border-transparent text-slate-100 rounded py-3 px-6
 }
 .my-btn-two{
-  @apply bg-[#E57373] text-slate-100 rounded py-3 px-6 hover:scale-105 transition
+  @apply bg-[#E57373] text-slate-100 rounded py-3 px-6 hover:scale-105 transition flex gap-2 items-center justify-center
+}
+.my-disable-btn-two{
+  @apply bg-[#E57373] opacity-50 pointer-events-none border-2 border-transparent text-slate-100 rounded py-3 px-6
 }
 .my-btn-one-outline{
   @apply bg-slate-50 hover:bg-[#09528C] border-2 font-semibold hover:text-slate-100 text-[#09528C] rounded py-3 px-6 border-[#09528C]
@@ -242,3 +263,16 @@ body::-webkit-scrollbar-thumb {
   .ag-theme-quartz>div{
     width: 100%;
   }
+.ag-menu.ag-ltr.ag-popup-child.ag-popup-positioned-under{
+  width: fit-content;
+}
+
+/* AG cell focus none */
+.ag-cell-focus,.ag-cell-no-focus{
+  border:none !important;
+}
+/* This CSS is to not apply the border for the column having 'no-border' class */
+.no-border.ag-cell:focus{
+  border:none !important;
+  outline: none;
+}

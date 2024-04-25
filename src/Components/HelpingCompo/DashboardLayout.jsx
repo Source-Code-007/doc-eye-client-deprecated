@@ -7,6 +7,8 @@ import { ToastContainer } from 'react-toastify';
 import { useAuth } from '@/Providers/AuthProvider';
 import MyLoading from './MyLoading';
 import DashboardLayoutSkeleton from './Skeleton/DashboardLayoutSkeleton';
+import { MdDashboard, MdMedicalServices } from 'react-icons/md';
+import { FaUserDoctor, FaUsers } from 'react-icons/fa6';
 
 const DashboardLayout = ({ children }) => {
     const { user, authLoading } = useAuth()
@@ -28,10 +30,10 @@ const DashboardLayout = ({ children }) => {
                             <>
                                 {isRole === 'admin' ?
                                     <ul>
-                                        <DashboardLink href={'/admin-dashboard'}> Dashboard </DashboardLink>
-                                        <DashboardLink href={'/admin-dashboard/manage-specialty'}> Manage specialty </DashboardLink>
-                                        <DashboardLink href={'/admin-dashboard/manage-doctors'}>Manage doctors</DashboardLink>
-                                        <DashboardLink href={'/admin-dashboard/manage-users'}>Manage users</DashboardLink>
+                                        <DashboardLink href={'/admin-dashboard'}> Dashboard <MdDashboard /> </DashboardLink>
+                                        <DashboardLink href={'/admin-dashboard/manage-specialty'}> Manage specialty <MdMedicalServices /></DashboardLink>
+                                        <DashboardLink href={'/admin-dashboard/manage-doctors'}>Manage doctors <FaUserDoctor /> </DashboardLink>
+                                        <DashboardLink href={'/admin-dashboard/manage-users'}>Manage all users <FaUsers /></DashboardLink>
                                     </ul> : isRole === 'doctor' ?
                                         <ul>
                                             <DashboardLink href={'/doctor-dashboard'}> Dashboard </DashboardLink>
