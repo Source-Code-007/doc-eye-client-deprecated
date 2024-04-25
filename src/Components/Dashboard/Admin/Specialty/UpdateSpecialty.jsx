@@ -42,7 +42,20 @@ const SpecialtyActionCompo = (props) => {
             });
           }
         }).catch(e => {
-          console.log(e);
+          if(e.response?.data?.errors?.common?.msg){
+            toast.error(e.response?.data?.errors?.common?.msg, {
+                position: "bottom-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
+        } else{
+            console.log(e.response?.data?.errors);
+        }
         })
       }
     });

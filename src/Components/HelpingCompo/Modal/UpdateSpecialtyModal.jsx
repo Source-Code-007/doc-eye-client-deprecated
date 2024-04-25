@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 const UpdateSpecialtyModal = ({ currentSpecialty, control, setControl }) => {
     const axiosSecure = useAxiosSecure()
     const [specialtyImg, setSpecialtyImg] = useState('')
-    const [specialtyImgError, setSpecialtyImgError] = useState('Specialty image is required!')
+    const [specialtyImgError, setSpecialtyImgError] = useState('')
 
     // console.log(control, setControl, 'control and setControl from modal ');
 
@@ -34,7 +34,6 @@ const UpdateSpecialtyModal = ({ currentSpecialty, control, setControl }) => {
     }, [])
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
-
     
     // Handle reset modal data
     const handleResetModalData = ()=> {
@@ -47,10 +46,13 @@ const UpdateSpecialtyModal = ({ currentSpecialty, control, setControl }) => {
     const handleSubmitFunc = (form) => {
 
         const { specialtyName, specialtyDescription } = form
+
+        console.log(form, currentSpecialty?.image, 'submit');
+
         if(specialtyImgError){
             return
         }
-        axiosSecure.patch(`/admin/update-specialty/${currentSpecialty?._id}`, { specialtyName, specialtyDescription, specialtyLogo: specialtyImg }, { headers: { "Content-Type": "multipart/form-data" } }).then(res => {
+        axiosSecure.patch(`/admin/update-specialty/${currentSpecialty?._id}`, { specialtyName, specialtyDescription, specialtyLogo: specialtyImg? specialtyImg : currentSpecialty?.image }, { headers: { "Content-Type": "multipart/form-data" } }).then(res => {
 
             console.log(res, 39);
             if (res?.data?.id) {
@@ -97,7 +99,7 @@ const UpdateSpecialtyModal = ({ currentSpecialty, control, setControl }) => {
 
                     <div className="flex-1">
 
-                        <div {...getRootProps()} className='h-[160px] border border-dotted border-primary-main p-2 rounded flex items-center justify-center font-bold'>
+                        <div {...getRootProps()} className='h-[160px] border border-dotted border-primary-main p-2 rounded flex items-center justify-center font-bold overflow-hidden'>
                             <input {...getInputProps()} />
                             {
                                 isDragActive ?
