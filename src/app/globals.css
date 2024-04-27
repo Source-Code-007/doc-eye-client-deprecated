@@ -127,7 +127,7 @@ select option {
 
 /* Common layout */
 .my-container{
-  @apply max-w-7xl container mx-8 md:mx-12 xl:mx-auto
+  @apply max-w-7xl container mx-4 sm:mx-8 md:mx-12 xl:mx-auto
 }
 .my-container-2{
   @apply  mx-6 md:mx-10 xl:mx-14

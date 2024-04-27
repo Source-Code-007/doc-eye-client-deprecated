@@ -2,9 +2,9 @@ import AdditionalDoctorInfo from '@/Components/Doctor/AdditionalDoctorInfo';
 import getDoctor from '@/GetApiData/getDoctor';
 import Image from 'next/image';
 
-const DoctorPage = async ({params}) => {
-    
-    const slug  = params.slug
+const DoctorPage = async ({ params }) => {
+
+    const slug = params.slug
     const doctor = await getDoctor(slug)
     // const [current] = useState('Info')
 
@@ -68,7 +68,7 @@ const DoctorPage = async ({params}) => {
 
             </div>
 
-         <AdditionalDoctorInfo doctor={doctor}/>
+            <AdditionalDoctorInfo doctor={doctor} />
 
 
         </div>

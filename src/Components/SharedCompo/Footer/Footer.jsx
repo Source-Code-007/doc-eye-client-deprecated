@@ -18,7 +18,7 @@ const Footer = () => {
 
                 {/* Contact info */}
                 <div className='space-y-4'>
-                    <Link href={'/'} className='font-bold text-xl flex gap-3 items-center'><Image height={40} width={40} src={logo} alt='DocEye'></Image> <span className='flex'>Doc<span className='text-secondary'>Watch</span></span></Link>
+                    <Link href={'/'} className='font-bold text-xl flex gap-3 items-center'><Image height={40} width={40} src={logo} alt='DocEye'></Image> <span className='flex'>Doc<span className='text-secondary'>Eye</span></span></Link>
                     <p className='flex items-center gap-3'><span className='inline-block p-3 bg-slate-900 text-slate-50 rounded-full'><FaPhone></FaPhone></span> 0170678-5160</p>
                     <p className='flex items-center gap-3'><span className='inline-block p-3 bg-slate-900 text-slate-50 rounded-full'><FaMessage></FaMessage></span> utsho926@gmail.com</p>
                     <p className='flex items-center gap-3'><span className='inline-block p-3 bg-slate-900 text-slate-50 rounded-full'><FaLocationArrow></FaLocationArrow></span> 25/fa/3 Satarkul, Badda, Dhaka, Bangladesh</p>
