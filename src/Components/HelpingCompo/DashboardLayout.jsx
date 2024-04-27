@@ -18,7 +18,7 @@ const DashboardLayout = ({ children }) => {
     return (
         <div className='flex'>
 
-            <div className='min-h-screen w-[250px] overflow-y-auto bg-slate-100 border-r border-r-primary-main border-opacity-25'>
+            <div className='min-h-screen w-[80px] md:w-[250px] overflow-y-auto bg-slate-100 border-r border-r-primary-main border-opacity-25'>
                 <Link href={'/'}>
                     <Image src={logo} height={40} width={40} alt='logo' className='mx-auto py-2' />
                 </Link>
@@ -30,10 +30,10 @@ const DashboardLayout = ({ children }) => {
                             <>
                                 {isRole === 'admin' ?
                                     <ul>
-                                        <DashboardLink href={'/admin-dashboard'}> Dashboard <MdDashboard /> </DashboardLink>
-                                        <DashboardLink href={'/admin-dashboard/manage-specialty'}> Manage specialty <MdMedicalServices /></DashboardLink>
-                                        <DashboardLink href={'/admin-dashboard/manage-doctors'}>Manage doctors <FaUserDoctor /> </DashboardLink>
-                                        <DashboardLink href={'/admin-dashboard/manage-users'}>Manage all users <FaUsers /></DashboardLink>
+                                        <DashboardLink href={'/admin-dashboard'} icon={<MdDashboard />}> Dashboard </DashboardLink>
+                                        <DashboardLink href={'/admin-dashboard/manage-specialty'} icon={<MdMedicalServices />}> Manage specialty</DashboardLink>
+                                        <DashboardLink href={'/admin-dashboard/manage-doctors'} icon={ <FaUserDoctor />}>Manage doctors </DashboardLink>
+                                        <DashboardLink href={'/admin-dashboard/manage-users'} icon={<FaUsers />}>Manage all users</DashboardLink>
                                     </ul> : isRole === 'doctor' ?
                                         <ul>
                                             <DashboardLink href={'/doctor-dashboard'}> Dashboard </DashboardLink>

@@ -31,9 +31,6 @@ const ManageSpecialtyPage = () => {
                         </TabPanel>
                     })
                 }
-                {/* <TabPanel>
-                   <UpdateSpecialty/>
-                </TabPanel> */}
             </Tabs>
 
         </div>

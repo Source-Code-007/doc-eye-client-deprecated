@@ -99,37 +99,37 @@ const RegistrationDoctorPage = () => {
         "Munshiganj"
     ];
     const totalExperiences = [
-        '1 year',
-        '2 years',
-        '3 years',
-        '4 years',
-        '5 years',
-        '6 years',
-        '7 years',
-        '8 years',
-        '9 years',
-        '10 years',
-        '11 years',
-        '12 years',
-        '13 years',
-        '14 years',
-        '15 years',
-        '16 years',
-        '17 years',
-        '18 years',
-        '19 years',
-        '20 years',
-        '21 years',
-        '22 years',
-        '23 years',
-        '24 years',
-        '25 years',
-        '26 years',
-        '27 years',
-        '28 years',
-        '29 years',
-        '30 years'
-    ];
+        { label: '1 year', value: 1 },
+        { label: '2 years', value: 2 },
+        { label: '3 years', value: 3 },
+        { label: '4 years', value: 4 },
+        { label: '5 years', value: 5 },
+        { label: '6 years', value: 6 },
+        { label: '7 years', value: 7 },
+        { label: '8 years', value: 8 },
+        { label: '9 years', value: 9 },
+        { label: '10 years', value: 10 },
+        { label: '11 years', value: 11 },
+        { label: '12 years', value: 12 },
+        { label: '13 years', value: 13 },
+        { label: '14 years', value: 14 },
+        { label: '15 years', value: 15 },
+        { label: '16 years', value: 16 },
+        { label: '17 years', value: 17 },
+        { label: '18 years', value: 18 },
+        { label: '19 years', value: 19 },
+        { label: '20 years', value: 20 },
+        { label: '21 years', value: 21 },
+        { label: '22 years', value: 22 },
+        { label: '23 years', value: 23 },
+        { label: '24 years', value: 24 },
+        { label: '25 years', value: 25 },
+        { label: '26 years', value: 26 },
+        { label: '27 years', value: 27 },
+        { label: '28 years', value: 28 },
+        { label: '29 years', value: 29 },
+        { label: '30 years', value: 30 }
+      ];
 
 
 
@@ -161,11 +161,11 @@ const RegistrationDoctorPage = () => {
     const handleSignupFunc = (form) => {
         setMyErrors(null)
         setLoading(true);
-        const { title, doctorType, bio, medical_specialty, total_experience, medical_degree, consultationFee, availabilityDayStart, availabilityDayEnd, followupFee, current_workplace, district, NID, BMDC } = form;
+        const { title, doctorType, bio, medical_specialty, total_experience_year, medical_degree, consultationFee, availabilityDayStart, availabilityDayEnd, followupFee, current_workplace, district, NID, BMDC } = form;
 
         const availability = { availabilityDayStart, availabilityDayEnd, availabilityTimeStart, availabilityTimeEnd }
 
-        const newDoctor = { title, doctorType, bio, medical_specialty, total_experience, medical_degree, consultationFee, followupFee, workingExperiences, dateOfBirth, current_workplace, availability, district, NID, BMDC }
+        const newDoctor = { title, doctorType, bio, medical_specialty, total_experience_year, medical_degree, consultationFee, followupFee, workingExperiences, dateOfBirth, current_workplace, availability, district, NID, BMDC }
 
 
         console.log(newDoctor);
@@ -354,16 +354,16 @@ const RegistrationDoctorPage = () => {
 
                                 {/* Total Experience */}
                                 <div className='flex-1'>
-                                    <label htmlFor="total_experience" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Total Experience <span className='text-secondary-main'>*</span></label>
-                                    <select id='total_experience' defaultValue={''} className='my-inp' {...register("total_experience", { required: true })}>
+                                    <label htmlFor="total_experience_year" className="block mb-2 text-sm font-medium text-slate-300 dark:text-white"> Total Experience <span className='text-secondary-main'>*</span></label>
+                                    <select id='total_experience_year' defaultValue={''} className='my-inp' {...register("total_experience_year", { required: true })}>
                                         <option value="" disabled>Total Experiences</option>
                                         {
                                             totalExperiences.map((item, ind) => {
-                                                return <option key={ind} value={item}>{item}</option>
+                                                return <option key={ind} value={item.value}>{item.label}</option>
                                             })
                                         }
                                     </select>
-                                    {errors.total_experience ? <p className="text-red-500">*This field is required</p> : myErrors?.total_experience && <span className='text-red-500'>*{myErrors?.total_experience?.msg}</span>}
+                                    {errors.total_experience_year ? <p className="text-red-500">*This field is required</p> : myErrors?.total_experience_year && <span className='text-red-500'>*{myErrors?.total_experience_year?.msg}</span>}
                                 </div>
 
                             </div>

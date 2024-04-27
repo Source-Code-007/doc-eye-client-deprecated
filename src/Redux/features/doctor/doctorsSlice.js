@@ -5,7 +5,7 @@ const initialState = {
     maxConsultationFee: 3000,
     availability: [],
     rating: 5,
-    sortBy: 'Relevance', // popularity, low to high (fees), high to low (fees), experience
+    sortBy: 'relevance',
 }
 
 export const doctorsSlice = createSlice({
@@ -21,18 +21,19 @@ export const doctorsSlice = createSlice({
         updateRating: (state, action) => {
             state.rating = action.payload
         },
-        updateAvailability:(state, action)=> {
-            if(state.availability.includes(action.payload)){
-                state.availability = state.availability.filter(elem=> elem!=action.payload)
-            } else{
+        updateAvailability: (state, action) => {
+            if (state.availability.includes(action.payload)) {
+                state.availability = state.availability.filter(elem => elem != action.payload)
+            } else {
                 state.availability = [...state.availability, action.payload]
             }
         },
-        updateSortBy:(state, action)=> {
+        updateSortBy: (state, action) => {
             state.sortBy = action.payload
-        }
+        },
+        resetState: () => initialState
     }
 })
 
-export const { updateMinConsultationFee, updateMaxConsultationFee, updateRating, updateAvailability, updateSortBy } = doctorsSlice.actions
+export const { updateMinConsultationFee, updateMaxConsultationFee, updateRating, updateAvailability, updateSortBy, resetState } = doctorsSlice.actions
 export default doctorsSlice.reducer

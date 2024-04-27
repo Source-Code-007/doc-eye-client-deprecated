@@ -86,10 +86,10 @@ const ManageUsers = () => {
 
   // Column Definitions: Defines the columns to be displayed.
   const [colDefs, setColDefs] = useState([
-    { field: "name" },
+    { field: "name", flex: 1 },
     { field: "email", flex: 1 },
-    { field: "role", },
-    { field: "image", cellRenderer: UsersImageCompo },
+    { field: "role", flex: 1 },
+    { field: "image", flex: 1, cellRenderer: UsersImageCompo },
     {
       field: "action", sortable: false, filter: false, cellRenderer: UsersActionCompo, cellRendererParams: {
         control: control,

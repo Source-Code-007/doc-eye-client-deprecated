@@ -1,5 +1,5 @@
 'use client'
-import { updateAvailability, updateMaxConsultationFee, updateMinConsultationFee, updateRating, updateSortBy } from '@/Redux/features/doctor/doctorsSlice';
+import { resetState, updateAvailability, updateMaxConsultationFee, updateMinConsultationFee, updateRating, updateSortBy } from '@/Redux/features/doctor/doctorsSlice';
 import { useAppDispatch, useAppSelector } from '@/Redux/hooks';
 import React from 'react';
 
@@ -19,13 +19,13 @@ const ServiceFilter = () => {
 
 
     const availabilityOption = ['Online Now', 'Available Today', 'Available in next 3 hours', 'Female Doctors Only']
-    const sortByOption = [{ label: 'Relevance (Default)', value: 'Relevance' }, { label: 'Popularity', value: 'Popularity' }, { label: 'Low to High (Fees)', value: 'Ascending' }, { label: 'High to Low (Fees)', value: 'Descending' }, { label: 'Rating', value: 'Rating' }, { label: 'Experience', value: 'Experience' }]
+    const sortByOption = [{ label: 'Relevance (Default)', value: 'relevance' }, { label: 'Popularity', value: 'popularity' }, { label: 'Low to High (Fees)', value: 'ascending' }, { label: 'High to Low (Fees)', value: 'descending' }, { label: 'Rating', value: 'rating' }, { label: 'Experience', value: 'experience' }]
 
     return (
         <div>
             <div className='flex justify-between gap-2 mb-3'>
                 <span className='font-bold'>Filter</span>
-                <span className='btn btn-sm font-bold'>Reset</span>
+                <span className='btn btn-sm font-bold'  onClick={()=> dispatch(resetState())}>Reset</span>
             </div>
 
             <div className='space-y-4 md:space-y-6'>

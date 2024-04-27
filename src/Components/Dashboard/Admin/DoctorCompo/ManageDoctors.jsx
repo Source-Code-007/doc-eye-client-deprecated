@@ -128,10 +128,10 @@ const ManageDoctors = () => {
 
     // Column Definitions: Defines the columns to be displayed.
     const [colDefs, setColDefs] = useState([
-        { field: "name" },
-        { field: "title" },
-        { field: "current_workplace" },
-        { field: "status" },
+        { field: "name", flex: 1},
+        { field: "title", flex: 1 },
+        { field: "current_workplace", flex: 1 },
+        { field: "status", flex: 1 },
         { field: "image", cellRenderer: DoctorImageCompo },
         {
             field: "action", sortable: false, filter: false, cellRenderer: ActionCompo, cellRendererParams: {

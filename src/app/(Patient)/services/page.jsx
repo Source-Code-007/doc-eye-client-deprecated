@@ -11,7 +11,7 @@ const ServicesPage = async () => {
 
 
     return (
-        <div className='container mx-auto'>
+        <div className='container mx-4 md:mx-auto'>
             <h2 className='font-bold text-[24px] md:text-[38px] my-3'>Please choose a specialty</h2>
             {services?.length > 0 ? <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5'>
                 {services?.map((service, ind) => {
