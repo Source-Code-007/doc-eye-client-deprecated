@@ -1,6 +1,9 @@
 import AdditionalDoctorInfo from '@/Components/Doctor/AdditionalDoctorInfo';
 import getDoctor from '@/GetApiData/getDoctor';
 import Image from 'next/image';
+import { FaVideo } from 'react-icons/fa6';
+import { FaCalendarAlt } from "react-icons/fa";
+import Link from 'next/link';
 
 const DoctorPage = async ({ params }) => {
 
@@ -9,8 +12,8 @@ const DoctorPage = async ({ params }) => {
     // const [current] = useState('Info')
 
 
-    console.log(doctor, 'doctor');
-    console.log(doctor.personalInformation, 'doctor');
+    // console.log(doctor, 'doctor');
+    // console.log(doctor.personalInformation, 'doctor');
     const { _id, title, medical_degree, medical_specialty, current_workplace, consultationFee, total_experience_year, BMDC, patient_attended, createdAt } = doctor || {}
     const { name, avatar } = doctor?.personalInformation || {}
 
@@ -41,7 +44,10 @@ const DoctorPage = async ({ params }) => {
                     <div className='flex-1 flex flex-col items-center gap-2'>
                         <p className='text-gray-400'>Consultation fee</p>
                         <p className='font-bold text-3xl sm:text-4xl text-primary-main flex gap-1 items-center group-hover:scale-105 transition-all'>	৳ {consultationFee}</p>
-                        <button className='my-btn-one'>See doctor now</button>
+                        <button className='my-btn-one'> <FaVideo /> Consultation now</button>
+                        <Link href={`/doctor/${_id}/online-appointment`}>
+                            <button className='my-btn-two'> <FaCalendarAlt /> Book online appointment</button>
+                        </Link>
                     </div>
 
                 </div>
