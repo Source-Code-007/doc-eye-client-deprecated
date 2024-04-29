@@ -2,6 +2,7 @@ import AppointmentSelectCompo from '@/Components/OnlineAppointment/AppointmentSe
 import getDoctor from '@/GetApiData/getDoctor';
 import Image from 'next/image';
 import React from 'react';
+import { MdWarning } from 'react-icons/md';
 
 const page = async ({ params }) => {
     const slug = params.slug
@@ -10,7 +11,11 @@ const page = async ({ params }) => {
     const { _id, title, medical_degree } = doctor || {}
     const { name, avatar } = doctor?.personalInformation || {}
 
-
+    if (!doctor) {
+        return <div className='h-[50vh] flex items-center justify-center'>
+            <h2 className='font-bold text-lg sm:text-xl p-2 bg-slate-100 shadow-xl flex items-center gap-2'>Doctor not found! <MdWarning className='text-warning' /></h2>
+        </div>
+    }
 
     return (
         <div className='container mx-4 md:mx-auto my-8 space-y-4'>
@@ -30,8 +35,8 @@ const page = async ({ params }) => {
                 </div>
             </div>
 
-            <AppointmentSelectCompo doctor={doctor}/>
-      
+            <AppointmentSelectCompo doctor={doctor} />
+
 
         </div>
     );

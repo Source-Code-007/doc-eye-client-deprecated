@@ -19,7 +19,7 @@ const loading = () => {
             </div>
 
             <div className='grid grid-cols-12 gap-2'>
-                <div className='bg-white rounded-md p-2 md:p-4 my-shadow col-span-12 md:col-span-2 max-h-[442px] overflow-y-scroll'>
+                <div className='bg-white rounded-md p-2 md:p-4 my-shadow col-span-12 md:col-span-2 max-h-[442px] overflow-y-scroll my-scrollbar'>
                     <div className='hidden md:block'>
                     <Skeleton count={30} className='h-[34px] !w-full' />
                     </div>
@@ -27,7 +27,7 @@ const loading = () => {
                     <Skeleton count={1} className='h-[50px] !w-full' />
                     </div>
                 </div>
-                <div className='bg-white rounded-md p-2 md:p-4 my-shadow col-span-12 md:col-span-10 max-h-[442px] overflow-y-scroll'>
+                <div className='bg-white rounded-md p-2 md:p-4 my-shadow col-span-12 md:col-span-10 max-h-[442px] overflow-y-scroll my-scrollbar'>
                     <Skeleton count={25} className='h-[34px] !w-full' />
                 </div>
             </div>
