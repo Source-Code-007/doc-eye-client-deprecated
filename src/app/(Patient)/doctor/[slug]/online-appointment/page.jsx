@@ -15,7 +15,7 @@ const page = async ({ params }) => {
     return (
         <div className='container mx-4 md:mx-auto my-8 space-y-4'>
 
-            <div className='bg-white rounded-md p-2 md:p-4 my-shadow flex gap-4 sm:gap-6 lg:gap-8 xl:gap-12 items-center'>
+            <div className='bg-white rounded-md p-2 md:p-4 my-shadow flex flex-wrap justify-center sm:justify-normal gap-4 sm:gap-6 lg:gap-8 xl:gap-12 items-center'>
                 <h2 className='font-semibold'>Available Appointment Slots for</h2>
 
                 {/* Title */}

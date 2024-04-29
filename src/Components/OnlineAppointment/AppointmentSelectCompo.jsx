@@ -1,7 +1,17 @@
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 
-const AppointmentSelectCompo = () => {
+const AppointmentSelectCompo = ({ doctor }) => {
+    const { availabilityDayStart, availabilityDayEnd, availabilityTimeStart, availabilityTimeEnd } = doctor.availability || {}
+    const [activeAppointmentDate, setActiveAppointmentDate] = useState('')
+
+    const monthNames = [
+        "January", "February", "March",
+        "April", "May", "June", "July",
+        "August", "September", "October",
+        "November", "December"
+    ];
+
     // Get the current date
     let currentDate = new Date();
 
@@ -33,39 +43,51 @@ const AppointmentSelectCompo = () => {
         next30Days[year][month].push(formattedDate);
     }
 
-    // Print the object
-    // console.log(next30Days);
-    const yearsForBook = Object.keys(next30Days)
+
+    // No appointment days
+    const allDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const getDayIndex = (day) => {
+        return allDays.indexOf(day)
+    }
+    const firstDayIndex = getDayIndex(availabilityDayStart)
+    const lastDayIndex = getDayIndex(availabilityDayEnd)
+    const noAppointmentDays = allDays.filter((day, ind) => {
+        return ind < firstDayIndex || ind > lastDayIndex
+    })
+
+
     return (
         <div>
-
             {/* Date and time to select appointment */}
             <div className='grid grid-cols-12 gap-2'>
                 <div className='bg-white rounded-md p-2 md:p-4 my-shadow col-span-12 md:col-span-2 max-h-auto md:max-h-[442px] overflow-y-scroll'>
-                    <ul className='flex gap-2 md:block overflow-x-scroll md:overflow-x-auto'>
-                        {yearsForBook.map((year, ind) => {
+                        {Object.keys(next30Days).map((year, ind) => {
                             return <div key={ind}>
                                 {
                                     Object.keys(next30Days[year]).map((month, ind) => {
                                         // return   <li key={ind} className='py-3 px-2 border-x md:border-y'>{month}</li>
                                         return <div key={ind} className='mt-4'>
                                             <h2 className='font-bold mb-1'>{month} {year}</h2>
-                                            {
-                                                next30Days[year][month].map((day, ind) => {
-                                                    return <div key={ind}>
-                                                        <li className='py-3 px-2 border-x md:border-x-0 border-y-0 md:border-y cursor-pointer' onClick={() => console.log(day, month, year)}>
+                                            <ul className='flex gap-2 md:block overflow-x-scroll md:overflow-x-auto'>
+                                                {
+                                                    next30Days[year][month].map((day, ind) => {
+                                                        const isNoAppointmentDay = noAppointmentDays.includes(day.split(' ')[1])
+                                                        const isSameDate = activeAppointmentDate && (String(activeAppointmentDate.getDate()) === day.split(' ')[0] &&
+                                                            String(monthNames[activeAppointmentDate.getMonth()]) === month &&
+                                                            String(activeAppointmentDate.getFullYear()) === year);
+
+                                                        return <li key={ind} className={`py-3 px-2 border-x md:border-x-0 border-y-0 md:border-y cursor-pointer whitespace-nowrap ${isNoAppointmentDay && '!opacity-30 !cursor-default'} ${isSameDate && '!bg-primary-main !text-white'}`} onClick={() => !isNoAppointmentDay ? setActiveAppointmentDate(new Date(`${month} ${day.split(' ')[0]}, ${year}`)) : ''} disable={isNoAppointmentDay}>
                                                             {day}
                                                         </li>
-                                                    </div>
-                                                })
-                                            }
+                                                    })
+                                                }
+                                            </ul>
 
                                         </div>
                                     })
                                 }
                             </div>
                         })}
-                    </ul>
                 </div>
 
                 <div className='bg-white rounded-md p-2 md:p-4 my-shadow col-span-12 md:col-span-10 '>
