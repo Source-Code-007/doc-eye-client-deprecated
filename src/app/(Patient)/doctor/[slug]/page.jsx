@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { FaVideo } from 'react-icons/fa6';
 import { FaCalendarAlt } from "react-icons/fa";
 import Link from 'next/link';
+import { MdWarning } from 'react-icons/md';
 
 const DoctorPage = async ({ params }) => {
 
@@ -17,6 +18,11 @@ const DoctorPage = async ({ params }) => {
     const { _id, title, medical_degree, medical_specialty, current_workplace, consultationFee, total_experience_year, BMDC, patient_attended, createdAt } = doctor || {}
     const { name, avatar } = doctor?.personalInformation || {}
 
+    if (!doctor) {
+        return <div className='h-[50vh] flex items-center justify-center'>
+            <h2 className='font-bold text-lg sm:text-xl p-2 bg-slate-100 shadow-xl flex items-center gap-2'>Doctor not found! <MdWarning className='text-warning' /></h2>
+        </div>
+    }
 
     return (
         <div className='container mx-4 md:mx-auto my-8 space-y-4'>

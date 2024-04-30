@@ -8,6 +8,7 @@ const page = async ({ params }) => {
     const slug = params.slug
     const doctor = await getDoctor(slug)
 
+
     const { _id, title, medical_degree } = doctor || {}
     const { name, avatar } = doctor?.personalInformation || {}
 
@@ -16,6 +17,7 @@ const page = async ({ params }) => {
             <h2 className='font-bold text-lg sm:text-xl p-2 bg-slate-100 shadow-xl flex items-center gap-2'>Doctor not found! <MdWarning className='text-warning' /></h2>
         </div>
     }
+
 
     return (
         <div className='container mx-4 md:mx-auto my-8 space-y-4'>

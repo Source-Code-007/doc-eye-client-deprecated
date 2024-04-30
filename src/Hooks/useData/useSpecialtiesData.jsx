@@ -15,7 +15,7 @@ const useSpecialtiesData = () => {
             setMedicalSpecialtiesLoading(false)
             console.log(e);
         })
-    }, [])
+    }, [axiosInstance])
 
 
     return { medicalSpecialties, medicalSpecialtiesLoading }

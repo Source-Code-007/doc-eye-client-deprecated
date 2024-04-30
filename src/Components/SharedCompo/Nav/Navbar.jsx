@@ -11,6 +11,11 @@ import { LuLayoutDashboard } from "react-icons/lu";
 import { IoMenu } from 'react-icons/io5';
 import MyMobileMenu from '@/Components/HelpingCompo/MyMobileMenu';
 
+// import dynamic from "next/dynamic"
+// const isTop = dynamic(()=> {
+//     return import('./UseIsTop')
+// }, {ssr: false})
+
 
 const Navbar = () => {
     const [isTop, setIsTop] = useState(true)
