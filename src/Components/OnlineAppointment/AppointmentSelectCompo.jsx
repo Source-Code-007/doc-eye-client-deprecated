@@ -13,9 +13,9 @@ const AppointmentSelectCompo = ({ doctor }) => {
 
 
     const { expectedDoctorAppointments, expectedDoctorAppointmentsLoading } = useExpectedDoctorAppointmentsData(doctor?._id)
-
     console.log(expectedDoctorAppointments, 'expectedDoctorAppointments');
-    // TODO: Need to check which time slot is not available **** 
+
+
 
     // Last 30 days ****
     const allMonthNames = [
@@ -49,6 +49,11 @@ const AppointmentSelectCompo = ({ doctor }) => {
         }
         if (!next30Days[year][month]) {
             next30Days[year][month] = [];
+        }
+
+        // set default value of first date
+        if(i===0 && !activeAppointmentDate){
+                setActiveAppointmentDate(`${year}-${allMonthNames.indexOf(month)+1}-${formattedDate.split(' ')?.[0]}`)
         }
 
         // Push the formatted date into the corresponding month array
@@ -145,14 +150,17 @@ const AppointmentSelectCompo = ({ doctor }) => {
         })
     }
 
-    // console.log(activeAppointmentDate, 'activeAppointmentDate');
-    // console.log(activeAppointmentTime, 'activeAppointmentTime');
+    console.log(activeAppointmentDate, 'activeAppointmentDate');
+    console.log(next30Days, 'next30Days');
+    console.log(activeAppointmentTime, 'activeAppointmentTime');
     // console.log(`${activeAppointmentDate}T${activeAppointmentTime}`, 'activeAppointmentDateTime');
 
     return (
         <div>
             {/* Date and time to select appointment */}
             <div className='grid grid-cols-12 gap-2'>
+
+                {/* All dates */}
                 <div className='bg-white rounded-md p-2 md:p-4 my-shadow col-span-12 md:col-span-2 max-h-auto md:max-h-[442px] overflow-y-scroll my-scrollbar'>
                     {Object.keys(next30Days).map((year, ind) => {
                         return <div key={ind}>
@@ -171,14 +179,13 @@ const AppointmentSelectCompo = ({ doctor }) => {
                                                     //     String(allMonthNames[activeAppointmentDate.getMonth()]) === month &&
                                                     //     String(activeAppointmentDate.getFullYear()) === year);
                                                     const isSameDate = activeAppointmentDate && (String(activeAppointmentDate.split('-')?.[2]) === day.split(' ')?.[0] &&
-                                                        Number(activeAppointmentDate.split('-')?.[1]) === allMonthNames.indexOf(month) &&
+                                                        Number(activeAppointmentDate.split('-')?.[1]) === allMonthNames.indexOf(month)+1 &&
                                                         String(activeAppointmentDate.split('-')?.[0]) === year);
 
-                                                    return <li key={ind} className={`py-3 px-2 border-x md:border-x-0 border-y-0 md:border-y cursor-pointer whitespace-nowrap text-center ${isNoAppointmentDay && '!opacity-30 !cursor-default'} ${isSameDate && '!bg-primary-main !text-white'}`}
+                                                    return <li key={ind} className={`py-3 px-2 border-x md:border-x-0 border-y-0 md:border-y cursor-pointer whitespace-nowrap text-center ${isNoAppointmentDay && '!opacity-30 !cursor-not-allowed'} ${isSameDate && '!bg-primary-main !text-white'}`}
                                                         // onClick={() => !isNoAppointmentDay ? setActiveAppointmentDate(new Date(`${month} ${day.split(' ')[0]}, ${year}`)) : ''}
-                                                        onClick={() => !isNoAppointmentDay ? setActiveAppointmentDate(`${year}-${allMonthNames.indexOf(month)}-${day.split(' ')?.[0]}`) : ''}
-
-                                                        disable={isNoAppointmentDay}>
+                                                        onClick={() => !isNoAppointmentDay ? setActiveAppointmentDate(`${year}-${allMonthNames.indexOf(month)+1}-${day.split(' ')?.[0]}`) : ''}
+                                                        disabled={isNoAppointmentDay}>
                                                         {day}
                                                     </li>
                                                 })
@@ -201,10 +208,28 @@ const AppointmentSelectCompo = ({ doctor }) => {
                         <div className='max-h-[300px] overflow-y-scroll my-scrollbar'>
                             <ul className='pr-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-4'>
                                 {allTimeSchedules.map((elem, ind) => {
-                                    return <li key={ind} className={`p-2 bg-white border rounded cursor-pointer text-center ${activeAppointmentTime === elem?.twentyFourHourFormat && '!bg-primary-main !text-white'}`} onClick={() => setActiveAppointmentTime(elem?.twentyFourHourFormat)}>{elem?.twelveHourFormat}</li>
+                                    const [currentHours, currentMinutes] = elem?.twentyFourHourFormat?.split(":")
+
+                                    const isUnavailableTime = expectedDoctorAppointments.find(elem=> {
+                                        const date = new Date(elem?.bookedDateTime)
+                                        const hours = date.getHours()-6
+                                        const minutes = date.getMinutes()
+
+                                        console.log(hours, minutes, 'hours minutes');
+                                        console.log(currentHours, currentMinutes, 'currentHours, currentMinutes');
+                                        return (currentHours == hours) && (currentMinutes == minutes)
+                                        // elem.
+                                    }) 
+                                    console.log(isUnavailableTime, 'isUnavailableTime');
+                                    return <li key={ind} className={`p-2 bg-white border rounded cursor-pointer text-center 
+                                    ${activeAppointmentTime === elem?.twentyFourHourFormat && '!bg-primary-main !text-white'}
+                                    ${isUnavailableTime && '!cursor-not-allowed !pointer-events-none !opacity-30'}
+                                    `} onClick={() => setActiveAppointmentTime(elem?.twentyFourHourFormat)}>{elem?.twelveHourFormat}</li>
                                 })}
                             </ul>
                         </div>
+
+{/* Booking indicator color and confirm button */}
                         <div className='flex flex-wrap gap-2 justify-between p-2 bg-white border-t border-primary-main absolute bottom-0 left-0 right-0'>
                             {/* Booking Indicator color */}
                             <div className='flex flex-wrap gap-1 md:gap-2'>
