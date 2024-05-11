@@ -4,7 +4,6 @@ import useExpectedDoctorAppointmentsData from '@/Hooks/useData/useAppointmentsDa
 import { useAuth } from '@/Providers/AuthProvider';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import MyLoading from '../HelpingCompo/MyLoading';
 import Skeleton from 'react-loading-skeleton';
 
 const AppointmentSelectCompo = ({ doctor }) => {
@@ -17,7 +16,6 @@ const AppointmentSelectCompo = ({ doctor }) => {
 
 
     const { expectedDoctorAppointments, expectedDoctorAppointmentsLoading } = useExpectedDoctorAppointmentsData(doctor?._id, refetchExpectedDoctorAppointments)
-    console.log(expectedDoctorAppointments, 'expectedDoctorAppointments');
 
 
 
@@ -32,10 +30,23 @@ const AppointmentSelectCompo = ({ doctor }) => {
     // Get the current date
     let currentDate = new Date();
 
+    // No appointment days ****
+    const allDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const getDayIndex = (day) => {
+        return allDays.indexOf(day)
+    }
+    const firstDayIndex = getDayIndex(availabilityDayStart)
+    const lastDayIndex = getDayIndex(availabilityDayEnd)
+    const noAppointmentDays = allDays.filter((day, ind) => {
+        return ind < firstDayIndex || ind > lastDayIndex
+    })
+
     // Object to store days grouped by month
     const next30Days = {}
 
     // Loop to generate the next 30 days
+    // Active date set initially
+    let activeDate = false
     for (let i = 0; i < 30; i++) {
         // Get the date for the current iteration
         let nextDate = new Date(currentDate.getTime() + (i * 24 * 60 * 60 * 1000));
@@ -56,26 +67,15 @@ const AppointmentSelectCompo = ({ doctor }) => {
         }
 
         // set default value of first date
-        if (i === 0 && !activeAppointmentDate) {
+         const isNoAppointmentDay = noAppointmentDays.includes(formattedDate.split(' ')[1])
+         if (!activeDate && !activeAppointmentDate && !isNoAppointmentDay) {
             setActiveAppointmentDate(`${year}-${allMonthNames.indexOf(month) + 1}-${formattedDate.split(' ')?.[0]}`)
+            activeDate = true
         }
 
         // Push the formatted date into the corresponding month array
         next30Days[year][month].push(formattedDate);
     }
-
-
-    // No appointment days ****
-    const allDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const getDayIndex = (day) => {
-        return allDays.indexOf(day)
-    }
-    const firstDayIndex = getDayIndex(availabilityDayStart)
-    const lastDayIndex = getDayIndex(availabilityDayEnd)
-    const noAppointmentDays = allDays.filter((day, ind) => {
-        return ind < firstDayIndex || ind > lastDayIndex
-    })
-
 
 
     // All time schedules ****
