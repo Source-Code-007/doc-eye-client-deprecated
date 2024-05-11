@@ -69,7 +69,7 @@ const Navbar = () => {
         signOutFunc()
     }
 
-    console.log(user, 'user from navbar');
+    // console.log(user, 'user from navbar');
 
     return (
         <nav className={` ${isTop ? 'bg-transparent shadow-sm' : 'bg-opacity-75 backdrop-filter backdrop-blur-md backdrop-saturate-180 shadow'} sticky left-0 right-0 top-0 z-50`}>

@@ -3,6 +3,8 @@ import useAxiosSecure from '@/Hooks/Axios/useAxiosSecure';
 import useExpectedDoctorAppointmentsData from '@/Hooks/useData/useAppointmentsData';
 import { useAuth } from '@/Providers/AuthProvider';
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import MyLoading from '../HelpingCompo/MyLoading';
 
 const AppointmentSelectCompo = ({ doctor }) => {
     const { availabilityDayStart, availabilityDayEnd, availabilityTimeStart, availabilityTimeEnd } = doctor?.availability || {}
@@ -10,9 +12,10 @@ const AppointmentSelectCompo = ({ doctor }) => {
     const [activeAppointmentTime, setActiveAppointmentTime] = useState('')
     const axiosSecure = useAxiosSecure()
     const { user } = useAuth()
+    const [refetchExpectedDoctorAppointments, setRefetchExpectedDoctorAppointments] = useState(true)
 
 
-    const { expectedDoctorAppointments, expectedDoctorAppointmentsLoading } = useExpectedDoctorAppointmentsData(doctor?._id)
+    const { expectedDoctorAppointments, expectedDoctorAppointmentsLoading } = useExpectedDoctorAppointmentsData(doctor?._id, refetchExpectedDoctorAppointments)
     console.log(expectedDoctorAppointments, 'expectedDoctorAppointments');
 
 
@@ -52,8 +55,8 @@ const AppointmentSelectCompo = ({ doctor }) => {
         }
 
         // set default value of first date
-        if(i===0 && !activeAppointmentDate){
-                setActiveAppointmentDate(`${year}-${allMonthNames.indexOf(month)+1}-${formattedDate.split(' ')?.[0]}`)
+        if (i === 0 && !activeAppointmentDate) {
+            setActiveAppointmentDate(`${year}-${allMonthNames.indexOf(month) + 1}-${formattedDate.split(' ')?.[0]}`)
         }
 
         // Push the formatted date into the corresponding month array
@@ -115,22 +118,10 @@ const AppointmentSelectCompo = ({ doctor }) => {
     // console.log(allTimeSchedules);
 
 
-    // Booked date ****
-    // const bookedDateTime = (activeAppointmentDate && activeAppointmentTime) ? new Date(activeAppointmentDate) : ''
-    // if (bookedDateTime) {
-    //     const [hour, minute, second] = activeAppointmentTime.split(':')
-    //     bookedDateTime.setHours(hour, minute, second)
-    // }
-
     // book appointment handler ****
     const bookAppointmentHandler = () => {
-        const { _id: doctorId } = doctor || {}
-        const { _id: userId } = user || {}
-
-        // console.log(activeAppointmentDate, 'activeAppointmentDate');
-        // console.log(activeAppointmentTime, 'activeAppointmentTime');
-        // console.log(bookedDateTime, doctorId, userId, 'bookedDateTime, doctorId, userId');
-
+        const { _id: doctorInfo, personalInformation: { _id: doctorUserInfo } } = doctor || {}
+        const { _id: patientUserInfo } = user || {}
 
         // Split the date string into year, month, and day components
         const [year, month, day] = activeAppointmentDate.split('-').map(Number);
@@ -138,22 +129,49 @@ const AppointmentSelectCompo = ({ doctor }) => {
         const [hour, minute, second] = activeAppointmentTime.split(':').map(Number);
 
         // Create a new Date object with the given date and time components
-        const combinedAppointmentDateTime = new Date(Date.UTC(year, month, day, hour, minute, second));
+        const combinedAppointmentDateTime = new Date(Date.UTC(year, month-1, day, hour, minute, second));
 
-        // console.log(combinedAppointmentDateTime, 'combinedAppointmentDateTime');
+        console.log(combinedAppointmentDateTime, 'combinedAppointmentDateTime');
 
-
-        axiosSecure.post('/doctor/book-appointment', { doctorId, userId, bookedDateTime: combinedAppointmentDateTime }).then(res => {
-            console.log(res?.data?.data);
+        axiosSecure.post('/doctor/book-appointment', { doctorInfo, doctorUserInfo, patientUserInfo, bookedDateTime: combinedAppointmentDateTime }).then(res => {
+            // console.log(res?.data?.data);
+            toast.success(res?.data?.message, {
+                position: "bottom-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            setActiveAppointmentTime('')
+            setRefetchExpectedDoctorAppointments(!refetchExpectedDoctorAppointments)
         }).catch(e => {
-            console.log(e);
+            if (e.response?.data?.errors?.common?.msg || e.response?.data?.errors?.multer?.msg) {
+                toast.error(e.response?.data?.errors?.common?.msg || e.response?.data?.errors?.multer?.msg, {
+                    position: "bottom-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            } else {
+                console.log(e.response?.data?.errors);
+            }
         })
     }
 
-    console.log(activeAppointmentDate, 'activeAppointmentDate');
-    console.log(next30Days, 'next30Days');
     console.log(activeAppointmentTime, 'activeAppointmentTime');
-    // console.log(`${activeAppointmentDate}T${activeAppointmentTime}`, 'activeAppointmentDateTime');
+
+    if(expectedDoctorAppointmentsLoading){
+        return <div className='h-[50vh] flex items-center justify-center'>
+            <MyLoading/>
+        </div>
+    }
 
     return (
         <div>
@@ -166,10 +184,10 @@ const AppointmentSelectCompo = ({ doctor }) => {
                         return <div key={ind}>
                             {
                                 Object.keys(next30Days[year]).map((month, ind) => {
-                                    // return   <li key={ind} className='py-3 px-2 border-x md:border-y'>{month}</li>
+
                                     return <div key={ind} className='mt-4'>
                                         <h2 className='font-bold mb-1'>{month} {year}</h2>
-                                        <ul className='flex gap-2 md:block overflow-x-scroll md:overflow-x-auto'>
+                                        <ul className='flex gap-2 md:block overflow-x-scroll md:overflow-x-auto space-y-1'>
                                             {
                                                 next30Days[year][month].map((day, ind) => {
 
@@ -179,12 +197,12 @@ const AppointmentSelectCompo = ({ doctor }) => {
                                                     //     String(allMonthNames[activeAppointmentDate.getMonth()]) === month &&
                                                     //     String(activeAppointmentDate.getFullYear()) === year);
                                                     const isSameDate = activeAppointmentDate && (String(activeAppointmentDate.split('-')?.[2]) === day.split(' ')?.[0] &&
-                                                        Number(activeAppointmentDate.split('-')?.[1]) === allMonthNames.indexOf(month)+1 &&
+                                                        Number(activeAppointmentDate.split('-')?.[1]) === allMonthNames.indexOf(month) + 1 &&
                                                         String(activeAppointmentDate.split('-')?.[0]) === year);
 
-                                                    return <li key={ind} className={`py-3 px-2 border-x md:border-x-0 border-y-0 md:border-y cursor-pointer whitespace-nowrap text-center ${isNoAppointmentDay && '!opacity-30 !cursor-not-allowed'} ${isSameDate && '!bg-primary-main !text-white'}`}
+                                                    return <li key={ind} className={`py-3 px-2 border-x md:border-x-0 border-y-0 md:border-y cursor-pointer whitespace-nowrap text-center ${isNoAppointmentDay && '!bg-slate-500 !bg-opacity-50 !opacity-50 !cursor-not-allowed'} ${isSameDate && '!bg-primary-main !text-white'}`}
                                                         // onClick={() => !isNoAppointmentDay ? setActiveAppointmentDate(new Date(`${month} ${day.split(' ')[0]}, ${year}`)) : ''}
-                                                        onClick={() => !isNoAppointmentDay ? setActiveAppointmentDate(`${year}-${allMonthNames.indexOf(month)+1}-${day.split(' ')?.[0]}`) : ''}
+                                                        onClick={() => !isNoAppointmentDay ? setActiveAppointmentDate(`${year}-${allMonthNames.indexOf(month) + 1}-${day.split(' ')?.[0]}`) : ''}
                                                         disabled={isNoAppointmentDay}>
                                                         {day}
                                                     </li>
@@ -210,26 +228,32 @@ const AppointmentSelectCompo = ({ doctor }) => {
                                 {allTimeSchedules.map((elem, ind) => {
                                     const [currentHours, currentMinutes] = elem?.twentyFourHourFormat?.split(":")
 
-                                    const isUnavailableTime = expectedDoctorAppointments.find(elem=> {
+                                    const isUnavailableTime = expectedDoctorAppointments.find(elem => {
                                         const date = new Date(elem?.bookedDateTime)
-                                        const hours = date.getHours()-6
+                                        const hours = date.getHours() - 6
                                         const minutes = date.getMinutes()
 
-                                        console.log(hours, minutes, 'hours minutes');
-                                        console.log(currentHours, currentMinutes, 'currentHours, currentMinutes');
-                                        return (currentHours == hours) && (currentMinutes == minutes)
-                                        // elem.
-                                    }) 
-                                    console.log(isUnavailableTime, 'isUnavailableTime');
+                                        // Convert booked date format to easily compare active date
+                                        const convertBookedLocaleDateFormat = (dateStr) => {
+                                            const parts = dateStr.split('/')
+                                            return `${parts[2]}-${parts[0]}-${parts[1]}`
+
+                                        }
+                                        const bookedLocaleDate = convertBookedLocaleDateFormat(new Date(elem.bookedDateTime).toLocaleDateString())
+           
+                                        return (currentHours == hours) && (currentMinutes == minutes) && (bookedLocaleDate == activeAppointmentDate)
+                                    })
+
                                     return <li key={ind} className={`p-2 bg-white border rounded cursor-pointer text-center 
                                     ${activeAppointmentTime === elem?.twentyFourHourFormat && '!bg-primary-main !text-white'}
-                                    ${isUnavailableTime && '!cursor-not-allowed !pointer-events-none !opacity-30'}
+                                    ${isUnavailableTime && '!cursor-not-allowed !pointer-events-none !bg-slate-500 !bg-opacity-50 !opacity-50'}
                                     `} onClick={() => setActiveAppointmentTime(elem?.twentyFourHourFormat)}>{elem?.twelveHourFormat}</li>
                                 })}
                             </ul>
                         </div>
 
-{/* Booking indicator color and confirm button */}
+
+                        {/* Booking indicator color and confirm button */}
                         <div className='flex flex-wrap gap-2 justify-between p-2 bg-white border-t border-primary-main absolute bottom-0 left-0 right-0'>
                             {/* Booking Indicator color */}
                             <div className='flex flex-wrap gap-1 md:gap-2'>

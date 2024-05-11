@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import useAxiosSecure from '../Axios/useAxiosSecure';
 
-const useExpectedDoctorAppointmentsData = (id) => {
+const useExpectedDoctorAppointmentsData = (id, refetchExpectedDoctorAppointments) => {
     const [expectedDoctorAppointmentsLoading, setExpectedDoctorAppointmentsLoading] = useState(false)
     const [expectedDoctorAppointments, setExpectedDoctorAppointments] = useState([])
     const axiosSecure = useAxiosSecure(id)
@@ -15,7 +15,7 @@ const useExpectedDoctorAppointmentsData = (id) => {
             setExpectedDoctorAppointmentsLoading(false)
             console.log(e);
         })
-    }, [axiosSecure, id])
+    }, [axiosSecure, id, refetchExpectedDoctorAppointments])
 
 
     return { expectedDoctorAppointments, expectedDoctorAppointmentsLoading }
