@@ -45,7 +45,7 @@ const AppointmentSelectCompo = ({ doctor }) => {
     const next30Days = {}
 
     // Loop to generate the next 30 days
-    // Active date set initially
+    // Flag to check initial active date exist or not
     let activeDate = false
     for (let i = 0; i < 30; i++) {
         // Get the date for the current iteration
@@ -66,7 +66,7 @@ const AppointmentSelectCompo = ({ doctor }) => {
             next30Days[year][month] = [];
         }
 
-        // set default value of first date
+        // activate default active date
          const isNoAppointmentDay = noAppointmentDays.includes(formattedDate.split(' ')[1])
          if (!activeDate && !activeAppointmentDate && !isNoAppointmentDay) {
             setActiveAppointmentDate(`${year}-${allMonthNames.indexOf(month) + 1}-${formattedDate.split(' ')?.[0]}`)
@@ -169,6 +169,7 @@ const AppointmentSelectCompo = ({ doctor }) => {
         <div>
             {/* Date and time to select appointment */}
             <div className='grid grid-cols-12 gap-2'>
+
 
                 {/* All dates */}
                 <div className='bg-white rounded-md p-2 md:p-4 my-shadow col-span-12 md:col-span-2 max-h-auto md:max-h-[442px] overflow-y-scroll my-scrollbar'>
