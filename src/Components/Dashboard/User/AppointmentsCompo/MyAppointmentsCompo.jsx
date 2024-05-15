@@ -14,10 +14,14 @@ const DoctorImageCompo = (props) => {
 
 const ActionCompo = (props) => {
 
+    const {appointmentDateTime} = props.data
+    console.log(props.data, 'props data');
+    console.log(appointmentDateTime, 'appointmentDateTime');
+
     return <div className='h-full flex items-center gap-1'>
-        <span className='cursor-pointer text-xl' title='View appointment details'><FaEye /></span>
-        <span className='cursor-pointer text-xl' title='Chat with doctor'><FaMessage /></span>
-        <span className='cursor-pointer text-xl' title='Delete appointment'><FaTrash /></span>
+        <span className='cursor-pointer text-xl text-primary-main' title='View appointment details'><FaEye /></span>
+        <span className='cursor-pointer text-xl text-success-desc' title='Chat with doctor'><FaMessage /></span>
+        <span className='cursor-pointer text-xl text-danger-desc' title='Delete appointment'><FaTrash /></span>
 
     </div>
 }
@@ -33,10 +37,10 @@ const MyAppointmentsCompo = () => {
 
     // Column Definitions: Defines the columns to be displayed.
     const [colDefs, setColDefs] = useState([
-        { field: "Doctor name", flex: 1},
-        { field: "Doctor avatar", flex: 1, cellRenderer: DoctorImageCompo, cellRendererParams: {} },
-        { field: "User name", flex: 1 },
-        { field: "Appointment date time", flex: 1 },
+        { headerName: 'Doctor name',field: "doctorName", flex: 1},
+        { headerName: 'Doctor avatar', field: "doctorAvatar", flex: 1, cellRenderer: DoctorImageCompo, cellRendererParams: {} },
+        { headerName: 'Patient name', field: "patientName", flex: 1 },
+        { headerName: 'Appointment date time', field: "appointmentDateTime", flex: 1 },
         {
             field: "action", sortable: false, filter: false, cellRenderer: ActionCompo, cellRendererParams: {
                 control: control,
@@ -51,7 +55,7 @@ const MyAppointmentsCompo = () => {
 
     
     useEffect(()=> {
-        setRowData(expectedDoctorAppointments.map(elem => ({ _id: elem._id, 'Doctor name': elem.doctorUserInfo?.name, 'Doctor avatar': elem.doctorUserInfo?.avatar, 'User name': elem.patientUserInfo?.avatar, 'Appointment date time': `${new Date(elem.bookedDateTime).toLocaleTimeString()} ${new Date(elem.bookedDateTime).toLocaleDateString()}` })))
+        setRowData(expectedDoctorAppointments.map(elem => ({ _id: elem._id, 'doctorName': elem.doctorUserInfo?.name, 'doctorAvatar': elem.doctorUserInfo?.avatar, 'patientName': elem.patientUserInfo?.name, 'appointmentDateTime': `${new Date(elem.bookedDateTime).toLocaleTimeString()} ${new Date(elem.bookedDateTime).toLocaleDateString()}` })))
     }, [expectedDoctorAppointments])
 
     // useEffect(() => {

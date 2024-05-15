@@ -17,7 +17,6 @@ const AppointmentSelectCompo = ({ doctor }) => {
 
     const { expectedDoctorAppointments, expectedDoctorAppointmentsLoading } = useExpectedDoctorAppointmentsData(doctor?._id, refetchExpectedDoctorAppointments)
 
-    console.log(expectedDoctorAppointments, 'expectedDoctorAppointments');
 
 
     // Last 30 days ****
@@ -238,7 +237,14 @@ const AppointmentSelectCompo = ({ doctor }) => {
                                         }
                                         const bookedLocaleDate = convertBookedLocaleDateFormat(new Date(elem.bookedDateTime).toLocaleDateString())
 
-                                        return (currentHours == hours) && (currentMinutes == minutes) && (bookedLocaleDate == activeAppointmentDate)
+
+                                        // Current date and time to compare unavailable time
+                                        const currDate = new Date()
+                                        const currLocaleDate = convertBookedLocaleDateFormat(currDate.toLocaleDateString())
+                                        const currHours = currDate.getHours()  
+                                        const currMinutes = currDate.getMinutes()  
+
+                                        return ((currentHours == hours) && (currentMinutes == minutes) && (bookedLocaleDate == activeAppointmentDate)) || ((currLocaleDate == activeAppointmentDate) && (currHours<currentHours? false : currHours==currentHours ?  currMinutes >= currentMinutes : true))
                                     })
 
                                     return <li key={ind} className={`p-2 bg-white border rounded cursor-pointer text-center 
