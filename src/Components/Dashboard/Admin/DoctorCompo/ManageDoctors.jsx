@@ -1,7 +1,6 @@
 import ViewDoctorModal from '@/Components/HelpingCompo/Modal/Dashboard/Admin/ViewDoctorModal';
 import MyLoading from '@/Components/HelpingCompo/MyLoading';
 import useAxiosSecure from '@/Hooks/Axios/useAxiosSecure';
-import { AgGridReact } from 'ag-grid-react';
 import Image from 'next/image';
 import React, { useEffect, useMemo, useState } from 'react';
 import { FaEye } from 'react-icons/fa6';
@@ -9,6 +8,8 @@ import { MdBlock, MdDelete } from 'react-icons/md';
 import { FaCheck } from "react-icons/fa6";
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
+import { AgGridReact } from 'ag-grid-react';
+
 
 const DoctorImageCompo = (props) => {
     // console.log(props.data?.name, props.value, 'from image compo');

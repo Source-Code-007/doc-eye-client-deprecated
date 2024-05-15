@@ -1,15 +1,9 @@
 import useAxiosSecure from '@/Hooks/Axios/useAxiosSecure';
 import Image from 'next/image';
 import React, { useEffect, useMemo, useState } from 'react';
-import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
-import UpdateSpecialtyModal from '@/Components/HelpingCompo/Modal/Dashboard/Admin/UpdateSpecialtyModal';
-import useAxiosInstance from '@/Hooks/Axios/useAxiosInstance';
-
-// AG grid
 import { AgGridReact } from 'ag-grid-react'; // AG Grid Component
-import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
-import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the grid
+
 
 // SWAL
 import Swal from 'sweetalert2';

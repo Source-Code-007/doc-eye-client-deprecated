@@ -1,9 +1,9 @@
 import CommonSectionTitle from '@/Components/HelpingCompo/CommonSectionTitle';
+import MyMotion from '@/Components/HelpingCompo/MyMotion';
 import React from 'react';
-import { FaBell, FaCalendar, FaClock, FaFile, FaLock, FaPrescription, FaTrophy } from 'react-icons/fa6';
+import { FaBell, FaCalendar, FaClock, FaFile, FaLock, FaPrescription, FaSchoolCircleExclamation, FaTrophy } from 'react-icons/fa6';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
-
 const WhyUseDocEye = () => {
 
     const timelines = [
@@ -62,22 +62,25 @@ const WhyUseDocEye = () => {
 
             <div className='my-container space-y-8 md:space-y-16'>
                 <CommonSectionTitle title={'Why use DocEye?'}></CommonSectionTitle>
-                <VerticalTimeline>
-                    {
-                        timelines.map((timeline) => {
-                            const { id, title, description, benefit, icon, iconBg } = timeline
-                            return <VerticalTimelineElement
-                                key={id}
-                                iconStyle={{ background: `${iconBg}`, color: '#fff' }}
-                                icon={icon}
-                            >
-                                <h2 className='font-bold text-3xl'>{title}</h2>
-                                <p>{description}</p>
-                                <p className='flex gap-2 items-center'> <span className='text-xl !opacity-50'><FaTrophy></FaTrophy></span> {benefit}</p>
-                            </VerticalTimelineElement>
-                        })
-                    }
-                </VerticalTimeline>
+                
+                    <VerticalTimeline>
+                        {
+                            timelines.map((timeline) => {
+                                const { id, title, description, benefit, icon, iconBg } = timeline
+                                return <VerticalTimelineElement
+                                    key={id}
+                                    visible={true}
+                                    iconStyle={{ background: `${iconBg}`, color: '#fff' }}
+                                    icon={icon}
+                                >
+                                    <h2 className='font-bold text-3xl'>{title}</h2>
+                                    <p>{description}</p>
+                                    <p className='flex gap-2 items-center'> <span className='text-xl !opacity-50'><FaTrophy></FaTrophy></span> {benefit}</p>
+                                </VerticalTimelineElement>
+                            })
+                        }
+                    </VerticalTimeline>
+
             </div>
         </div>
     );

@@ -17,6 +17,7 @@ const AppointmentSelectCompo = ({ doctor }) => {
 
     const { expectedDoctorAppointments, expectedDoctorAppointmentsLoading } = useExpectedDoctorAppointmentsData(doctor?._id, refetchExpectedDoctorAppointments)
 
+    console.log(expectedDoctorAppointments, 'expectedDoctorAppointments');
 
 
     // Last 30 days ****
