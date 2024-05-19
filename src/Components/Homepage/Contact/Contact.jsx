@@ -1,5 +1,5 @@
 import React from 'react';
-import contactBG2 from '/public/assets/img/Homepage/Contact/contactBG2.jpg'
+import contactBG2 from '../../../../public/assets/img/Homepage/Contact/contactBG2.jpg'
 
 
 const Contact = () => {

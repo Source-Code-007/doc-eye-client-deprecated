@@ -2,7 +2,7 @@ import CommonSectionTitle from '@/Components/HelpingCompo/CommonSectionTitle';
 import FAQuestions from '@/Components/HelpingCompo/FAQuestions';
 import Link from 'next/link';
 import React from 'react';
-import FAQbg from '/public/assets/img/Homepage/FAQ/FAQ-doctor-portal.png'
+import FAQbg from '../../../../public/assets/img/Homepage/FAQ/FAQ-doctor-portal.png'
 
 const FAQ = () => {
     return (

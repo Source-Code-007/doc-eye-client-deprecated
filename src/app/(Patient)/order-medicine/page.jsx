@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import DownloadOnGooglePlay from '/public/assets/img/Homepage/AppSection/DownloadOnGooglePlay.png'
+import DownloadOnGooglePlay from '../../../../public/assets/img/Homepage/AppSection/DownloadOnGooglePlay.png'
 
 
 const page = () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import WhyChooseUsBg from '/public/assets/img/Homepage/WhyChooseUs/WhyChooseUs.svg'
+import WhyChooseUsBg from '../../../../public/assets/img/Homepage/WhyChooseUs/WhyChooseUs.svg'
 import CommonSectionTitle from '@/Components/HelpingCompo/CommonSectionTitle';
 import { FaCaretUp, FaHouseTsunami, FaPlus, FaUserDoctor } from 'react-icons/fa6';
 

@@ -1,8 +1,8 @@
 import CommonSectionTitle from '@/Components/HelpingCompo/CommonSectionTitle';
 import React, { useState } from 'react';
-import videoConsultationMockup1 from '/public/assets/img/Homepage/EasyStep/videoConsultationMockup1.svg'
-import onlinePrescriptionMockup2 from '/public/assets/img/Homepage/EasyStep/onlinePrescriptionMockup2.svg'
-import onlineMedicineMockup3 from '/public/assets/img/Homepage/EasyStep/onlineMedicineMockup3.svg'
+import videoConsultationMockup1 from '../../../../public/assets/img/Homepage/EasyStep/videoConsultationMockup1.svg'
+import onlinePrescriptionMockup2 from '../../../../public/assets/img/Homepage/EasyStep/onlinePrescriptionMockup2.svg'
+import onlineMedicineMockup3 from '../../../../public/assets/img/Homepage/EasyStep/onlineMedicineMockup3.svg'
 import Image from 'next/image';
 import { FaKitMedical, FaPrescription, FaUserDoctor } from 'react-icons/fa6';
 

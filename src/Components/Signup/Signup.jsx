@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react';
-import signinBG from '/public/assets/img/Sign/signinBG.jpg'
+import signinBG from '../../../public/assets/img/Sign/signinBG.jpg'
 import Link from 'next/link';
 import { FaEye, FaEyeSlash, FaFacebook, FaGithub } from 'react-icons/fa6';
 import { useForm } from 'react-hook-form';

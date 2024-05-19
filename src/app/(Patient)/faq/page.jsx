@@ -1,5 +1,5 @@
 import FAQuestions from '@/Components/HelpingCompo/FAQuestions';
-import FAQbg from '/public/assets/img/Homepage/FAQ/FAQ-doctor-portal.png'
+import FAQbg from '../../../../public/assets/img/Homepage/FAQ/FAQ-doctor-portal.png'
 import React from 'react';
 
 

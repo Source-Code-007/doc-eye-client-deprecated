@@ -1,10 +1,10 @@
 import CommonSectionTitle from '@/Components/HelpingCompo/CommonSectionTitle';
 import React from 'react';
 import { FaArrowRight, FaPhone } from "react-icons/fa6";
-import about1 from '/public/assets/img/Homepage/About/about1.jpg'
-import about2 from '/public/assets/img/Homepage/About/about2.jpg'
-import about3 from '/public/assets/img/Homepage/About/about3.jpg'
-import about4 from '/public/assets/img/Homepage/About/about4.jpg'
+import about1 from '../../../../public/assets/img/Homepage/About/About1.jpg'
+import about2 from '../../../../public/assets/img/Homepage/About/About2.jpg'
+import about3 from '../../../../public/assets/img/Homepage/About/About3.jpg'
+import about4 from '../../../../public/assets/img/Homepage/About/About4.jpg'
 import Image from 'next/image';
 
 

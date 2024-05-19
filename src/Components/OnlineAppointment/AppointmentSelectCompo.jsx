@@ -67,8 +67,8 @@ const AppointmentSelectCompo = ({ doctor }) => {
         }
 
         // activate default active date
-         const isNoAppointmentDay = noAppointmentDays.includes(formattedDate.split(' ')[1])
-         if (!activeDate && !activeAppointmentDate && !isNoAppointmentDay) {
+        const isNoAppointmentDay = noAppointmentDays.includes(formattedDate.split(' ')[1])
+        if (!activeDate && !activeAppointmentDate && !isNoAppointmentDay) {
             setActiveAppointmentDate(`${year}-${allMonthNames.indexOf(month) + 1}-${formattedDate.split(' ')?.[0]}`)
             activeDate = true
         }
@@ -210,6 +210,7 @@ const AppointmentSelectCompo = ({ doctor }) => {
                         </div>
                     })}
                 </div>
+                
 
                 {/* All times schedules */}
                 <div className='bg-white rounded-md p-2 md:p-4 my-shadow col-span-12 md:col-span-10 '>
@@ -222,35 +223,41 @@ const AppointmentSelectCompo = ({ doctor }) => {
                         </div> : <div className='max-h-[300px] overflow-y-scroll my-scrollbar'>
                             <ul className='pr-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-4'>
                                 {allTimeSchedules.map((elem, ind) => {
-                                    const [currentHours, currentMinutes] = elem?.twentyFourHourFormat?.split(":")
+                                    const [loopingHours, loopingMinutes] = elem?.twentyFourHourFormat?.split(":")
 
-                                    const isUnavailableTime = expectedDoctorAppointments.find(elem => {
+                                    // Convert booked date format to easily compare active date
+                                    const convertBookedLocaleDateFormat = (dateStr) => {
+                                        const parts = dateStr.split('/')
+                                        return `${parts[2]}-${parts[0]}-${parts[1]}`
+
+                                    }
+
+                                    const isBookedTime = expectedDoctorAppointments.find(elem => {
                                         const date = new Date(elem?.bookedDateTime)
                                         const hours = date.getHours() - 6
                                         const minutes = date.getMinutes()
 
-                                        // Convert booked date format to easily compare active date
-                                        const convertBookedLocaleDateFormat = (dateStr) => {
-                                            const parts = dateStr.split('/')
-                                            return `${parts[2]}-${parts[0]}-${parts[1]}`
-
-                                        }
                                         const bookedLocaleDate = convertBookedLocaleDateFormat(new Date(elem.bookedDateTime).toLocaleDateString())
 
+                                        return (loopingHours == hours) && (loopingMinutes == minutes) && (bookedLocaleDate == activeAppointmentDate)
+                                    })
 
-                                        // Current date and time to compare unavailable time
+                                    const isUnavailableTime = () => {
                                         const currDate = new Date()
                                         const currLocaleDate = convertBookedLocaleDateFormat(currDate.toLocaleDateString())
-                                        const currHours = currDate.getHours()  
-                                        const currMinutes = currDate.getMinutes()  
+                                        const currHours = currDate.getHours()
+                                        const currMinutes = currDate.getMinutes()
 
-                                        return ((currentHours == hours) && (currentMinutes == minutes) && (bookedLocaleDate == activeAppointmentDate)) || ((currLocaleDate == activeAppointmentDate) && (currHours<currentHours? false : currHours==currentHours ?  currMinutes >= currentMinutes : true))
-                                    })
+                                           return (currLocaleDate == activeAppointmentDate) && (currHours < loopingHours ? false : currHours == loopingHours ? currMinutes >= loopingMinutes : true)
+                                    }
+
 
                                     return <li key={ind} className={`p-2 bg-white border rounded cursor-pointer text-center 
                                     ${activeAppointmentTime === elem?.twentyFourHourFormat && '!bg-primary-main !text-white'}
-                                    ${isUnavailableTime && '!cursor-not-allowed !pointer-events-none !bg-slate-500 !bg-opacity-50 !opacity-50'}
-                                    `} onClick={() => setActiveAppointmentTime(elem?.twentyFourHourFormat)}>{elem?.twelveHourFormat}</li>
+                                    ${isBookedTime && '!cursor-not-allowed !pointer-events-none !bg-primary-main !text-white'}
+                                    ${isUnavailableTime() && '!cursor-not-allowed !pointer-events-none !bg-slate-500 !bg-opacity-50 !opacity-50'}
+                                    `} 
+                                    onClick={() => setActiveAppointmentTime(elem?.twentyFourHourFormat)}>{elem?.twelveHourFormat}</li>
                                 })}
                             </ul>
                         </div>}

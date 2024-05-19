@@ -1,5 +1,5 @@
 import React from 'react';
-import areYouDoctorBanner from '/public/assets/img/areYouDoctor.jpg'
+import areYouDoctorBanner from '../../../../public/assets/img/areYouDoctor.jpg'
 import Link from 'next/link';
 import DoctorReview from '@/Components/ForDoctors/DoctorReview';
 import JoinNowButton from '@/Components/ForDoctors/JoinNowButton';

@@ -1,9 +1,9 @@
 import React from 'react';
-import banner1 from '/public/assets/img/Homepage/DocEyeBanner.svg'
-import videoConsultation from '/public/assets/img/Homepage/Banner/videoConsultation.png'
-import healthResource from '/public/assets/img/Homepage/Banner/healthResource.png'
-import patientSupport from '/public/assets/img/Homepage/Banner/patientSupport.png'
-import orderMedicine from '/public/assets/img/Homepage/Banner/orderMedicine.png'
+import banner1 from '../../../../public/assets/img/Homepage/DocEyeBanner.svg'
+import videoConsultation from '../../../../public/assets/img/Homepage/Banner/videoConsultation.png'
+import healthResource from '../../../../public/assets/img/Homepage/Banner/healthResource.png'
+import patientSupport from '../../../../public/assets/img/Homepage/Banner/patientSupport.png'
+import orderMedicine from '../../../../public/assets/img/Homepage/Banner/orderMedicine.png'
 import Image from 'next/image';
 
 const Banner = () => {

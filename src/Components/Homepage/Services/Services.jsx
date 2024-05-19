@@ -1,12 +1,12 @@
 import CommonSectionTitle from '@/Components/HelpingCompo/CommonSectionTitle';
 import React from 'react';
 import { FaPlus } from 'react-icons/fa6';
-import doctorConsultation from '/public/assets/img/Homepage/Services/doctorConsultation.png'
-import healthRecord from '/public/assets/img/Homepage/Services/healthRecord.png'
-import medicationReminder from '/public/assets/img/Homepage/Services/medicationReminder.png'
-import support from '/public/assets/img/Homepage/Services/support.png'
-import servicesBG from '/public/assets/img/Homepage/Services/servicesBG.svg'
-import tharmoMeter from '/public/assets/img/Homepage/Services/tharmo-meter.png'
+import doctorConsultation from '../../../../public/assets/img/Homepage/Services/doctorConsultation.png'
+import healthRecord from '../../../../public/assets/img/Homepage/Services/healthRecord.png'
+import medicationReminder from '../../../../public/assets/img/Homepage/Services/medicationReminder.png'
+import support from '../../../../public/assets/img/Homepage/Services/support.png'
+import servicesBG from '../../../../public/assets/img/Homepage/Services/servicesBG.svg'
+import tharmoMeter from '../../../../public/assets/img/Homepage/Services/tharmo-meter.png'
 import Image from 'next/image';
 
 

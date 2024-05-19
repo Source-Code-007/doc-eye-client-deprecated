@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react';
-import doctorRegistrationBg from '/public/assets/img/doctor-registration-bg.jpg'
+import doctorRegistrationBg from '../../../../public/assets/img/doctor-registration-bg.jpg'
 
 import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';

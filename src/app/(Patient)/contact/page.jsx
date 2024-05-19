@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react';
-import contactBanner from '/public/assets/img/contactBannerOne.jpg'
+import contactBanner from '../../../../public/assets/img/contactBannerOne.jpg'
 import CommonBanner from '@/Components/HelpingCompo/CommonBanner';
 import { FaLocationArrow, FaMessage, FaPhone } from 'react-icons/fa6';
 import Link from 'next/link';

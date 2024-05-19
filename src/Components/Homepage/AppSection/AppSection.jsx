@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import appSectionBG from '/public/assets/img/Homepage/AppSection/appSectionBG2.jpg'
-import QRcode from '/public/assets/img/Homepage/AppSection/QRcode.png'
-import DownloadOnGooglePlay from '/public/assets/img/Homepage/AppSection/DownloadOnGooglePlay.png'
-import DownloadOnAppStore from '/public/assets/img/Homepage/AppSection/DownloadOnAppStore.png'
+import React from 'react';
+import appSectionBG from '../../../..//public/assets/img/Homepage/AppSection/appSectionBG2.jpg'
+import QRcode from '../../../..//public/assets/img/Homepage/AppSection/QRcode.png'
+import DownloadOnGooglePlay from '../../../../public/assets/img/Homepage/appSection/DownloadOnGooglePlay.png'
+import DownloadOnAppStore from '../../../../public/assets/img/Homepage/appSection/DownloadOnAppStore.png'
 import Image from 'next/image';
 
 

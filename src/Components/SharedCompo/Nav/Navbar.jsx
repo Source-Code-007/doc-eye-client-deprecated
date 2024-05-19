@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
-import logo from '/public/assets/img/logo.png'
+import logo from '../../../../public/assets/img/logo.png'
 import MyMenu from '@/Components/HelpingCompo/MyMenu';
 import { useAuth } from '@/Providers/AuthProvider';
 import Image from 'next/image';

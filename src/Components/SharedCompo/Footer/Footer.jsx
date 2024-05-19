@@ -1,9 +1,9 @@
 import React from 'react';
-import logo from '/public/assets/img/logo.png'
+import logo from '../../../../public/assets/img/logo.png'
 import Link from 'next/link';
 import Image from 'next/image';
-import DownloadOnGooglePlay from '/public/assets/img/Homepage/AppSection/DownloadOnGooglePlay.png'
-import DownloadOnAppStore from '/public/assets/img/Homepage/AppSection/DownloadOnAppStore.png'
+import DownloadOnGooglePlay from '../../../..//public/assets/img/Homepage/AppSection/DownloadOnGooglePlay.png'
+import DownloadOnAppStore from '../../../..//public/assets/img/Homepage/AppSection/DownloadOnAppStore.png'
 import { FaAngleRight, FaFacebook, FaInstagram, FaLocationArrow, FaMessage, FaPhone, FaTwitter, FaWhatsapp } from 'react-icons/fa6';
 
 
